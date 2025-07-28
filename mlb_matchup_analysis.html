@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLB Matchup Analysis Output</title>
+    <style>
+        body {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            background-color: #1e1e1e; /* Dark background similar to a terminal */
+            color: #d4d4d4; /* Light text color */
+            margin: 20px;
+            line-height: 1.5;
+            white-space: pre-wrap; /* Preserves whitespace and wraps long lines */
+            word-wrap: break-word;
+        }
+        /* Colors from Python script for consistency */
+        .color-red { color: #ff4d4d; font-weight: bold; } /* Adjusted for better visibility and bold */
+        .color-blue { color: #007bff; font-weight: bold; }
+        .color-green { color: #28a745; font-weight: bold; } /* Adjusted for better visibility and bold */
+        .color-yellow { color: #ffc107; font-weight: bold; } /* Adjusted for better visibility and bold */
+        .color-reset { color: #d4d4d4; } /* Default text color */
+    </style>
+</head>
+<body>
+    <h1>MLB Matchup Analysis Output</h1>
+    <pre><span class="color-reset">Analysis output will be saved to mlb_matchup_analysis_output.txt
+Pybaseball caching successfully initialized.
+Loading MLBAM IDs from: razzball.csv...
+Loaded 1854 MLBAM IDs.
+Loading 2025 pitching stats from local file &#039;pitcher.csv&#039;...
+Successfully loaded pitchers from &#039;pitcher.csv&#039;.
+Successfully applied season suffixes to pitcher stats.
+Attempting to update pitcher stats with &#039;hr_per_fb&#039; for season 2025...
+  Successfully updated &#039;hr_per_fb_season&#039; for 59 pitchers.
+Loading 2025 batting stats from local file &#039;batter.csv&#039;...
+Successfully loaded batters from &#039;batter.csv&#039;.
+Successfully applied season suffixes to batter stats.
+Historical ML data file &#039;mlb_historical_data_2024_to_now.csv&#039; already exists. Skipping download.
+Loaded 1244270 rows of historical ML data for median calculations.
+Schedule data loaded from schedule.json.
+Successfully loaded Random Forest model from random_forest_hr_model.joblib.
+Successfully loaded XGBoost model from xgboost_hr_model.joblib.
+Successfully loaded Neural Network model from neural_network_hr_model.h5.
+Successfully loaded LightGBM model from lightgbm_hr_model.joblib.
+Successfully loaded CatBoost model from catboost_hr_model.joblib.
+Successfully loaded Stacked Ensemble model from stacked_hr_model.joblib.
+Successfully loaded ML features list from ml_features_list.joblib. (50 features)
+Successfully loaded OneHotEncoder from one_hot_encoder.joblib.
+Successfully loaded median feature values from median_feature_values.joblib.
+Successfully loaded StandardScaler from scaler.joblib.
+Successfully loaded Pitcher HR Batter Profiles from pitcher_hr_profiles.joblib.
+Successfully loaded park factors from local file &#039;park_factors.csv&#039;.
+
+================================================================================
+
+
+================================================================================
+
+</span><span class="color-blue">--- Analyzing Matchups for Today&#039;s Games ---</span><span class="color-reset">
+
+Note on HR Probability Predictions:
+Players with a predicted HR probability of 90.0% or higher are highlighted.
+Players with less than 25 season plate appearances will be marked &#039;Low Data&#039; and listed at the bottom.
+
+Parks with an HR Factor &gt;= 105 are highlighted as &#039;</span><span class="color-green">Best Park for HRs</span><span class="color-reset">&#039;.
+Pitchers with a recent HR/PA rate of 4.0% or higher are highlighted in </span><span class="color-red">red</span><span class="color-reset">.
+
+================================================================================
+
+</span><span class="color-blue">⚾ GAME: Blue Jays @ Orioles on 2025-07-28 at 6:35 PM ET (Status: Scheduled)</span><span class="color-reset">
+</span><span class="color-blue">⚾ GAME: Blue Jays @ Orioles on 2025-07-28 at 6:35 PM ET (Full Matchup Analysis)
+</span><span class="color-reset">
+  Orioles Park Factor (HR): 106.0
+  (</span><span class="color-green">Best Park for HRs</span><span class="color-reset">)
+  Weather: Few clouds, 75.45°F, Wind: WNW 4.6 mph
+
+</span><span class="color-blue">--- Matchup: Orioles Batters vs. Away Pitcher (Chris Bassitt) ---</span><span class="color-reset">
+  Away Team Pitcher: Chris Bassitt
+    Recent HRs Allowed (last 90 days): 14 HRs in 375 PAs (3.73%), K%: 20.80%, BB%: 5.87%, BB: 22
+
+    HR Probability Predictions:
+      - </span><span class="color-red">Adley Rutschman: Predicted HR Probability vs Chris Bassitt: 0.9954</span><span class="color-reset">
+      - </span><span class="color-red">Tyler O’Neill: Predicted HR Probability vs Chris Bassitt: 0.9954</span><span class="color-reset">
+      - </span><span class="color-red">Colton Cowser: Predicted HR Probability vs Chris Bassitt: 0.9866</span><span class="color-reset">
+      - Cedric Mullins: Predicted HR Probability vs Chris Bassitt: 0.8508
+      - Jordan Westburg: Predicted HR Probability vs Chris Bassitt: 0.0348
+      - Jackson Holliday: Predicted HR Probability vs Chris Bassitt: 0.0189
+      - Ramon Laureano: Predicted HR Probability vs Chris Bassitt: 0.0164
+      - Gunnar Henderson: Predicted HR Probability vs Chris Bassitt: 0.0149
+      - Ryan O’Hearn: Predicted HR Probability vs Chris Bassitt: 0.0041
+
+    Player Similarity Matchups (vs. Chris Bassitt HR Hitters):
+      - </span><span class="color-green">Adley Rutschman (Similarity to Chris Bassitt&#039;s HR hitters: 0.21)</span><span class="color-reset">
+
+</span><span class="color-blue">--- Matchup: Blue Jays Batters vs. Home Pitcher (Zach Eflin) ---</span><span class="color-reset">
+  Home Team Pitcher: Zach Eflin
+    </span><span class="color-red">Recent HRs Allowed (last 90 days): 14 HRs in 220 PAs (6.36%), K%: 17.73%, BB%: 5.00%, BB: 11</span><span class="color-reset">
+
+    HR Probability Predictions:
+      - </span><span class="color-red">Nathan Lukes: Predicted HR Probability vs Zach Eflin: 0.9245</span><span class="color-reset">
+      - Ernie Clement: Predicted HR Probability vs Zach Eflin: 0.1102
+      - Addison Barger: Predicted HR Probability vs Zach Eflin: 0.0184
+      - George Springer: Predicted HR Probability vs Zach Eflin: 0.0117
+      - Bo Bichette: Predicted HR Probability vs Zach Eflin: 0.0115
+      - Tyler Heineman: Predicted HR Probability vs Zach Eflin: 0.0048
+      - Will Wagner: Predicted HR Probability vs Zach Eflin: 0.0043
+      - Vladimir Guerrero Jr.: Predicted HR Probability vs Zach Eflin: 0.0039
+      - Joey Loperfido: Predicted HR Probability vs Zach Eflin: 0.0038
+
+    Player Similarity Matchups (vs. Zach Eflin&#039;s HR Hitters):
+      - </span><span class="color-green">Addison Barger (Similarity to Zach Eflin&#039;s HR hitters: 0.27)</span><span class="color-reset">
+
+================================================================================
+
+</span><span class="color-blue">⚾ GAME: Rockies @ Guardians on 2025-07-28 at 6:40 PM ET (Status: Scheduled)</span><span class="color-reset">
+</span><span class="color-blue">⚾ GAME: Rockies @ Guardians on 2025-07-28 at 6:40 PM ET (Full Matchup Analysis)
+</span><span class="color-reset">
+  Guardians Park Factor (HR): 95.0
+  Weather: Few clouds, 68.38°F, Wind: N 0.0 mph
+
+</span><span class="color-blue">--- Matchup: Guardians Batters vs. Away Pitcher (Bradley Blalock) ---</span><span class="color-reset">
+  Away Team Pitcher: Bradley Blalock
+    </span><span class="color-red">Recent HRs Allowed (last 90 days): 4 HRs in 90 PAs (4.44%), K%: 6.67%, BB%: 5.56%, BB: 5</span><span class="color-reset">
+
+    HR Probability Predictions:
+      - </span><span class="color-red">Kyle Manzardo: Predicted HR Probability vs Bradley Blalock: 0.9955</span><span class="color-reset">
+      - </span><span class="color-red">Jose Ramirez: Predicted HR Probability vs Bradley Blalock: 0.9951</span><span class="color-reset">
+      - </span><span class="color-red">Bo Naylor: Predicted HR Probability vs Bradley Blalock: 0.9949</span><span class="color-reset">
+      - </span><span class="color-red">Steven Kwan: Predicted HR Probability vs Bradley Blalock: 0.9729</span><span class="color-reset">
+      - Angel Martinez: Predicted HR Probability vs Bradley Blalock: 0.2870
+      - Carlos Santana: Predicted HR Probability vs Bradley Blalock: 0.0489
+      - Brayan Rocchio: Predicted HR Probability vs Bradley Blalock: 0.0046
+      - Gabriel Arias: Predicted HR Probability vs Bradley Blalock: 0.0040
+      - Daniel Schneemann: Predicted HR Probability vs Bradley Blalock: 0.0039
+
+    Player Similarity Matchups (vs. Bradley Blalock HR Hitters):
+      - </span><span class="color-green">Kyle Manzardo (Similarity to Bradley Blalock&#039;s HR hitters: 0.24)</span><span class="color-reset">
+
+</span><span class="color-blue">--- Matchup: Rockies Batters vs. Home Pitcher (Slade Cecconi) ---</span><span class="color-reset">
+  Home Team Pitcher: Slade Cecconi
+    </span><span class="color-red">Recent HRs Allowed (last 90 days): 12 HRs in 286 PAs (4.20%), K%: 20.98%, BB%: 6.64%, BB: 19</span><span class="color-reset">
+
+    HR Probability Predictions:
+      - W. Bernabel: Batter MLBAM ID not found.
+      - </span><span class="color-red">Ezequiel Tovar: Predicted HR Probability vs Slade Cecconi: 0.9957</span><span class="color-reset">
+      - </span><span class="color-red">Hunter Goodman: Predicted HR Probability vs Slade Cecconi: 0.9919</span><span class="color-reset">
+      - </span><span class="color-red">Jordan Beck: Predicted HR Probability vs Slade Cecconi: 0.9801</span><span class="color-reset">
+      - Yanquiel Fernandez: Predicted HR Probability vs Slade Cecconi: 0.8685
+      - Mickey Moniak: Predicted HR Probability vs Slade Cecconi: 0.0170
+      - Tyler Freeman: Predicted HR Probability vs Slade Cecconi: 0.0135
+      - Thairo Estrada: Predicted HR Probability vs Slade Cecconi: 0.0040
+      - Orlando Arcia: Predicted HR Probability vs Slade Cecconi: 0.0038
+
+    Player Similarity Matchups (vs. Slade Cecconi&#039;s HR Hitters):
+      No significant pitcher-specific similarity matchups found for Rockies vs. Slade Cecconi.
+
+================================================================================
+
+</span><span class="color-blue">⚾ GAME: Diamondbacks @ Tigers on 2025-07-28 at 6:40 PM ET (Status: Scheduled)</span><span class="color-reset">
+</span><span class="color-blue">⚾ GAME: Diamondbacks @ Tigers on 2025-07-28 at 6:40 PM ET (Full Matchup Analysis)
+</span><span class="color-reset">
+  Tigers Park Factor (HR): 95.0
+  Weather: Clear sky, 73.69°F, Wind: SW 3.4 mph
+
+</span><span class="color-blue">--- Matchup: Tigers Batters vs. Away Pitcher (Eduardo Rodriguez) ---</span><span class="color-reset">
+  Away Team Pitcher: Eduardo Rodriguez
+    </span><span class="color-red">Recent HRs Allowed (last 90 days): 13 HRs in 279 PAs (4.66%), K%: 20.79%, BB%: 8.24%, BB: 23</span><span class="color-reset">
+
+    HR Probability Predictions:
+      - </span><span class="color-red">Jahmai Jones: Predicted HR Probability vs Eduardo Rodriguez: 0.9959</span><span class="color-reset">
+      - </span><span class="color-red">Gleyber Torres: Predicted HR Probability vs Eduardo Rodriguez: 0.9956</span><span class="color-reset">
+      - </span><span class="color-red">Matt Vierling: Predicted HR Probability vs Eduardo Rodriguez: 0.9955</span><span class="color-reset">
+      - </span><span class="color-red">Wenceel Perez: Predicted HR Probability vs Eduardo Rodriguez: 0.9955</span><span class="color-reset">
+      - </span><span class="color-red">Spencer Torkelson: Predicted HR Probability vs Eduardo Rodriguez: 0.9943</span><span class="color-reset">
+      - </span><span class="color-red">Zach McKinstry: Predicted HR Probability vs Eduardo Rodriguez: 0.9857</span><span class="color-reset">
+      - Dillon Dingler: Predicted HR Probability vs Eduardo Rodriguez: 0.0165
+      - Riley Greene: Predicted HR Probability vs Eduardo Rodriguez: 0.0047
+      - Javier Baez: Predicted HR Probability vs Eduardo Rodriguez: 0.0038
+
+    Player Similarity Matchups (vs. Eduardo Rodriguez HR Hitters):
+      No significant pitcher-specific similarity matchups found for Tigers vs. Eduardo Rodriguez.
+
+</span><span class="color-blue">--- Matchup: Diamondbacks Batters vs. Home Pitcher (Troy Melton) ---</span><span class="color-reset">
+  Home Team Pitcher: Troy Melton
+    </span><span class="color-yellow">Pitcher MLBAM ID not found for Troy Melton. Using median pitcher stats for predictions.</span><span class="color-reset">
+
+    HR Probability Predictions:
+      - T. English: Batter MLBAM ID not found.
+      - </span><span class="color-red">Eugenio Suarez: Predicted HR Probability vs Troy Melton: 0.9710</span><span class="color-reset">
+      - </span><span class="color-red">Adrian Del Castillo: Predicted HR Probability vs Troy Melton: 0.9636</span><span class="color-reset">
+      - Lourdes Gurriel Jr.: Predicted HR Probability vs Troy Melton: 0.0179
+      - Corbin Carroll: Predicted HR Probability vs Troy Melton: 0.0163
+      - Jose Herrera: Predicted HR Probability vs Troy Melton: 0.0044
+      - Geraldo Perdomo: Predicted HR Probability vs Troy Melton: 0.0043
+      - Alek Thomas: Predicted HR Probability vs Troy Melton: 0.0040
+      - Ketel Marte: Predicted HR Probability vs Troy Melton: 0.0040
+
+    Player Similarity Matchups (vs. Troy Melton&#039;s HR Hitters):
+      </span><span class="color-yellow">No significant pitcher-specific similarity matchups found for Troy Melton.</span><span class="color-reset">
+      No significant pitcher-specific similarity matchups found for Diamondbacks vs. Troy Melton.
+
+================================================================================
+
+  </span><span class="color-yellow">Warning: Could not find abbreviation for Rays for schedule lookup.</span><span class="color-reset">
+</span><span class="color-blue">⚾ GAME: Rays @ Yankees on 2025-07-28 at 7:05 PM ET (Status: Unknown)</span><span class="color-reset">
+</span><span class="color-blue">⚾ GAME: Rays @ Yankees on 2025-07-28 at 7:05 PM ET (Full Matchup Analysis)
+</span><span class="color-reset">
+  Yankees Park Factor (HR): 121.0
+  (</span><span class="color-green">Best Park for HRs</span><span class="color-reset">)
+  Weather: Clear sky, 76.86°F, Wind: NW 4.6 mph
+
+</span><span class="color-blue">--- Matchup: Yankees Batters vs. Away Pitcher (Drew Rasmussen) ---</span><span class="color-reset">
+  Away Team Pitcher: Drew Rasmussen
+    Recent HRs Allowed (last 90 days): 9 HRs in 276 PAs (3.26%), K%: 19.93%, BB%: 6.16%, BB: 17
+
+    HR Probability Predictions:
+      - </span><span class="color-red">Giancarlo Stanton: Predicted HR Probability vs Drew Rasmussen: 0.9959</span><span class="color-reset">
+      - </span><span class="color-red">Trent Grisham: Predicted HR Probability vs Drew Rasmussen: 0.9956</span><span class="color-reset">
+      - </span><span class="color-red">Cody Bellinger: Predicted HR Probability vs Drew Rasmussen: 0.9955</span><span class="color-reset">
+      - </span><span class="color-red">Austin Wells: Predicted HR Probability vs Drew Rasmussen: 0.9951</span><span class="color-reset">
+      - </span><span class="color-red">ryan mcmahon: Predicted HR Probability vs Drew Rasmussen: 0.9918</span><span class="color-reset">
+      - Anthony Volpe: Predicted HR Probability vs Drew Rasmussen: 0.0170
+      - Ben Rice: Predicted HR Probability vs Drew Rasmussen: 0.0142
+      - Jazz Chisholm Jr.: Predicted HR Probability vs Drew Rasmussen: 0.0132
+      - Jasson Dominguez: Predicted HR Probability vs Drew Rasmussen: 0.0042
+
+    Player Similarity Matchups (vs. Drew Rasmussen HR Hitters):
+      - </span><span class="color-green">Giancarlo Stanton (Similarity to Drew Rasmussen&#039;s HR hitters: 0.36)</span><span class="color-reset">
+      - </span><span class="color-green">Ben Rice (Similarity to Drew Rasmussen&#039;s HR hitters: 0.26)</span><span class="color-reset">
+      - </span><span class="color-green">Trent Grisham (Similarity to Drew Rasmussen&#039;s HR hitters: 0.25)</span><span class="color-reset">
+      - </span><span class="color-green">Anthony Volpe (Similarity to Drew Rasmussen&#039;s HR hitters: 0.21)</span><span class="color-reset">
+
+</span><span class="color-blue">--- Matchup: Rays Batters vs. Home Pitcher (cam schlittler) ---</span><span class="color-reset">
+  Home Team Pitcher: cam schlittler
+    </span><span class="color-red">Recent HRs Allowed (last 90 days): 2 HRs in 45 PAs (4.44%), K%: 22.22%, BB%: 11.11%, BB: 5</span><span class="color-reset">
+    </span><span class="color-yellow">(Note: Limited recent data (45 PAs) for cam schlittler (less than 50 PAs))</span><span class="color-reset">
+
+    HR Probability Predictions:
+      - </span><span class="color-red">Danny Jansen: Predicted HR Probability vs cam schlittler: 0.9951</span><span class="color-reset">
+      - </span><span class="color-red">Jonathan Aranda: Predicted HR Probability vs cam schlittler: 0.9939</span><span class="color-reset">
+      - </span><span class="color-red">Jose Caballero: Predicted HR Probability vs cam schlittler: 0.9762</span><span class="color-reset">
+      - Christopher Morel: Predicted HR Probability vs cam schlittler: 0.0403
+      - Yandy Diaz: Predicted HR Probability vs cam schlittler: 0.0196
+      - Taylor Walls: Predicted HR Probability vs cam schlittler: 0.0046
+      - Junior Caminero: Predicted HR Probability vs cam schlittler: 0.0040
+      - Jonny DeLuca: Predicted HR Probability vs cam schlittler: 0.0039
+      - Jake Mangum: Predicted HR Probability vs cam schlittler: 0.0038
+
+    Player Similarity Matchups (vs. cam schlittler&#039;s HR Hitters):
+      - </span><span class="color-green">Yandy Diaz (Similarity to cam schlittler&#039;s HR hitters: 0.21)</span><span class="color-reset">
+
+================================================================================
+
+</span><span class="color-blue">⚾ GAME: Dodgers @ Reds on 2025-07-28 at 7:10 PM ET (Status: Scheduled)</span><span class="color-reset">
+</span><span class="color-blue">⚾ GAME: Dodgers @ Reds on 2025-07-28 at 7:10 PM ET (Full Matchup Analysis)
+</span><span class="color-reset">
+  Reds Park Factor (HR): 125.0
+  (</span><span class="color-green">Best Park for HRs</span><span class="color-reset">)
+  Weather: Broken clouds, 74.12°F, Wind: ENE 3.4 mph
+
+</span><span class="color-blue">--- Matchup: Reds Batters vs. Away Pitcher (Yoshinobu Yamamoto) ---</span><span class="color-reset">
+  Away Team Pitcher: Yoshinobu Yamamoto
+    Recent HRs Allowed (last 90 days): 8 HRs in 306 PAs (2.61%), K%: 26.47%, BB%: 8.50%, BB: 26
+
+    HR Probability Predictions:
+      - </span><span class="color-red">Tyler Stephenson: Predicted HR Probability vs Yoshinobu Yamamoto: 0.9955</span><span class="color-reset">
+      - </span><span class="color-red">Matt McLain: Predicted HR Probability vs Yoshinobu Yamamoto: 0.9802</span><span class="color-reset">
+      - </span><span class="color-red">Spencer Steer: Predicted HR Probability vs Yoshinobu Yamamoto: 0.9790</span><span class="color-reset">
+      - Gavin Lux: Predicted HR Probability vs Yoshinobu Yamamoto: 0.0215
+      - Jake Fraley: Predicted HR Probability vs Yoshinobu Yamamoto: 0.0043
+      - Austin Hays: Predicted HR Probability vs Yoshinobu Yamamoto: 0.0042
+      - TJ Friedl: Predicted HR Probability vs Yoshinobu Yamamoto: 0.0042
+      - Elly De La Cruz: Predicted HR Probability vs Yoshinobu Yamamoto: 0.0040
+      - Noelvi Marte: Predicted HR Probability vs Yoshinobu Yamamoto: 0.0040
+
+    Player Similarity Matchups (vs. Yoshinobu Yamamoto HR Hitters):
+      No significant pitcher-specific similarity matchups found for Reds vs. Yoshinobu Yamamoto.
+
+</span><span class="color-blue">--- Matchup: Dodgers Batters vs. Home Pitcher (Chase Burns) ---</span><span class="color-reset">
+  Home Team Pitcher: Chase Burns
+    Recent HRs Allowed (last 90 days): 4 HRs in 101 PAs (3.96%), K%: 34.65%, BB%: 10.89%, BB: 11
+
+    HR Probability Predictions:
+      - </span><span class="color-red">Andy Pages: Predicted HR Probability vs Chase Burns: 0.9955</span><span class="color-reset">
+      - </span><span class="color-red">Mookie Betts: Predicted HR Probability vs Chase Burns: 0.9952</span><span class="color-reset">
+      - </span><span class="color-red">Will Smith: Predicted HR Probability vs Chase Burns: 0.9942</span><span class="color-reset">
+      - Michael Conforto: Predicted HR Probability vs Chase Burns: 0.0214
+      - Shohei Ohtani: Predicted HR Probability vs Chase Burns: 0.0197
+      - Freddie Freeman: Predicted HR Probability vs Chase Burns: 0.0129
+      - Teoscar Hernandez: Predicted HR Probability vs Chase Burns: 0.0047
+      - Tommy Edman: Predicted HR Probability vs Chase Burns: 0.0040
+      - Hyeseong Kim: Predicted HR Probability vs Chase Burns: 0.0038
+
+    Player Similarity Matchups (vs. Chase Burns&#039;s HR Hitters):
+      No significant pitcher-specific similarity matchups found for Dodgers vs. Chase Burns.
+
+================================================================================
+
+</span><span class="color-blue">⚾ GAME: Cubs @ Brewers on 2025-07-28 at 7:40 PM ET (Status: Scheduled)</span><span class="color-reset">
+</span><span class="color-blue">⚾ GAME: Cubs @ Brewers on 2025-07-28 at 7:40 PM ET (Full Matchup Analysis)
+</span><span class="color-reset">
+  Brewers Park Factor (HR): 117.0
+  (</span><span class="color-green">Best Park for HRs</span><span class="color-reset">)
+  Weather: Dome/Retractable Roof: Closed
+
+</span><span class="color-blue">--- Matchup: Brewers Batters vs. Away Pitcher (Matthew Boyd) ---</span><span class="color-reset">
+  Away Team Pitcher: Matthew Boyd
+    Recent HRs Allowed (last 90 days): 7 HRs in 342 PAs (2.05%), K%: 24.56%, BB%: 4.09%, BB: 14
+
+    HR Probability Predictions:
+      - </span><span class="color-red">Andrew Vaughn: Predicted HR Probability vs Matthew Boyd: 0.9956</span><span class="color-reset">
+      - Brice Turang: Predicted HR Probability vs Matthew Boyd: 0.0302
+      - Jackson Chourio: Predicted HR Probability vs Matthew Boyd: 0.0142
+      - Joey Ortiz: Predicted HR Probability vs Matthew Boyd: 0.0047
+      - Isaac Collins: Predicted HR Probability vs Matthew Boyd: 0.0046
+      - Caleb Durbin: Predicted HR Probability vs Matthew Boyd: 0.0046
+      - Sal Frelick: Predicted HR Probability vs Matthew Boyd: 0.0043
+      - Christian Yelich: Predicted HR Probability vs Matthew Boyd: 0.0040
+      - William Contreras: Predicted HR Probability vs Matthew Boyd: 0.0040
+
+    Player Similarity Matchups (vs. Matthew Boyd HR Hitters):
+      No significant pitcher-specific similarity matchups found for Brewers vs. Matthew Boyd.
+
+</span><span class="color-blue">--- Matchup: Cubs Batters vs. Home Pitcher (Jacob Misiorowski) ---</span><span class="color-reset">
+  Home Team Pitcher: Jacob Misiorowski
+    Recent HRs Allowed (last 90 days): 4 HRs in 111 PAs (3.60%), K%: 36.04%, BB%: 9.91%, BB: 11
+
+    HR Probability Predictions:
+      - </span><span class="color-red">Ian Happ: Predicted HR Probability vs Jacob Misiorowski: 0.9955</span><span class="color-reset">
+      - </span><span class="color-red">Seiya Suzuki: Predicted HR Probability vs Jacob Misiorowski: 0.9954</span><span class="color-reset">
+      - </span><span class="color-red">Pete Crow-Armstrong: Predicted HR Probability vs Jacob Misiorowski: 0.9950</span><span class="color-reset">
+      - </span><span class="color-red">Michael Busch: Predicted HR Probability vs Jacob Misiorowski: 0.9906</span><span class="color-reset">
+      - Carson Kelly: Predicted HR Probability vs Jacob Misiorowski: 0.0388
+      - Kyle Tucker: Predicted HR Probability vs Jacob Misiorowski: 0.0159
+      - Nico Hoerner: Predicted HR Probability vs Jacob Misiorowski: 0.0043
+      - Matt Shaw: Predicted HR Probability vs Jacob Misiorowski: 0.0042
+      - Dansby Swanson: Predicted HR Probability vs Jacob Misiorowski: 0.0039
+
+    Player Similarity Matchups (vs. Jacob Misiorowski&#039;s HR Hitters):
+      No significant pitcher-specific similarity matchups found for Cubs vs. Jacob Misiorowski.
+
+================================================================================
+
+  </span><span class="color-yellow">Warning: Could not find abbreviation for Royals for schedule lookup.</span><span class="color-reset">
+</span><span class="color-blue">⚾ GAME: Braves @ Royals on 2025-07-28 at 7:40 PM ET (Status: Unknown)</span><span class="color-reset">
+</span><span class="color-blue">⚾ GAME: Braves @ Royals on 2025-07-28 at 7:40 PM ET (Full Matchup Analysis)
+</span><span class="color-reset">
+  Royals Park Factor (HR): 82.0
+  Weather: Clear sky, 81.34°F, Wind: SSW 9.2 mph
+
+</span><span class="color-blue">--- Matchup: Royals Batters vs. Away Pitcher (Spencer Strider) ---</span><span class="color-reset">
+  Away Team Pitcher: Spencer Strider
+    Recent HRs Allowed (last 90 days): 9 HRs in 280 PAs (3.21%), K%: 29.29%, BB%: 10.36%, BB: 29
+
+    HR Probability Predictions:
+      - R. Grichuk: Batter MLBAM ID not found.
+      - </span><span class="color-red">Salvador Perez: Predicted HR Probability vs Spencer Strider: 0.9959</span><span class="color-reset">
+      - </span><span class="color-red">Bobby Witt Jr.: Predicted HR Probability vs Spencer Strider: 0.9958</span><span class="color-reset">
+      - </span><span class="color-red">Jonathan India: Predicted HR Probability vs Spencer Strider: 0.9944</span><span class="color-reset">
+      - Vinnie Pasquantino: Predicted HR Probability vs Spencer Strider: 0.0143
+      - Freddy Fermin: Predicted HR Probability vs Spencer Strider: 0.0045
+      - John Rave: Predicted HR Probability vs Spencer Strider: 0.0041
+      - Maikel Garcia: Predicted HR Probability vs Spencer Strider: 0.0039
+      - Kyle Isbel: Predicted HR Probability vs Spencer Strider: 0.0039
+
+    Player Similarity Matchups (vs. Spencer Strider HR Hitters):
+      - </span><span class="color-green">Bobby Witt Jr. (Similarity to Spencer Strider&#039;s HR hitters: 0.27)</span><span class="color-reset">
+      - </span><span class="color-green">Jonathan India (Similarity to Spencer Strider&#039;s HR hitters: 0.24)</span><span class="color-reset">
+      - </span><span class="color-green">Vinnie Pasquantino (Similarity to Spencer Strider&#039;s HR hitters: 0.22)</span><span class="color-reset">
+      - </span><span class="color-green">Maikel Garcia (Similarity to Spencer Strider&#039;s HR hitters: 0.21)</span><span class="color-reset">
+
+</span><span class="color-blue">--- Matchup: Braves Batters vs. Home Pitcher (Rich Hill) ---</span><span class="color-reset">
+  Home Team Pitcher: Rich Hill
+    Recent HRs Allowed (last 90 days): 0 HRs in 23 PAs (0.00%), K%: 4.35%, BB%: 8.70%, BB: 2
+    </span><span class="color-yellow">(Note: Limited recent data (23 PAs) for Rich Hill (less than 50 PAs))</span><span class="color-reset">
+
+    HR Probability Predictions:
+      - </span><span class="color-red">Matt Olson: Predicted HR Probability vs Rich Hill: 0.9957</span><span class="color-reset">
+      - </span><span class="color-red">Austin Riley: Predicted HR Probability vs Rich Hill: 0.9950</span><span class="color-reset">
+      - </span><span class="color-red">Jurickson Profar: Predicted HR Probability vs Rich Hill: 0.9949</span><span class="color-reset">
+      - </span><span class="color-red">Marcell Ozuna: Predicted HR Probability vs Rich Hill: 0.9746</span><span class="color-reset">
+      - Ozzie Albies: Predicted HR Probability vs Rich Hill: 0.2661
+      - Ronald Acuna Jr.: Predicted HR Probability vs Rich Hill: 0.0146
+      - Sean Murphy: Predicted HR Probability vs Rich Hill: 0.0046
+      - Nick Allen: Predicted HR Probability vs Rich Hill: 0.0041
+      - Michael Harris II: Predicted HR Probability vs Rich Hill: 0.0040
+
+    Player Similarity Matchups (vs. Rich Hill&#039;s HR Hitters):
+      No significant pitcher-specific similarity matchups found for Braves vs. Rich Hill.
+
+================================================================================
+
+</span><span class="color-blue">⚾ GAME: Red Sox @ Twins on 2025-07-28 at 7:40 PM ET (Status: Scheduled)</span><span class="color-reset">
+</span><span class="color-blue">⚾ GAME: Red Sox @ Twins on 2025-07-28 at 7:40 PM ET (Full Matchup Analysis)
+</span><span class="color-reset">
+  Twins Park Factor (HR): 105.0
+  (</span><span class="color-green">Best Park for HRs</span><span class="color-reset">)
+  Weather: Clear sky, 68.88°F, Wind: NW 12.7 mph
+
+</span><span class="color-blue">--- Matchup: Twins Batters vs. Away Pitcher (Richard Fitts) ---</span><span class="color-reset">
+  Away Team Pitcher: Richard Fitts
+    </span><span class="color-red">Recent HRs Allowed (last 90 days): 7 HRs in 90 PAs (7.78%), K%: 21.11%, BB%: 5.56%, BB: 5</span><span class="color-reset">
+
+    HR Probability Predictions:
+      - </span><span class="color-red">Kody Clemens: Predicted HR Probability vs Richard Fitts: 0.9958</span><span class="color-reset">
+      - </span><span class="color-red">Matt Wallner: Predicted HR Probability vs Richard Fitts: 0.9957</span><span class="color-reset">
+      - </span><span class="color-red">Royce Lewis: Predicted HR Probability vs Richard Fitts: 0.9796</span><span class="color-reset">
+      - </span><span class="color-red">Christian Vazquez: Predicted HR Probability vs Richard Fitts: 0.9505</span><span class="color-reset">
+      - Carlos Correa: Predicted HR Probability vs Richard Fitts: 0.0108
+      - Byron Buxton: Predicted HR Probability vs Richard Fitts: 0.0072
+      - Harrison Bader: Predicted HR Probability vs Richard Fitts: 0.0045
+      - Trevor Larnach: Predicted HR Probability vs Richard Fitts: 0.0041
+      - Willi Castro: Predicted HR Probability vs Richard Fitts: 0.0041
+
+    Player Similarity Matchups (vs. Richard Fitts HR Hitters):
+      - </span><span class="color-green">Kody Clemens (Similarity to Richard Fitts&#039;s HR hitters: 0.37)</span><span class="color-reset">
+      - </span><span class="color-green">Matt Wallner (Similarity to Richard Fitts&#039;s HR hitters: 0.32)</span><span class="color-reset">
+      - </span><span class="color-green">Byron Buxton (Similarity to Richard Fitts&#039;s HR hitters: 0.28)</span><span class="color-reset">
+      - </span><span class="color-green">Trevor Larnach (Similarity to Richard Fitts&#039;s HR hitters: 0.20)</span><span class="color-reset">
+
+</span><span class="color-blue">--- Matchup: Red Sox Batters vs. Home Pitcher (Simeon Woods Richardson) ---</span><span class="color-reset">
+  Home Team Pitcher: Simeon Woods Richardson
+    Recent HRs Allowed (last 90 days): 7 HRs in 220 PAs (3.18%), K%: 16.82%, BB%: 12.27%, BB: 27
+
+    HR Probability Predictions:
+      - </span><span class="color-red">Alex Bregman: Predicted HR Probability vs Simeon Woods Richardson: 0.9957</span><span class="color-reset">
+      - </span><span class="color-red">Trevor Story: Predicted HR Probability vs Simeon Woods Richardson: 0.9955</span><span class="color-reset">
+      - </span><span class="color-red">Wilyer Abreu: Predicted HR Probability vs Simeon Woods Richardson: 0.9941</span><span class="color-reset">
+      - </span><span class="color-red">Carlos Narvaez: Predicted HR Probability vs Simeon Woods Richardson: 0.9911</span><span class="color-reset">
+      - Abraham Toro: Predicted HR Probability vs Simeon Woods Richardson: 0.0360
+      - Ceddanne Rafaela: Predicted HR Probability vs Simeon Woods Richardson: 0.0172
+      - Jarren Duran: Predicted HR Probability vs Simeon Woods Richardson: 0.0152
+      - Masataka Yoshida: Predicted HR Probability vs Simeon Woods Richardson: 0.0056
+      - Roman Anthony: Predicted HR Probability vs Simeon Woods Richardson: 0.0040
+
+    Player Similarity Matchups (vs. Simeon Woods Richardson&#039;s HR Hitters):
+      No significant pitcher-specific similarity matchups found for Red Sox vs. Simeon Woods Richardson.
+
+================================================================================
+
+  </span><span class="color-red">Error fetching game status for White Sox vs Phillies on 2025-07-28: Data cannot be retrieved for this team/year combo. Please verify that your team abbreviation is accurate and that the team existed during the season you are searching for.</span><span class="color-reset">
+</span><span class="color-blue">⚾ GAME: Phillies @ White Sox on 2025-07-28 at 7:40 PM ET (Status: Unknown)</span><span class="color-reset">
+</span><span class="color-blue">⚾ GAME: Phillies @ White Sox on 2025-07-28 at 7:40 PM ET (Full Matchup Analysis)
+</span><span class="color-reset">
+  White Sox Park Factor (HR): 96.0
+  Weather: Clear sky, 78.48°F, Wind: WSW 4.2 mph
+
+</span><span class="color-blue">--- Matchup: White Sox Batters vs. Away Pitcher (Cristopher Sanchez) ---</span><span class="color-reset">
+  Away Team Pitcher: Cristopher Sanchez
+    Recent HRs Allowed (last 90 days): 4 HRs in 391 PAs (1.02%), K%: 25.83%, BB%: 6.14%, BB: 24
+
+    HR Probability Predictions:
+      - </span><span class="color-red">Lenyn Sosa: Predicted HR Probability vs Cristopher Sanchez: 0.9914</span><span class="color-reset">
+      - </span><span class="color-red">Michael A. Taylor: Predicted HR Probability vs Cristopher Sanchez: 0.9893</span><span class="color-reset">
+      - </span><span class="color-red">Colson Montgomery: Predicted HR Probability vs Cristopher Sanchez: 0.9820</span><span class="color-reset">
+      - </span><span class="color-red">Mike Tauchman: Predicted HR Probability vs Cristopher Sanchez: 0.9633</span><span class="color-reset">
+      - Miguel Vargas: Predicted HR Probability vs Cristopher Sanchez: 0.8497
+      - Luis Robert Jr.: Predicted HR Probability vs Cristopher Sanchez: 0.0463
+      - Chase Meidroth: Predicted HR Probability vs Cristopher Sanchez: 0.0155
+      - Austin Slater: Predicted HR Probability vs Cristopher Sanchez: 0.0123
+      - Edgar Quero: Predicted HR Probability vs Cristopher Sanchez: 0.0040
+
+    Player Similarity Matchups (vs. Cristopher Sanchez HR Hitters):
+      No significant pitcher-specific similarity matchups found for White Sox vs. Cristopher Sanchez.
+
+</span><span class="color-blue">--- Matchup: Phillies Batters vs. Home Pitcher (Davis Martin) ---</span><span class="color-reset">
+  Home Team Pitcher: Davis Martin
+    Recent HRs Allowed (last 90 days): 8 HRs in 213 PAs (3.76%), K%: 15.96%, BB%: 5.63%, BB: 12
+
+    HR Probability Predictions:
+      - </span><span class="color-red">Kyle Schwarber: Predicted HR Probability vs Davis Martin: 0.9951</span><span class="color-reset">
+      - </span><span class="color-red">Max Kepler: Predicted HR Probability vs Davis Martin: 0.9911</span><span class="color-reset">
+      - </span><span class="color-red">Bryson Stott: Predicted HR Probability vs Davis Martin: 0.9832</span><span class="color-reset">
+      - Bryce Harper: Predicted HR Probability vs Davis Martin: 0.0195
+      - Brandon Marsh: Predicted HR Probability vs Davis Martin: 0.0190
+      - Trea Turner: Predicted HR Probability vs Davis Martin: 0.0049
+      - Nick Castellanos: Predicted HR Probability vs Davis Martin: 0.0045
+      - Otto Kemp: Predicted HR Probability vs Davis Martin: 0.0040
+      - J.T. Realmuto: Predicted HR Probability vs Davis Martin: 0.0040
+
+    Player Similarity Matchups (vs. Davis Martin&#039;s HR Hitters):
+      No significant pitcher-specific similarity matchups found for Phillies vs. Davis Martin.
+
+================================================================================
+
+</span><span class="color-blue">⚾ GAME: Marlins @ Cardinals on 2025-07-28 at 7:45 PM ET (Status: Scheduled)</span><span class="color-reset">
+</span><span class="color-blue">⚾ GAME: Marlins @ Cardinals on 2025-07-28 at 7:45 PM ET (Full Matchup Analysis)
+</span><span class="color-reset">
+  Cardinals Park Factor (HR): 90.0
+  Weather: Scattered clouds, 81°F, Wind: WSW 3.4 mph
+
+</span><span class="color-blue">--- Matchup: Cardinals Batters vs. Away Pitcher (Edward Cabrera) ---</span><span class="color-reset">
+  Away Team Pitcher: Edward Cabrera
+    Recent HRs Allowed (last 90 days): 5 HRs in 282 PAs (1.77%), K%: 25.53%, BB%: 6.74%, BB: 19
+
+    HR Probability Predictions:
+      - </span><span class="color-red">Nolan Arenado: Predicted HR Probability vs Edward Cabrera: 0.9820</span><span class="color-reset">
+      - </span><span class="color-red">Masyn Winn: Predicted HR Probability vs Edward Cabrera: 0.9807</span><span class="color-reset">
+      - Brendan Donovan: Predicted HR Probability vs Edward Cabrera: 0.0210
+      - Alec Burleson: Predicted HR Probability vs Edward Cabrera: 0.0119
+      - Willson Contreras: Predicted HR Probability vs Edward Cabrera: 0.0051
+      - Pedro Pages: Predicted HR Probability vs Edward Cabrera: 0.0042
+      - Ivan Herrera: Predicted HR Probability vs Edward Cabrera: 0.0040
+      - Jordan Walker: Predicted HR Probability vs Edward Cabrera: 0.0039
+      - Victor Scott II: Predicted HR Probability vs Edward Cabrera: 0.0039
+
+    Player Similarity Matchups (vs. Edward Cabrera HR Hitters):
+      - </span><span class="color-green">Alec Burleson (Similarity to Edward Cabrera&#039;s HR hitters: 0.23)</span><span class="color-reset">
+
+</span><span class="color-blue">--- Matchup: Marlins Batters vs. Home Pitcher (Andre Pallante) ---</span><span class="color-reset">
+  Home Team Pitcher: Andre Pallante
+    Recent HRs Allowed (last 90 days): 8 HRs in 337 PAs (2.37%), K%: 15.43%, BB%: 7.12%, BB: 24
+
+    HR Probability Predictions:
+      - Kyle Stowers: Predicted HR Probability vs Andre Pallante: 0.0175
+      - Jesus Sanchez: Predicted HR Probability vs Andre Pallante: 0.0172
+      - Dane Myers: Predicted HR Probability vs Andre Pallante: 0.0157
+      - Eric Wagaman: Predicted HR Probability vs Andre Pallante: 0.0115
+      - Xavier Edwards: Predicted HR Probability vs Andre Pallante: 0.0042
+      - Graham Pauley: Predicted HR Probability vs Andre Pallante: 0.0042
+      - Otto Lopez: Predicted HR Probability vs Andre Pallante: 0.0040
+      - Agustin Ramirez: Predicted HR Probability vs Andre Pallante: 0.0040
+      - Liam Hicks: Predicted HR Probability vs Andre Pallante: 0.0038
+
+    Player Similarity Matchups (vs. Andre Pallante&#039;s HR Hitters):
+      No significant pitcher-specific similarity matchups found for Marlins vs. Andre Pallante.
+
+================================================================================
+
+</span><span class="color-blue">⚾ GAME: Nationals @ Astros on 2025-07-28 at 8:10 PM ET (Status: Scheduled)</span><span class="color-reset">
+</span><span class="color-blue">⚾ GAME: Nationals @ Astros on 2025-07-28 at 8:10 PM ET (Full Matchup Analysis)
+</span><span class="color-reset">
+  Astros Park Factor (HR): 105.0
+  (</span><span class="color-green">Best Park for HRs</span><span class="color-reset">)
+  Weather: Dome/Retractable Roof: Closed
+
+</span><span class="color-blue">--- Matchup: Astros Batters vs. Away Pitcher (Brad Lord) ---</span><span class="color-reset">
+  Away Team Pitcher: Brad Lord
+    Recent HRs Allowed (last 90 days): 4 HRs in 210 PAs (1.90%), K%: 20.48%, BB%: 6.67%, BB: 14
+
+    HR Probability Predictions:
+      - </span><span class="color-red">Christian Walker: Predicted HR Probability vs Brad Lord: 0.9941</span><span class="color-reset">
+      - Mauricio Dubon: Predicted HR Probability vs Brad Lord: 0.7481
+      - Brice Matthews: Predicted HR Probability vs Brad Lord: 0.5461
+      - Victor Caratini: Predicted HR Probability vs Brad Lord: 0.0057
+      - Yainer Diaz: Predicted HR Probability vs Brad Lord: 0.0054
+      - Zack Short: Predicted HR Probability vs Brad Lord: 0.0047
+      - Jose Altuve: Predicted HR Probability vs Brad Lord: 0.0045
+      - Taylor Trammell: Predicted HR Probability vs Brad Lord: 0.0040
+      - Cam Smith: Predicted HR Probability vs Brad Lord: 0.0038
+
+    Player Similarity Matchups (vs. Brad Lord HR Hitters):
+      - </span><span class="color-green">Taylor Trammell (Similarity to Brad Lord&#039;s HR hitters: 0.24)</span><span class="color-reset">
+
+</span><span class="color-blue">--- Matchup: Nationals Batters vs. Home Pitcher (Framber Valdez) ---</span><span class="color-reset">
+  Home Team Pitcher: Framber Valdez
+    Recent HRs Allowed (last 90 days): 5 HRs in 371 PAs (1.35%), K%: 26.42%, BB%: 7.82%, BB: 29
+
+    HR Probability Predictions:
+      - </span><span class="color-red">Luis Garcia: Predicted HR Probability vs Framber Valdez: 0.9957</span><span class="color-reset">
+      - Alex Call: Predicted HR Probability vs Framber Valdez: 0.7461
+      - Nathaniel Lowe: Predicted HR Probability vs Framber Valdez: 0.0513
+      - Riley Adams: Predicted HR Probability vs Framber Valdez: 0.0165
+      - CJ Abrams: Predicted HR Probability vs Framber Valdez: 0.0149
+      - Josh Bell: Predicted HR Probability vs Framber Valdez: 0.0040
+      - James Wood: Predicted HR Probability vs Framber Valdez: 0.0040
+      - Brady House: Predicted HR Probability vs Framber Valdez: 0.0039
+      - Jacob Young: Predicted HR Probability vs Framber Valdez: 0.0038
+
+    Player Similarity Matchups (vs. Framber Valdez&#039;s HR Hitters):
+      No significant pitcher-specific similarity matchups found for Nationals vs. Framber Valdez.
+
+================================================================================
+
+</span><span class="color-blue">⚾ GAME: Rangers @ Angels on 2025-07-28 at 9:38 PM ET (Status: Scheduled)</span><span class="color-reset">
+</span><span class="color-blue">⚾ GAME: Rangers @ Angels on 2025-07-28 at 9:38 PM ET (Full Matchup Analysis)
+</span><span class="color-reset">
+  Angels Park Factor (HR): 113.0
+  (</span><span class="color-green">Best Park for HRs</span><span class="color-reset">)
+  Weather: Clear sky, 64°F, Wind: WNW 2.0 mph
+
+</span><span class="color-blue">--- Matchup: Angels Batters vs. Away Pitcher (Jacob deGrom) ---</span><span class="color-reset">
+  Away Team Pitcher: Jacob deGrom
+    Recent HRs Allowed (last 90 days): 9 HRs in 344 PAs (2.62%), K%: 27.91%, BB%: 5.23%, BB: 18
+
+    HR Probability Predictions:
+      - </span><span class="color-red">Logan O’Hoppe: Predicted HR Probability vs Jacob deGrom: 0.9959</span><span class="color-reset">
+      - </span><span class="color-red">LaMonte Wade Jr.: Predicted HR Probability vs Jacob deGrom: 0.9955</span><span class="color-reset">
+      - </span><span class="color-red">Jo Adell: Predicted HR Probability vs Jacob deGrom: 0.9949</span><span class="color-reset">
+      - </span><span class="color-red">Taylor Ward: Predicted HR Probability vs Jacob deGrom: 0.9937</span><span class="color-reset">
+      - </span><span class="color-red">Mike Trout: Predicted HR Probability vs Jacob deGrom: 0.9919</span><span class="color-reset">
+      - Yoan Moncada: Predicted HR Probability vs Jacob deGrom: 0.0226
+      - Nolan Schanuel: Predicted HR Probability vs Jacob deGrom: 0.0041
+      - Luis Rengifo: Predicted HR Probability vs Jacob deGrom: 0.0041
+      - Zach Neto: Predicted HR Probability vs Jacob deGrom: 0.0040
+
+    Player Similarity Matchups (vs. Jacob deGrom HR Hitters):
+      - </span><span class="color-green">Mike Trout (Similarity to Jacob deGrom&#039;s HR hitters: 0.33)</span><span class="color-reset">
+      - </span><span class="color-green">LaMonte Wade Jr. (Similarity to Jacob deGrom&#039;s HR hitters: 0.25)</span><span class="color-reset">
+
+</span><span class="color-blue">--- Matchup: Rangers Batters vs. Home Pitcher (Jack Kochanowicz) ---</span><span class="color-reset">
+  Home Team Pitcher: Jack Kochanowicz
+    Recent HRs Allowed (last 90 days): 11 HRs in 307 PAs (3.58%), K%: 16.94%, BB%: 12.05%, BB: 37
+
+    HR Probability Predictions:
+      - </span><span class="color-red">Adolis Garcia: Predicted HR Probability vs Jack Kochanowicz: 0.9959</span><span class="color-reset">
+      - </span><span class="color-red">Wyatt Langford: Predicted HR Probability vs Jack Kochanowicz: 0.9959</span><span class="color-reset">
+      - </span><span class="color-red">Kyle Higashioka: Predicted HR Probability vs Jack Kochanowicz: 0.9953</span><span class="color-reset">
+      - Joc Pederson: Predicted HR Probability vs Jack Kochanowicz: 0.8989
+      - Marcus Semien: Predicted HR Probability vs Jack Kochanowicz: 0.8739
+      - Josh Jung: Predicted HR Probability vs Jack Kochanowicz: 0.0160
+      - Corey Seager: Predicted HR Probability vs Jack Kochanowicz: 0.0133
+      - Evan Carter: Predicted HR Probability vs Jack Kochanowicz: 0.0042
+      - Josh Smith: Predicted HR Probability vs Jack Kochanowicz: 0.0041
+
+    Player Similarity Matchups (vs. Jack Kochanowicz&#039;s HR Hitters):
+      - </span><span class="color-green">Joc Pederson (Similarity to Jack Kochanowicz&#039;s HR hitters: 0.23)</span><span class="color-reset">
+
+================================================================================
+
+  </span><span class="color-yellow">Warning: Could not find abbreviation for Padres for schedule lookup.</span><span class="color-reset">
+</span><span class="color-blue">⚾ GAME: Mets @ Padres on 2025-07-28 at 9:40 PM ET (Status: Unknown)</span><span class="color-reset">
+</span><span class="color-blue">⚾ GAME: Mets @ Padres on 2025-07-28 at 9:40 PM ET (Full Matchup Analysis)
+</span><span class="color-reset">
+  Padres Park Factor (HR): 103.0
+  Weather: Overcast clouds, 65.55°F, Wind: WNW 6.9 mph
+
+</span><span class="color-blue">--- Matchup: Padres Batters vs. Away Pitcher (Frankie Montas) ---</span><span class="color-reset">
+  Away Team Pitcher: Frankie Montas
+    </span><span class="color-red">Recent HRs Allowed (last 90 days): 5 HRs in 107 PAs (4.67%), K%: 21.50%, BB%: 5.61%, BB: 6</span><span class="color-reset">
+
+    HR Probability Predictions:
+      - </span><span class="color-red">Manny Machado: Predicted HR Probability vs Frankie Montas: 0.9959</span><span class="color-reset">
+      - </span><span class="color-red">Jackson Merrill: Predicted HR Probability vs Frankie Montas: 0.9955</span><span class="color-reset">
+      - Jake Cronenworth: Predicted HR Probability vs Frankie Montas: 0.7860
+      - Luis Arraez: Predicted HR Probability vs Frankie Montas: 0.7825
+      - Gavin Sheets: Predicted HR Probability vs Frankie Montas: 0.0237
+      - Xander Bogaerts: Predicted HR Probability vs Frankie Montas: 0.0040
+      - Fernando Tatis Jr.: Predicted HR Probability vs Frankie Montas: 0.0040
+      - Martin Maldonado: Predicted HR Probability vs Frankie Montas: 0.0039
+      - Jose Iglesias: Predicted HR Probability vs Frankie Montas: 0.0038
+
+    Player Similarity Matchups (vs. Frankie Montas HR Hitters):
+      - </span><span class="color-green">Manny Machado (Similarity to Frankie Montas&#039;s HR hitters: 0.29)</span><span class="color-reset">
+      - </span><span class="color-green">Fernando Tatis Jr. (Similarity to Frankie Montas&#039;s HR hitters: 0.22)</span><span class="color-reset">
+
+</span><span class="color-blue">--- Matchup: Mets Batters vs. Home Pitcher (Dylan Cease) ---</span><span class="color-reset">
+  Home Team Pitcher: Dylan Cease
+    Recent HRs Allowed (last 90 days): 13 HRs in 351 PAs (3.70%), K%: 30.48%, BB%: 8.55%, BB: 30
+
+    HR Probability Predictions:
+      - </span><span class="color-red">Jeff McNeil: Predicted HR Probability vs Dylan Cease: 0.9840</span><span class="color-reset">
+      - </span><span class="color-red">Pete Alonso: Predicted HR Probability vs Dylan Cease: 0.9808</span><span class="color-reset">
+      - Francisco Lindor: Predicted HR Probability vs Dylan Cease: 0.0391
+      - Brandon Nimmo: Predicted HR Probability vs Dylan Cease: 0.0324
+      - Juan Soto: Predicted HR Probability vs Dylan Cease: 0.0176
+      - Mark Vientos: Predicted HR Probability vs Dylan Cease: 0.0125
+      - Brett Baty: Predicted HR Probability vs Dylan Cease: 0.0041
+      - Francisco Alvarez: Predicted HR Probability vs Dylan Cease: 0.0041
+      - Ronny Mauricio: Predicted HR Probability vs Dylan Cease: 0.0040
+
+    Player Similarity Matchups (vs. Dylan Cease&#039;s HR Hitters):
+      - </span><span class="color-green">Brandon Nimmo (Similarity to Dylan Cease&#039;s HR hitters: 0.24)</span><span class="color-reset">
+      - </span><span class="color-green">Pete Alonso (Similarity to Dylan Cease&#039;s HR hitters: 0.24)</span><span class="color-reset">
+      - </span><span class="color-green">Francisco Lindor (Similarity to Dylan Cease&#039;s HR hitters: 0.21)</span><span class="color-reset">
+
+================================================================================
+
+  </span><span class="color-yellow">Warning: Could not find abbreviation for Giants for schedule lookup.</span><span class="color-reset">
+</span><span class="color-blue">⚾ GAME: Pirates @ Giants on 2025-07-28 at 9:45 PM ET (Status: Unknown)</span><span class="color-reset">
+</span><span class="color-blue">⚾ GAME: Pirates @ Giants on 2025-07-28 at 9:45 PM ET (Full Matchup Analysis)
+</span><span class="color-reset">
+  Giants Park Factor (HR): 75.0
+  Weather: Broken clouds, 58.55°F, Wind: WNW 13.0 mph
+
+</span><span class="color-blue">--- Matchup: Giants Batters vs. Away Pitcher (Mitch Keller) ---</span><span class="color-reset">
+  Away Team Pitcher: Mitch Keller
+    Recent HRs Allowed (last 90 days): 8 HRs in 371 PAs (2.16%), K%: 18.87%, BB%: 5.12%, BB: 19
+
+    HR Probability Predictions:
+      - </span><span class="color-red">Rafael Devers: Predicted HR Probability vs Mitch Keller: 0.9959</span><span class="color-reset">
+      - </span><span class="color-red">Matt Chapman: Predicted HR Probability vs Mitch Keller: 0.9958</span><span class="color-reset">
+      - </span><span class="color-red">Willy Adames: Predicted HR Probability vs Mitch Keller: 0.9957</span><span class="color-reset">
+      - </span><span class="color-red">Mike Yastrzemski: Predicted HR Probability vs Mitch Keller: 0.9955</span><span class="color-reset">
+      - </span><span class="color-red">Heliot Ramos: Predicted HR Probability vs Mitch Keller: 0.9816</span><span class="color-reset">
+      - </span><span class="color-red">Wilmer Flores: Predicted HR Probability vs Mitch Keller: 0.9816</span><span class="color-reset">
+      - Casey Schmitt: Predicted HR Probability vs Mitch Keller: 0.7358
+      - Jung Hoo Lee: Predicted HR Probability vs Mitch Keller: 0.0147
+      - Patrick Bailey: Predicted HR Probability vs Mitch Keller: 0.0042
+
+    Player Similarity Matchups (vs. Mitch Keller HR Hitters):
+      - </span><span class="color-green">Matt Chapman (Similarity to Mitch Keller&#039;s HR hitters: 0.23)</span><span class="color-reset">
+
+</span><span class="color-blue">--- Matchup: Pirates Batters vs. Home Pitcher (Carson Whisenhunt) ---</span><span class="color-reset">
+  Home Team Pitcher: Carson Whisenhunt
+    No recent HRs allowed data found for Carson Whisenhunt.
+
+    HR Probability Predictions:
+      - Henry Davis: Predicted HR Probability vs Carson Whisenhunt: 0.8587
+      - Spencer Horwitz: Predicted HR Probability vs Carson Whisenhunt: 0.7622
+      - Andrew McCutchen: Predicted HR Probability vs Carson Whisenhunt: 0.0131
+      - Ke’Bryan Hayes: Predicted HR Probability vs Carson Whisenhunt: 0.0123
+      - Tommy Pham: Predicted HR Probability vs Carson Whisenhunt: 0.0040
+      - Bryan Reynolds: Predicted HR Probability vs Carson Whisenhunt: 0.0040
+      - Oneil Cruz: Predicted HR Probability vs Carson Whisenhunt: 0.0039
+      - Isiah Kiner-Falefa: Predicted HR Probability vs Carson Whisenhunt: 0.0038
+      - Nick Gonzales: Predicted HR Probability vs Carson Whisenhunt: 0.0038
+
+    Player Similarity Matchups (vs. Carson Whisenhunt&#039;s HR Hitters):
+      </span><span class="color-yellow">No significant pitcher-specific similarity matchups found for Carson Whisenhunt.</span><span class="color-reset">
+      No significant pitcher-specific similarity matchups found for Pirates vs. Carson Whisenhunt.
+
+================================================================================
+
+</span><span class="color-blue">⚾ GAME: Mariners @ Athletics on 2025-07-28 at 10:05 PM ET (Status: Scheduled)</span><span class="color-reset">
+</span><span class="color-blue">⚾ GAME: Mariners @ Athletics on 2025-07-28 at 10:05 PM ET (Full Matchup Analysis)
+</span><span class="color-reset">
+  Athletics Park Factor (HR): 90.0
+  Weather: Clear sky, 70.23°F, Wind: N 0.0 mph
+
+</span><span class="color-blue">--- Matchup: Athletics Batters vs. Away Pitcher (Luis Castillo) ---</span><span class="color-reset">
+  Away Team Pitcher: Luis Castillo
+    Recent HRs Allowed (last 90 days): 9 HRs in 362 PAs (2.49%), K%: 21.55%, BB%: 6.08%, BB: 22
+
+    HR Probability Predictions:
+      - C. Cortes: Batter MLBAM ID not found.
+      - </span><span class="color-red">Shea Langeliers: Predicted HR Probability vs Luis Castillo: 0.9943</span><span class="color-reset">
+      - Luis Urias: Predicted HR Probability vs Luis Castillo: 0.8543
+      - Tyler Soderstrom: Predicted HR Probability vs Luis Castillo: 0.0279
+      - Lawrence Butler: Predicted HR Probability vs Luis Castillo: 0.0182
+      - Nick Kurtz: Predicted HR Probability vs Luis Castillo: 0.0157
+      - Brent Rooker: Predicted HR Probability vs Luis Castillo: 0.0141
+      - Miguel Andujar: Predicted HR Probability vs Luis Castillo: 0.0040
+      - Jacob Wilson: Predicted HR Probability vs Luis Castillo: 0.0038
+
+    Player Similarity Matchups (vs. Luis Castillo HR Hitters):
+      - </span><span class="color-green">Nick Kurtz (Similarity to Luis Castillo&#039;s HR hitters: 0.30)</span><span class="color-reset">
+      - </span><span class="color-green">Shea Langeliers (Similarity to Luis Castillo&#039;s HR hitters: 0.28)</span><span class="color-reset">
+      - </span><span class="color-green">Tyler Soderstrom (Similarity to Luis Castillo&#039;s HR hitters: 0.24)</span><span class="color-reset">
+      - </span><span class="color-green">Brent Rooker (Similarity to Luis Castillo&#039;s HR hitters: 0.21)</span><span class="color-reset">
+      - </span><span class="color-green">Luis Urias (Similarity to Luis Castillo&#039;s HR hitters: 0.21)</span><span class="color-reset">
+
+</span><span class="color-blue">--- Matchup: Mariners Batters vs. Home Pitcher (JP Sears) ---</span><span class="color-reset">
+  Home Team Pitcher: JP Sears
+    </span><span class="color-red">Recent HRs Allowed (last 90 days): 18 HRs in 316 PAs (5.70%), K%: 19.30%, BB%: 6.33%, BB: 20</span><span class="color-reset">
+
+    HR Probability Predictions:
+      - </span><span class="color-red">Mitch Garver: Predicted HR Probability vs JP Sears: 0.9957</span><span class="color-reset">
+      - </span><span class="color-red">Cal Raleigh: Predicted HR Probability vs JP Sears: 0.9952</span><span class="color-reset">
+      - Dylan Moore: Predicted HR Probability vs JP Sears: 0.7708
+      - Jorge Polanco: Predicted HR Probability vs JP Sears: 0.0554
+      - Julio Rodriguez: Predicted HR Probability vs JP Sears: 0.0147
+      - Randy Arozarena: Predicted HR Probability vs JP Sears: 0.0141
+      - J.P. Crawford: Predicted HR Probability vs JP Sears: 0.0042
+      - Ben Williamson: Predicted HR Probability vs JP Sears: 0.0040
+      - josh naylor: Predicted HR Probability vs JP Sears: 0.0040
+
+    Player Similarity Matchups (vs. JP Sears&#039;s HR Hitters):
+      No significant pitcher-specific similarity matchups found for Mariners vs. JP Sears.
+
+================================================================================
+
+</span></pre>
+</body>
+</html>
