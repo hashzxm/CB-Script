@@ -6,7 +6,7 @@
     <title>MLB Matchup Analysis Output</title>
     <style>
         body {
-            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-family: 'Helvetica', 'Arial', sans-serif; /* Changed font to Helvetica */
             background-color: #1e1e1e; /* Dark background similar to a terminal */
             color: #d4d4d4; /* Light text color */
             margin: 20px;
@@ -50,10 +50,7 @@ Successfully loaded OneHotEncoder from one_hot_encoder.joblib.
 Successfully loaded median feature values from median_feature_values.joblib.
 Successfully loaded StandardScaler from scaler.joblib.
 Successfully loaded Pitcher HR Batter Profiles from pitcher_hr_profiles.joblib.
-</span><span class="color-yellow">Warning: Local park factors file &#039;park_factors.csv&#039; is missing expected columns. Attempting web scrape.</span><span class="color-reset">
-</span><span class="color-red">Error fetching park factors from https://baseballsavant.mlb.com/leaderboard/statcast-park-factors: HTTP Error 403: Forbidden</span><span class="color-reset">
-</span><span class="color-yellow">Warning: Access to https://baseballsavant.mlb.com/leaderboard/statcast-park-factors was denied (HTTP 403 Forbidden). Falling back to default park factors.</span><span class="color-reset">
-Using default HR factor of 100.0 for all teams.
+Successfully loaded park factors from local file &#039;park_factors.csv&#039;.
 
 ================================================================================
 
@@ -74,8 +71,9 @@ Pitchers with a recent HR/PA rate of 4.0% or higher are highlighted in </span><s
 </span><span class="color-blue">⚾ GAME: Blue Jays @ Orioles on 2025-07-28 at 6:35 PM ET (Status: Scheduled)</span><span class="color-reset">
 </span><span class="color-blue">⚾ GAME: Blue Jays @ Orioles on 2025-07-28 at 6:35 PM ET (Full Matchup Analysis)
 </span><span class="color-reset">
-  Orioles Park Factor (HR): 100.0 (Neutral Park)
-  Weather: Broken clouds, 82.67°F, Wind: N 6.0 mph
+  Orioles Park Factor (HR): 107.0
+  (</span><span class="color-green">Best Park for HRs</span><span class="color-reset">)
+  Weather: Broken clouds, 83.77°F, Wind: N 4.6 mph
 
 </span><span class="color-blue">--- Matchup: Orioles Batters vs. Away Pitcher (Chris Bassitt) ---</span><span class="color-reset">
   Away Team Pitcher: Chris Bassitt
@@ -118,8 +116,8 @@ Pitchers with a recent HR/PA rate of 4.0% or higher are highlighted in </span><s
 </span><span class="color-blue">⚾ GAME: Rockies @ Guardians on 2025-07-28 at 6:40 PM ET (Status: Scheduled)</span><span class="color-reset">
 </span><span class="color-blue">⚾ GAME: Rockies @ Guardians on 2025-07-28 at 6:40 PM ET (Full Matchup Analysis)
 </span><span class="color-reset">
-  Guardians Park Factor (HR): 100.0 (Neutral Park)
-  Weather: Fog, 79.34°F, Wind: SSE 5.8 mph
+  Guardians Park Factor (HR): 95.0
+  Weather: Clear sky, 80.71°F, Wind: SSE 5.8 mph
 
 </span><span class="color-blue">--- Matchup: Guardians Batters vs. Away Pitcher (Bradley Blalock) ---</span><span class="color-reset">
   Away Team Pitcher: Bradley Blalock
@@ -162,8 +160,8 @@ Pitchers with a recent HR/PA rate of 4.0% or higher are highlighted in </span><s
 </span><span class="color-blue">⚾ GAME: Diamondbacks @ Tigers on 2025-07-28 at 6:40 PM ET (Status: Scheduled)</span><span class="color-reset">
 </span><span class="color-blue">⚾ GAME: Diamondbacks @ Tigers on 2025-07-28 at 6:40 PM ET (Full Matchup Analysis)
 </span><span class="color-reset">
-  Tigers Park Factor (HR): 100.0 (Neutral Park)
-  Weather: Clear sky, 82.6°F, Wind: N 0.0 mph
+  Tigers Park Factor (HR): 95.0
+  Weather: Clear sky, 83.61°F, Wind: S 3.4 mph
 
 </span><span class="color-blue">--- Matchup: Tigers Batters vs. Away Pitcher (Eduardo Rodriguez) ---</span><span class="color-reset">
   Away Team Pitcher: Eduardo Rodriguez
@@ -208,8 +206,9 @@ Pitchers with a recent HR/PA rate of 4.0% or higher are highlighted in </span><s
 </span><span class="color-blue">⚾ GAME: Rays @ Yankees on 2025-07-28 at 7:05 PM ET (Status: Unknown)</span><span class="color-reset">
 </span><span class="color-blue">⚾ GAME: Rays @ Yankees on 2025-07-28 at 7:05 PM ET (Full Matchup Analysis)
 </span><span class="color-reset">
-  Yankees Park Factor (HR): 100.0 (Neutral Park)
-  Weather: Clear sky, 83.62°F, Wind: NNW 10.4 mph
+  Yankees Park Factor (HR): 121.0
+  (</span><span class="color-green">Best Park for HRs</span><span class="color-reset">)
+  Weather: Few clouds, 84.85°F, Wind: ENE 13.0 mph
 
 </span><span class="color-blue">--- Matchup: Yankees Batters vs. Away Pitcher (Drew Rasmussen) ---</span><span class="color-reset">
   Away Team Pitcher: Drew Rasmussen
@@ -253,8 +252,9 @@ Pitchers with a recent HR/PA rate of 4.0% or higher are highlighted in </span><s
 </span><span class="color-blue">⚾ GAME: Dodgers @ Reds on 2025-07-28 at 7:10 PM ET (Status: Scheduled)</span><span class="color-reset">
 </span><span class="color-blue">⚾ GAME: Dodgers @ Reds on 2025-07-28 at 7:10 PM ET (Full Matchup Analysis)
 </span><span class="color-reset">
-  Reds Park Factor (HR): 100.0 (Neutral Park)
-  Weather: Scattered clouds, 78.69°F, Wind: S 4.6 mph
+  Reds Park Factor (HR): 125.0
+  (</span><span class="color-green">Best Park for HRs</span><span class="color-reset">)
+  Weather: Scattered clouds, 79.72°F, Wind: S 4.6 mph
 
 </span><span class="color-blue">--- Matchup: Reds Batters vs. Away Pitcher (Yoshinobu Yamamoto) ---</span><span class="color-reset">
   Away Team Pitcher: Yoshinobu Yamamoto
@@ -297,7 +297,8 @@ Pitchers with a recent HR/PA rate of 4.0% or higher are highlighted in </span><s
 </span><span class="color-blue">⚾ GAME: Cubs @ Brewers on 2025-07-28 at 7:40 PM ET (Status: Scheduled)</span><span class="color-reset">
 </span><span class="color-blue">⚾ GAME: Cubs @ Brewers on 2025-07-28 at 7:40 PM ET (Full Matchup Analysis)
 </span><span class="color-reset">
-  Brewers Park Factor (HR): 100.0 (Neutral Park)
+  Brewers Park Factor (HR): 113.0
+  (</span><span class="color-green">Best Park for HRs</span><span class="color-reset">)
   Weather: Dome/Retractable Roof: Closed
 
 </span><span class="color-blue">--- Matchup: Brewers Batters vs. Away Pitcher (Matthew Boyd) ---</span><span class="color-reset">
@@ -342,8 +343,8 @@ Pitchers with a recent HR/PA rate of 4.0% or higher are highlighted in </span><s
 </span><span class="color-blue">⚾ GAME: Braves @ Royals on 2025-07-28 at 7:40 PM ET (Status: Unknown)</span><span class="color-reset">
 </span><span class="color-blue">⚾ GAME: Braves @ Royals on 2025-07-28 at 7:40 PM ET (Full Matchup Analysis)
 </span><span class="color-reset">
-  Royals Park Factor (HR): 100.0 (Neutral Park)
-  Weather: Broken clouds, 80.74°F, Wind: ENE 9.2 mph
+  Royals Park Factor (HR): 82.0
+  Weather: Broken clouds, 80.91°F, Wind: ENE 9.2 mph
 
 </span><span class="color-blue">--- Matchup: Royals Batters vs. Away Pitcher (Spencer Strider) ---</span><span class="color-reset">
   Away Team Pitcher: Spencer Strider
@@ -387,8 +388,8 @@ Pitchers with a recent HR/PA rate of 4.0% or higher are highlighted in </span><s
 </span><span class="color-blue">⚾ GAME: Red Sox @ Twins on 2025-07-28 at 7:40 PM ET (Status: Scheduled)</span><span class="color-reset">
 </span><span class="color-blue">⚾ GAME: Red Sox @ Twins on 2025-07-28 at 7:40 PM ET (Full Matchup Analysis)
 </span><span class="color-reset">
-  Twins Park Factor (HR): 100.0 (Neutral Park)
-  Weather: Few clouds, 71.82°F, Wind: NNE 3.4 mph
+  Twins Park Factor (HR): 104.0
+  Weather: Few clouds, 72.7°F, Wind: NNE 3.4 mph
 
 </span><span class="color-blue">--- Matchup: Twins Batters vs. Away Pitcher (Richard Fitts) ---</span><span class="color-reset">
   Away Team Pitcher: Richard Fitts
@@ -432,8 +433,8 @@ Pitchers with a recent HR/PA rate of 4.0% or higher are highlighted in </span><s
 </span><span class="color-blue">⚾ GAME: Phillies @ White Sox on 2025-07-28 at 7:40 PM ET (Status: Unknown)</span><span class="color-reset">
 </span><span class="color-blue">⚾ GAME: Phillies @ White Sox on 2025-07-28 at 7:40 PM ET (Full Matchup Analysis)
 </span><span class="color-reset">
-  White Sox Park Factor (HR): 100.0 (Neutral Park)
-  Weather: Overcast clouds, 79.34°F, Wind: SSW 4.6 mph
+  White Sox Park Factor (HR): 97.0
+  Weather: Light rain, 79.47°F, Wind: S 5.0 mph
 
 </span><span class="color-blue">--- Matchup: White Sox Batters vs. Away Pitcher (Cristopher Sanchez) ---</span><span class="color-reset">
   Away Team Pitcher: Cristopher Sanchez
@@ -476,8 +477,8 @@ Pitchers with a recent HR/PA rate of 4.0% or higher are highlighted in </span><s
 </span><span class="color-blue">⚾ GAME: Marlins @ Cardinals on 2025-07-28 at 7:45 PM ET (Status: Scheduled)</span><span class="color-reset">
 </span><span class="color-blue">⚾ GAME: Marlins @ Cardinals on 2025-07-28 at 7:45 PM ET (Full Matchup Analysis)
 </span><span class="color-reset">
-  Cardinals Park Factor (HR): 100.0 (Neutral Park)
-  Weather: Clear sky, 83.73°F, Wind: W 3.4 mph
+  Cardinals Park Factor (HR): 90.0
+  Weather: Clear sky, 84.97°F, Wind: W 3.4 mph
 
 </span><span class="color-blue">--- Matchup: Cardinals Batters vs. Away Pitcher (Edward Cabrera) ---</span><span class="color-reset">
   Away Team Pitcher: Edward Cabrera
@@ -520,7 +521,8 @@ Pitchers with a recent HR/PA rate of 4.0% or higher are highlighted in </span><s
 </span><span class="color-blue">⚾ GAME: Nationals @ Astros on 2025-07-28 at 8:10 PM ET (Status: Scheduled)</span><span class="color-reset">
 </span><span class="color-blue">⚾ GAME: Nationals @ Astros on 2025-07-28 at 8:10 PM ET (Full Matchup Analysis)
 </span><span class="color-reset">
-  Astros Park Factor (HR): 100.0 (Neutral Park)
+  Astros Park Factor (HR): 106.0
+  (</span><span class="color-green">Best Park for HRs</span><span class="color-reset">)
   Weather: Dome/Retractable Roof: Closed
 
 </span><span class="color-blue">--- Matchup: Astros Batters vs. Away Pitcher (Brad Lord) ---</span><span class="color-reset">
@@ -564,8 +566,9 @@ Pitchers with a recent HR/PA rate of 4.0% or higher are highlighted in </span><s
 </span><span class="color-blue">⚾ GAME: Rangers @ Angels on 2025-07-28 at 9:38 PM ET (Status: Scheduled)</span><span class="color-reset">
 </span><span class="color-blue">⚾ GAME: Rangers @ Angels on 2025-07-28 at 9:38 PM ET (Full Matchup Analysis)
 </span><span class="color-reset">
-  Angels Park Factor (HR): 100.0 (Neutral Park)
-  Weather: Overcast clouds, 64.27°F, Wind: SE 5.8 mph
+  Angels Park Factor (HR): 113.0
+  (</span><span class="color-green">Best Park for HRs</span><span class="color-reset">)
+  Weather: Haze, 64.38°F, Wind: SE 5.8 mph
 
 </span><span class="color-blue">--- Matchup: Angels Batters vs. Away Pitcher (Jacob deGrom) ---</span><span class="color-reset">
   Away Team Pitcher: Jacob deGrom
@@ -609,8 +612,8 @@ Pitchers with a recent HR/PA rate of 4.0% or higher are highlighted in </span><s
 </span><span class="color-blue">⚾ GAME: Mets @ Padres on 2025-07-28 at 9:40 PM ET (Status: Unknown)</span><span class="color-reset">
 </span><span class="color-blue">⚾ GAME: Mets @ Padres on 2025-07-28 at 9:40 PM ET (Full Matchup Analysis)
 </span><span class="color-reset">
-  Padres Park Factor (HR): 100.0 (Neutral Park)
-  Weather: Overcast clouds, 65.48°F, Wind: W 4.6 mph
+  Padres Park Factor (HR): 103.0
+  Weather: Overcast clouds, 65.55°F, Wind: W 4.6 mph
 
 </span><span class="color-blue">--- Matchup: Padres Batters vs. Away Pitcher (Frankie Montas) ---</span><span class="color-reset">
   Away Team Pitcher: Frankie Montas
@@ -654,8 +657,8 @@ Pitchers with a recent HR/PA rate of 4.0% or higher are highlighted in </span><s
 </span><span class="color-blue">⚾ GAME: Pirates @ Giants on 2025-07-28 at 9:45 PM ET (Status: Unknown)</span><span class="color-reset">
 </span><span class="color-blue">⚾ GAME: Pirates @ Giants on 2025-07-28 at 9:45 PM ET (Full Matchup Analysis)
 </span><span class="color-reset">
-  Giants Park Factor (HR): 100.0 (Neutral Park)
-  Weather: Overcast clouds, 58.03°F, Wind: WNW 14.0 mph
+  Giants Park Factor (HR): 75.0
+  Weather: Scattered clouds, 58.05°F, Wind: WNW 15.0 mph
 
 </span><span class="color-blue">--- Matchup: Giants Batters vs. Away Pitcher (Mitch Keller) ---</span><span class="color-reset">
   Away Team Pitcher: Mitch Keller
@@ -699,8 +702,8 @@ Pitchers with a recent HR/PA rate of 4.0% or higher are highlighted in </span><s
 </span><span class="color-blue">⚾ GAME: Mariners @ Athletics on 2025-07-28 at 10:05 PM ET (Status: Scheduled)</span><span class="color-reset">
 </span><span class="color-blue">⚾ GAME: Mariners @ Athletics on 2025-07-28 at 10:05 PM ET (Full Matchup Analysis)
 </span><span class="color-reset">
-  Athletics Park Factor (HR): 100.0 (Neutral Park)
-  Weather: Scattered clouds, 79.16°F, Wind: SSW 4.6 mph
+  Athletics Park Factor (HR): 87.0
+  Weather: Scattered clouds, 80.35°F, Wind: SSW 4.6 mph
 
 </span><span class="color-blue">--- Matchup: Athletics Batters vs. Away Pitcher (Luis Castillo) ---</span><span class="color-reset">
   Away Team Pitcher: Luis Castillo
