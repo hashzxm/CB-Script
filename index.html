@@ -1,223 +1,347 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Game Matchups</title>
+    <title>Home Run Prediction Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* --- Matte Color Palette & Base Styles --- */
-        :root {
-            --bg-color: #1c1c1e;
-            --surface-color: #2c2c2e;
-            --hover-color: #3a3a3c;
-            --border-color: #444446;
-            --primary-text: #e4e4e6;
-            --secondary-text: #a0a0a2;
-            --accent-h1: #d1b385;
-            --accent-h2: #7aa5c3;
-            --accent-h3: #7ac3b5;
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* gray-100 */
         }
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
-            background-color: var(--bg-color); 
-            color: var(--primary-text); 
-            margin: 20px; 
+        .card {
+            background-color: white;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         }
-        .container { max-width: 900px; margin: auto; }
-        h1 { 
-            color: var(--accent-h1); 
-            border-bottom: 2px solid var(--accent-h1); 
-            padding-bottom: 10px;
-            text-align: center;
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
         }
-        h2 { 
-            color: var(--accent-h2); 
-            border-bottom: 1px solid var(--border-color); 
-            padding-bottom: 8px; 
-            margin-top: 40px; 
+        .highlight {
+            background-color: #d1fae5; /* green-200 */
+            font-weight: 600;
         }
-        h3 { color: var(--accent-h3); }
-        .pitcher-stats { 
-            color: var(--secondary-text); 
-            font-style: italic; 
-            font-size: 0.9em; 
+        .highlight .player-name {
+            color: #065f46; /* green-800 */
         }
-        table { 
-            border-collapse: collapse; 
-            width: 100%; 
-            margin-top: 15px; 
-            margin-bottom: 25px;
-            border: 1px solid var(--border-color);
+        .low-data {
+            color: #6b7280; /* gray-500 */
+            font-style: italic;
         }
-        th, td { 
-            text-align: left; 
-            padding: 12px; 
-            border-bottom: 1px solid var(--border-color); 
+        .table-header th {
+            background-color: #f9fafb; /* gray-50 */
         }
-        th { 
-            background-color: #333335; 
+        .player-row:hover {
+            background-color: #f9fafb; /* gray-50 */
         }
-        tr:hover { background-color: var(--hover-color); }
-        .prob-high { color: #8fbc8f; font-weight: bold; } /* Muted dark sea green */
-        .prob-medium { color: #d8c093; } /* Muted gold */
-
-        /* --- Styles for the interactive sections --- */
-        details.game-section {
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            margin-bottom: 15px;
-            background-color: var(--surface-color);
-            transition: background-color 0.2s ease-in-out;
-        }
-        details.game-section[open] {
-            background-color: #313133;
-        }
-        summary {
-            cursor: pointer;
-            padding: 15px;
-            font-weight: bold;
-            list-style: none;
-        }
-        summary::-webkit-details-marker { display: none; }
-        summary::before {
-            content: '▶';
-            margin-right: 12px;
-            display: inline-block;
-            transition: transform 0.2s;
-            font-size: 0.8em;
-            color: var(--secondary-text);
-        }
-        details[open] > summary {
-            border-bottom: 1px solid var(--border-color);
-        }
-        details[open] > summary::before {
-            transform: rotate(90deg);
-        }
-        /* Reset styles for h2 when it's inside a summary */
-        summary h2 {
-            display: inline;
-            font-size: 1.2em; /* Adjust size to be appropriate for a summary */
-            border-bottom: none;
-            padding-bottom: 0;
-            margin-top: 0;
-            vertical-align: middle;
-        }
-        .game-content {
-            padding: 0px 15px 15px 40px;
+        .toggle-btn {
+            transition: background-color 0.3s, color 0.3s;
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h1>HOME RUN PREDICTION REPORT FOR 2025-08-02</h1>
+<body class="p-4 sm:p-6 md:p-8">
+
+    <div class="max-w-7xl mx-auto">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl font-bold text-gray-800">Home Run Prediction Report</h1>
+            <p class="text-gray-600 mt-2">August 2, 2025</p>
+            <button id="toggle-highlight-btn" class="mt-6 px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 toggle-btn">
+                Toggle High Probability Players
+            </button>
+        </header>
+
+        <main id="report-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Game cards will be injected here by JavaScript -->
+        </main>
         
-        <details class="game-section">
-            <summary><h2>Dodgers @ Rays (1:10 PM ET)</h2></summary>
-            <div class="game-content">
-        <h3>Rays Batters vs. Blake Snell <span class="pitcher-stats">(Low Data)</span></h3><table><thead><tr><th>Batter</th><th>90-Day Prob</th><th>2-Year Prob</th></tr></thead><tbody><tr><td>Yandy Díaz</td><td>Low Data</td><td>3.19%</td></tr><tr><td>Ha-Seong Kim</td><td>Low Data</td><td>5.25%</td></tr><tr><td>Brandon Lowe</td><td>Low Data</td><td class="prob-medium">47.84%</td></tr><tr><td>Junior Caminero</td><td>Low Data</td><td class="prob-high">51.21%</td></tr><tr><td>Christopher Morel</td><td>Low Data</td><td class="prob-medium">33.82%</td></tr><tr><td>Josh Lowe</td><td>Low Data</td><td class="prob-medium">18.95%</td></tr><tr><td>Jonny DeLuca</td><td>Low Data</td><td>2.62%</td></tr><tr><td>Taylor Walls</td><td>Low Data</td><td>3.33%</td></tr><tr><td>Hunter Feduccia</td><td>Low Data</td><td>4.58%</td></tr></tbody></table><h3>Dodgers Batters vs. Drew Rasmussen <span class="pitcher-stats">(Last 90d: 129 PA, 18.6% K, 0.115 ISO)</span></h3><table><thead><tr><th>Batter</th><th>90-Day Prob</th><th>2-Year Prob</th></tr></thead><tbody><tr><td>Shohei Ohtani</td><td class="prob-high">83.56%</td><td class="prob-high">77.88%</td></tr><tr><td>Freddie Freeman</td><td class="prob-medium">19.10%</td><td class="prob-high">63.92%</td></tr><tr><td>Andy Pages</td><td class="prob-medium">10.68%</td><td class="prob-medium">37.96%</td></tr><tr><td>Michael Conforto</td><td>8.84%</td><td class="prob-high">65.44%</td></tr><tr><td>Tommy Edman</td><td>0.19%</td><td>5.93%</td></tr><tr><td>Mookie Betts</td><td>0.15%</td><td class="prob-medium">22.74%</td></tr><tr><td>Teoscar Hernández</td><td>0.10%</td><td class="prob-high">86.81%</td></tr><tr><td>Will Smith</td><td>Low Data</td><td>Low Data</td></tr></tbody></table>
-            </div>
-        </details>
-        
-        <details class="game-section">
-            <summary><h2>Orioles @ Cubs (2:20 PM ET)</h2></summary>
-            <div class="game-content">
-        <h3>Cubs Batters vs. Tomoyuki Sugano <span class="pitcher-stats">(Last 90d: 167 PA, 17.4% K, 0.160 ISO)</span></h3><table><thead><tr><th>Batter</th><th>90-Day Prob</th><th>2-Year Prob</th></tr></thead><tbody><tr><td>Pete Crow-Armstrong</td><td class="prob-high">94.15%</td><td class="prob-high">78.21%</td></tr><tr><td>Seiya Suzuki</td><td class="prob-medium">15.20%</td><td class="prob-high">87.48%</td></tr><tr><td>Kyle Tucker</td><td class="prob-medium">14.56%</td><td class="prob-high">90.20%</td></tr><tr><td>Michael Busch</td><td class="prob-medium">10.39%</td><td class="prob-high">87.55%</td></tr><tr><td>Ian Happ</td><td>5.78%</td><td class="prob-high">90.17%</td></tr><tr><td>Dansby Swanson</td><td>3.24%</td><td class="prob-medium">21.46%</td></tr><tr><td>Carson Kelly</td><td>1.78%</td><td class="prob-high">84.13%</td></tr><tr><td>Matt Shaw</td><td>0.44%</td><td class="prob-medium">42.90%</td></tr><tr><td>Nico Hoerner</td><td>0.04%</td><td class="prob-medium">15.60%</td></tr></tbody></table><h3>Orioles Batters vs. Matt Boyd <span class="pitcher-stats">(Last 90d: 253 PA, 22.5% K, 0.153 ISO)</span></h3><table><thead><tr><th>Batter</th><th>90-Day Prob</th><th>2-Year Prob</th></tr></thead><tbody><tr><td>Jackson Holliday</td><td class="prob-high">60.24%</td><td>6.53%</td></tr><tr><td>Colton Cowser</td><td class="prob-medium">41.45%</td><td class="prob-high">78.22%</td></tr><tr><td>Coby Mayo</td><td>1.32%</td><td>1.41%</td></tr><tr><td>Dylan Carlson</td><td>0.89%</td><td class="prob-high">65.43%</td></tr><tr><td>Gunnar Henderson</td><td>0.65%</td><td class="prob-medium">14.76%</td></tr><tr><td>Adley Rutschman</td><td>0.39%</td><td class="prob-high">76.79%</td></tr><tr><td>Jordan Westburg</td><td>0.00%</td><td class="prob-high">65.55%</td></tr><tr><td>Tyler O'Neill</td><td>0.00%</td><td class="prob-high">93.70%</td></tr></tbody></table>
-            </div>
-        </details>
-        
-        <details class="game-section">
-            <summary><h2>Royals @ Blue Jays (3:07 PM ET)</h2></summary>
-            <div class="game-content">
-        <h3>Blue Jays Batters vs. Noah Cameron <span class="pitcher-stats">(Last 90d: 219 PA, 23.3% K, 0.118 ISO)</span></h3><table><thead><tr><th>Batter</th><th>90-Day Prob</th><th>2-Year Prob</th></tr></thead><tbody><tr><td>Bo Bichette</td><td class="prob-high">96.07%</td><td>1.48%</td></tr><tr><td>Ernie Clement</td><td class="prob-high">53.45%</td><td class="prob-high">53.85%</td></tr><tr><td>Ty France</td><td class="prob-medium">38.98%</td><td>3.52%</td></tr><tr><td>Daulton Varsho</td><td>0.48%</td><td class="prob-high">53.84%</td></tr><tr><td>Tyler Heineman</td><td>0.01%</td><td class="prob-high">59.63%</td></tr><tr><td>Addison Barger</td><td>0.01%</td><td>1.09%</td></tr><tr><td>Vladimir Guerrero</td><td>0.00%</td><td class="prob-medium">27.65%</td></tr><tr><td>Leo Jimenez</td><td>0.00%</td><td>6.29%</td></tr><tr><td>Davis Schneider</td><td>0.00%</td><td class="prob-medium">17.30%</td></tr></tbody></table><h3>Royals Batters vs. Max Scherzer <span class="pitcher-stats">(Last 90d: 59 PA, 40.7% K, 0.093 ISO)</span></h3><table><thead><tr><th>Batter</th><th>90-Day Prob</th><th>2-Year Prob</th></tr></thead><tbody><tr><td>Randal Grichuk</td><td class="prob-medium">33.32%</td><td class="prob-high">51.58%</td></tr><tr><td>Jonathan India</td><td class="prob-medium">11.19%</td><td class="prob-medium">49.67%</td></tr><tr><td>Salvador Pérez</td><td>6.46%</td><td class="prob-high">84.24%</td></tr><tr><td>Adam Frazier</td><td>0.10%</td><td>0.99%</td></tr><tr><td>Mike Yastrzemski</td><td>0.08%</td><td class="prob-medium">35.46%</td></tr><tr><td>Kyle Isbel</td><td>0.08%</td><td class="prob-medium">12.94%</td></tr><tr><td>Vinnie Pasquantino</td><td>0.04%</td><td class="prob-high">61.13%</td></tr><tr><td>Maikel García</td><td>0.01%</td><td class="prob-medium">15.00%</td></tr><tr><td>Bobby Witt</td><td>0.00%</td><td class="prob-high">89.22%</td></tr></tbody></table>
-            </div>
-        </details>
-        
-        <details class="game-section">
-            <summary><h2>Pirates @ Rockies (3:10 PM ET)</h2></summary>
-            <div class="game-content">
-        <h3>Rockies Batters vs. Paul Skenes <span class="pitcher-stats">(Last 90d: 157 PA, 29.3% K, 0.075 ISO)</span></h3><table><thead><tr><th>Batter</th><th>90-Day Prob</th><th>2-Year Prob</th></tr></thead><tbody><tr><td>Hunter Goodman</td><td class="prob-medium">44.82%</td><td class="prob-high">71.70%</td></tr><tr><td>Mickey Moniak</td><td class="prob-medium">13.89%</td><td class="prob-medium">45.87%</td></tr><tr><td>Ezequiel Tovar</td><td>7.73%</td><td class="prob-medium">16.57%</td></tr><tr><td>Jordan Beck</td><td>1.29%</td><td>3.28%</td></tr><tr><td>Brenton Doyle</td><td>0.08%</td><td>4.32%</td></tr><tr><td>Orlando Arcia</td><td>0.07%</td><td class="prob-medium">40.02%</td></tr><tr><td>Thairo Estrada</td><td>0.03%</td><td>2.13%</td></tr><tr><td>Tyler Freeman</td><td>0.00%</td><td class="prob-medium">26.86%</td></tr></tbody></table><h3>Pirates Batters vs. Austin Gomber <span class="pitcher-stats">(Last 90d: 144 PA, 11.8% K, 0.241 ISO)</span></h3><table><thead><tr><th>Batter</th><th>90-Day Prob</th><th>2-Year Prob</th></tr></thead><tbody><tr><td>Bryan Reynolds</td><td class="prob-high">62.47%</td><td class="prob-high">83.00%</td></tr><tr><td>Nick Gonzales</td><td>9.02%</td><td class="prob-high">64.59%</td></tr><tr><td>Jared Triolo</td><td>2.60%</td><td>9.60%</td></tr><tr><td>Spencer Horwitz</td><td>0.02%</td><td>2.02%</td></tr><tr><td>Alexander Canario</td><td>0.01%</td><td class="prob-medium">18.36%</td></tr><tr><td>Tommy Pham</td><td>0.01%</td><td class="prob-medium">48.56%</td></tr><tr><td>Joey Bart</td><td>0.00%</td><td class="prob-medium">39.59%</td></tr><tr><td>Andrew McCutchen</td><td>0.00%</td><td class="prob-medium">24.79%</td></tr><tr><td>Isiah Kiner-Falefa</td><td>0.00%</td><td>0.79%</td></tr></tbody></table>
-            </div>
-        </details>
-        
-        <details class="game-section">
-            <summary><h2>Brewers @ Nationals (4:05 PM ET)</h2></summary>
-            <div class="game-content">
-        <h3>Nationals Batters vs. Brandon Woodruff <span class="pitcher-stats">(Last 90d: 36 PA, 44.4% K, 0.257 ISO)</span></h3><table><thead><tr><th>Batter</th><th>90-Day Prob</th><th>2-Year Prob</th></tr></thead><tbody><tr><td>Brady House</td><td class="prob-high">99.88%</td><td class="prob-high">84.14%</td></tr><tr><td>Nathaniel Lowe</td><td>0.32%</td><td class="prob-high">67.54%</td></tr><tr><td>Robert Hassell</td><td>0.23%</td><td class="prob-medium">12.96%</td></tr><tr><td>Jacob Young</td><td>0.18%</td><td>1.17%</td></tr><tr><td>Riley Adams</td><td>0.10%</td><td class="prob-high">58.47%</td></tr><tr><td>James Wood</td><td>0.01%</td><td class="prob-medium">45.31%</td></tr><tr><td>CJ Abrams</td><td>0.01%</td><td class="prob-high">61.33%</td></tr></tbody></table><h3>Brewers Batters vs. Jake Irvin <span class="pitcher-stats">(Last 90d: 161 PA, 16.1% K, 0.185 ISO)</span></h3><table><thead><tr><th>Batter</th><th>90-Day Prob</th><th>2-Year Prob</th></tr></thead><tbody><tr><td>Andrew Vaughn</td><td class="prob-high">96.07%</td><td class="prob-high">88.29%</td></tr><tr><td>Joey Ortiz</td><td>8.98%</td><td class="prob-medium">21.42%</td></tr><tr><td>William Contreras</td><td>1.44%</td><td class="prob-high">77.63%</td></tr><tr><td>Isaac Collins</td><td>0.20%</td><td>0.58%</td></tr><tr><td>Sal Frelick</td><td>0.11%</td><td>0.24%</td></tr><tr><td>Caleb Durbin</td><td>0.01%</td><td>1.16%</td></tr><tr><td>Christian Yelich</td><td>0.01%</td><td class="prob-medium">26.54%</td></tr><tr><td>Brice Turang</td><td>0.00%</td><td class="prob-high">52.21%</td></tr><tr><td>Blake Perkins</td><td>0.00%</td><td class="prob-medium">23.26%</td></tr></tbody></table>
-            </div>
-        </details>
-        
-        <details class="game-section">
-            <summary><h2>Tigers @ Phillies (4:05 PM ET)</h2></summary>
-            <div class="game-content">
-        <h3>Phillies Batters vs. Tarik Skubal <span class="pitcher-stats">(Last 90d: 287 PA, 36.2% K, 0.096 ISO)</span></h3><table><thead><tr><th>Batter</th><th>90-Day Prob</th><th>2-Year Prob</th></tr></thead><tbody><tr><td>Bryce Harper</td><td class="prob-high">74.20%</td><td class="prob-medium">13.95%</td></tr><tr><td>Trea Turner</td><td class="prob-medium">10.88%</td><td class="prob-medium">39.17%</td></tr><tr><td>J. T. Realmuto</td><td>0.82%</td><td class="prob-medium">40.22%</td></tr><tr><td>Kyle Schwarber</td><td>0.11%</td><td class="prob-high">59.80%</td></tr><tr><td>Brandon Marsh</td><td>0.10%</td><td>1.00%</td></tr><tr><td>Nick Castellanos</td><td>0.02%</td><td class="prob-high">91.66%</td></tr><tr><td>Edmundo Sosa</td><td>0.01%</td><td>0.48%</td></tr><tr><td>Otto Kemp</td><td>0.00%</td><td class="prob-high">58.64%</td></tr></tbody></table><h3>Tigers Batters vs. Zack Wheeler <span class="pitcher-stats">(Last 90d: 148 PA, 29.7% K, 0.071 ISO)</span></h3><table><thead><tr><th>Batter</th><th>90-Day Prob</th><th>2-Year Prob</th></tr></thead><tbody><tr><td>Kerry Carpenter</td><td class="prob-high">74.56%</td><td class="prob-high">90.53%</td></tr><tr><td>Wenceel Pérez</td><td class="prob-medium">22.71%</td><td class="prob-high">80.35%</td></tr><tr><td>Gleyber Torres</td><td>6.12%</td><td>0.88%</td></tr><tr><td>Riley Greene</td><td>3.90%</td><td class="prob-medium">43.99%</td></tr><tr><td>Colt Keith</td><td>0.11%</td><td class="prob-high">77.37%</td></tr><tr><td>Dillon Dingler</td><td>0.09%</td><td>8.97%</td></tr><tr><td>Spencer Torkelson</td><td>0.03%</td><td class="prob-high">90.35%</td></tr><tr><td>Javier Báez</td><td>0.02%</td><td class="prob-medium">33.65%</td></tr><tr><td>Zach McKinstry</td><td>0.00%</td><td class="prob-medium">25.91%</td></tr></tbody></table>
-            </div>
-        </details>
-        
-        <details class="game-section">
-            <summary><h2>Twins @ Guardians (4:10 PM ET)</h2></summary>
-            <div class="game-content">
-        <h3>Guardians Batters vs. Bailey Ober <span class="pitcher-stats">(Last 90d: 131 PA, 19.8% K, 0.248 ISO)</span></h3><table><thead><tr><th>Batter</th><th>90-Day Prob</th><th>2-Year Prob</th></tr></thead><tbody><tr><td>Angel Martínez</td><td class="prob-medium">37.53%</td><td class="prob-medium">36.66%</td></tr><tr><td>Carlos Santana</td><td>0.43%</td><td class="prob-high">67.70%</td></tr><tr><td>Brayan Rocchio</td><td>0.02%</td><td class="prob-high">87.68%</td></tr><tr><td>Kyle Manzardo</td><td>0.01%</td><td class="prob-high">81.93%</td></tr><tr><td>Bo Naylor</td><td>0.00%</td><td class="prob-high">89.50%</td></tr><tr><td>Gabriel Arias</td><td>0.00%</td><td class="prob-high">66.52%</td></tr><tr><td>Steven Kwan</td><td>0.00%</td><td class="prob-medium">15.87%</td></tr></tbody></table><h3>Twins Batters vs. Tanner Bibee <span class="pitcher-stats">(Last 90d: 189 PA, 21.7% K, 0.124 ISO)</span></h3><table><thead><tr><th>Batter</th><th>90-Day Prob</th><th>2-Year Prob</th></tr></thead><tbody><tr><td>Matt Wallner</td><td class="prob-high">77.58%</td><td class="prob-high">67.05%</td></tr><tr><td>Royce Lewis</td><td class="prob-high">64.03%</td><td class="prob-high">82.17%</td></tr><tr><td>Kody Clemens</td><td class="prob-high">54.83%</td><td class="prob-high">94.66%</td></tr><tr><td>Trevor Larnach</td><td class="prob-medium">45.82%</td><td class="prob-high">84.19%</td></tr><tr><td>Ryan Jeffers</td><td class="prob-medium">31.39%</td><td class="prob-high">74.92%</td></tr><tr><td>Edouard Julien</td><td>0.51%</td><td class="prob-medium">14.07%</td></tr><tr><td>Austin Martin</td><td>0.36%</td><td>0.49%</td></tr><tr><td>Brooks Lee</td><td>0.05%</td><td class="prob-high">90.39%</td></tr><tr><td>Alan Roden</td><td>0.00%</td><td>8.18%</td></tr></tbody></table>
-            </div>
-        </details>
-        
-        <details class="game-section">
-            <summary><h2>Rangers @ Mariners (4:10 PM ET)</h2></summary>
-            <div class="game-content">
-        <h3>Mariners Batters vs. Merrill Kelly <span class="pitcher-stats">(Last 90d: 187 PA, 28.9% K, 0.064 ISO)</span></h3><table><thead><tr><th>Batter</th><th>90-Day Prob</th><th>2-Year Prob</th></tr></thead><tbody><tr><td>Jorge Polanco</td><td class="prob-high">60.92%</td><td class="prob-high">88.23%</td></tr><tr><td>Dominic Canzone</td><td class="prob-medium">42.31%</td><td class="prob-high">81.87%</td></tr><tr><td>Cole Young</td><td>3.45%</td><td class="prob-medium">16.16%</td></tr><tr><td>Josh Naylor</td><td>3.15%</td><td class="prob-high">64.68%</td></tr><tr><td>Julio Rodríguez</td><td>2.16%</td><td class="prob-high">89.28%</td></tr><tr><td>J. P. Crawford</td><td>0.25%</td><td class="prob-high">50.91%</td></tr><tr><td>Randy Arozarena</td><td>0.01%</td><td class="prob-high">56.50%</td></tr><tr><td>Cal Raleigh</td><td>0.01%</td><td class="prob-high">91.89%</td></tr></tbody></table>
-            </div>
-        </details>
-        
-        <details class="game-section">
-            <summary><h2>Yankees @ Marlins (4:10 PM ET)</h2></summary>
-            <div class="game-content">
-        <h3>Marlins Batters vs. Cam Schlittler <span class="pitcher-stats">(Last 90d: 27 PA, 25.9% K, 0.167 ISO)</span></h3><table><thead><tr><th>Batter</th><th>90-Day Prob</th><th>2-Year Prob</th></tr></thead><tbody><tr><td>Kyle Stowers</td><td class="prob-high">87.72%</td><td>1.77%</td></tr><tr><td>Graham Pauley</td><td>1.09%</td><td>0.54%</td></tr><tr><td>Xavier Edwards</td><td>0.23%</td><td>1.23%</td></tr><tr><td>Dane Myers</td><td>0.15%</td><td>2.97%</td></tr><tr><td>Otto Lopez</td><td>0.09%</td><td>6.30%</td></tr><tr><td>Liam Hicks</td><td>0.06%</td><td>0.74%</td></tr><tr><td>Agustín Ramírez</td><td>0.03%</td><td class="prob-medium">32.40%</td></tr></tbody></table><h3>Yankees Batters vs. Eury Pérez <span class="pitcher-stats">(Last 90d: 80 PA, 31.2% K, 0.135 ISO)</span></h3><table><thead><tr><th>Batter</th><th>90-Day Prob</th><th>2-Year Prob</th></tr></thead><tbody><tr><td>Jazz Chisholm</td><td class="prob-medium">16.42%</td><td class="prob-medium">21.22%</td></tr><tr><td>Jasson Domínguez</td><td class="prob-medium">14.34%</td><td class="prob-high">63.88%</td></tr><tr><td>Austin Wells</td><td>3.12%</td><td class="prob-high">71.31%</td></tr><tr><td>Trent Grisham</td><td>1.11%</td><td class="prob-medium">26.55%</td></tr><tr><td>Cody Bellinger</td><td>0.44%</td><td class="prob-medium">19.97%</td></tr><tr><td>Giancarlo Stanton</td><td>0.19%</td><td class="prob-high">75.94%</td></tr><tr><td>Anthony Volpe</td><td>0.18%</td><td class="prob-high">80.75%</td></tr><tr><td>Ryan McMahon</td><td>0.13%</td><td class="prob-high">51.37%</td></tr><tr><td>Ben Rice</td><td>0.04%</td><td class="prob-high">88.74%</td></tr></tbody></table>
-            </div>
-        </details>
-        
-        <details class="game-section">
-            <summary><h2>Giants @ Mets (4:10 PM ET)</h2></summary>
-            <div class="game-content">
-        <h3>Mets Batters vs. Kai-Wei Teng <span class="pitcher-stats">(Low Data)</span></h3><table><thead><tr><th>Batter</th><th>90-Day Prob</th><th>2-Year Prob</th></tr></thead><tbody><tr><td>Brandon Nimmo</td><td>Low Data</td><td>1.74%</td></tr><tr><td>Francisco Lindor</td><td>Low Data</td><td>0.74%</td></tr><tr><td>Juan Soto</td><td>Low Data</td><td>1.56%</td></tr><tr><td>Pete Alonso</td><td>Low Data</td><td>9.99%</td></tr><tr><td>Jeff McNeil</td><td>Low Data</td><td class="prob-medium">44.30%</td></tr><tr><td>Mark Vientos</td><td>Low Data</td><td class="prob-medium">12.07%</td></tr><tr><td>Francisco Álvarez</td><td>Low Data</td><td>0.74%</td></tr><tr><td>Ronny Mauricio</td><td>Low Data</td><td>5.98%</td></tr></tbody></table><h3>Giants Batters vs. Kodai Senga <span class="pitcher-stats">(Last 90d: 111 PA, 24.3% K, 0.206 ISO)</span></h3><table><thead><tr><th>Batter</th><th>90-Day Prob</th><th>2-Year Prob</th></tr></thead><tbody><tr><td>Casey Schmitt</td><td class="prob-high">66.18%</td><td class="prob-high">55.55%</td></tr><tr><td>Matt Chapman</td><td class="prob-high">55.16%</td><td class="prob-high">79.38%</td></tr><tr><td>Willy Adames</td><td class="prob-medium">19.52%</td><td class="prob-high">86.76%</td></tr><tr><td>Heliot Ramos</td><td>1.47%</td><td class="prob-high">51.32%</td></tr><tr><td>Patrick Bailey</td><td>0.56%</td><td>4.02%</td></tr><tr><td>Wilmer Flores</td><td>0.11%</td><td class="prob-high">62.44%</td></tr><tr><td>Rafael Devers</td><td>0.09%</td><td class="prob-medium">42.00%</td></tr><tr><td>Jung Hoo Lee</td><td>0.01%</td><td>0.89%</td></tr></tbody></table>
-            </div>
-        </details>
-        
-        <details class="game-section">
-            <summary><h2>Astros @ Red Sox (4:10 PM ET)</h2></summary>
-            <div class="game-content">
-        <h3>Red Sox Batters vs. Colton Gordon <span class="pitcher-stats">(Last 90d: 218 PA, 17.9% K, 0.256 ISO)</span></h3><table><thead><tr><th>Batter</th><th>90-Day Prob</th><th>2-Year Prob</th></tr></thead><tbody><tr><td>Ceddanne Rafaela</td><td class="prob-medium">44.17%</td><td>2.01%</td></tr><tr><td>Trevor Story</td><td class="prob-medium">25.38%</td><td>2.03%</td></tr><tr><td>Carlos Narváez</td><td class="prob-medium">11.35%</td><td>0.27%</td></tr><tr><td>Alex Bregman</td><td>3.16%</td><td class="prob-high">84.41%</td></tr><tr><td>Masataka Yoshida</td><td>0.15%</td><td class="prob-high">94.65%</td></tr><tr><td>Jarren Duran</td><td>0.09%</td><td>7.03%</td></tr><tr><td>Roman Anthony</td><td>0.05%</td><td>2.32%</td></tr><tr><td>Rob Refsnyder</td><td>0.00%</td><td class="prob-medium">10.08%</td></tr><tr><td>Romy Gonzalez</td><td>0.00%</td><td>0.13%</td></tr></tbody></table><h3>Astros Batters vs. Walker Buehler <span class="pitcher-stats">(Last 90d: 109 PA, 16.5% K, 0.278 ISO)</span></h3><table><thead><tr><th>Batter</th><th>90-Day Prob</th><th>2-Year Prob</th></tr></thead><tbody><tr><td>Taylor Trammell</td><td class="prob-medium">23.55%</td><td class="prob-medium">39.74%</td></tr><tr><td>Christian Walker</td><td class="prob-medium">18.70%</td><td class="prob-high">82.53%</td></tr><tr><td>Yainer Diaz</td><td class="prob-medium">17.15%</td><td class="prob-high">85.78%</td></tr><tr><td>José Altuve</td><td>2.59%</td><td class="prob-high">92.42%</td></tr><tr><td>Jeremy Peña</td><td>1.47%</td><td class="prob-high">66.19%</td></tr><tr><td>Mauricio Dubón</td><td>0.68%</td><td class="prob-high">71.18%</td></tr><tr><td>Cam Smith</td><td>0.01%</td><td class="prob-medium">34.68%</td></tr></tbody></table>
-            </div>
-        </details>
-        
-        <details class="game-section">
-            <summary><h2>Braves @ Reds (7:15 PM ET)</h2></summary>
-            <div class="game-content">
-        <h3>Reds Batters vs. Spencer Strider <span class="pitcher-stats">(Last 90d: 147 PA, 28.6% K, 0.144 ISO)</span></h3><table><thead><tr><th>Batter</th><th>90-Day Prob</th><th>2-Year Prob</th></tr></thead><tbody><tr><td>Will Benson</td><td class="prob-high">86.54%</td><td class="prob-medium">10.90%</td></tr><tr><td>Austin Hays</td><td class="prob-high">51.49%</td><td class="prob-medium">38.36%</td></tr><tr><td>Tyler Stephenson</td><td class="prob-medium">31.06%</td><td class="prob-high">63.67%</td></tr><tr><td>Elly De La Cruz</td><td>1.63%</td><td class="prob-high">78.83%</td></tr><tr><td>Spencer Steer</td><td>1.55%</td><td class="prob-high">88.31%</td></tr><tr><td>Matt McLain</td><td>0.28%</td><td class="prob-medium">38.64%</td></tr><tr><td>Jake Fraley</td><td>0.09%</td><td>9.95%</td></tr><tr><td>Gavin Lux</td><td>0.05%</td><td class="prob-high">55.04%</td></tr></tbody></table><h3>Braves Batters vs. Chase Burns <span class="pitcher-stats">(Last 90d: 57 PA, 36.8% K, 0.167 ISO)</span></h3><table><thead><tr><th>Batter</th><th>90-Day Prob</th><th>2-Year Prob</th></tr></thead><tbody><tr><td>Jurickson Profar</td><td class="prob-high">75.76%</td><td>3.80%</td></tr><tr><td>Drake Baldwin</td><td class="prob-high">66.17%</td><td class="prob-medium">37.34%</td></tr><tr><td>Sean Murphy</td><td>0.59%</td><td class="prob-medium">43.58%</td></tr><tr><td>Ozzie Albies</td><td>0.23%</td><td>1.07%</td></tr><tr><td>Eli White</td><td>0.14%</td><td>0.31%</td></tr><tr><td>Austin Riley</td><td>0.02%</td><td class="prob-medium">30.27%</td></tr><tr><td>Matt Olson</td><td>0.01%</td><td>1.93%</td></tr><tr><td>Michael Harris</td><td>0.00%</td><td>0.49%</td></tr></tbody></table>
-            </div>
-        </details>
-        
-        <details class="game-section">
-            <summary><h2>Diamondbacks @ Athletics (10:05 PM ET)</h2></summary>
-            <div class="game-content">
-        <h3>Athletics Batters vs. Zac Gallen <span class="pitcher-stats">(Last 90d: 205 PA, 23.9% K, 0.253 ISO)</span></h3><table><thead><tr><th>Batter</th><th>90-Day Prob</th><th>2-Year Prob</th></tr></thead><tbody><tr><td>Tyler Soderstrom</td><td class="prob-medium">21.90%</td><td class="prob-high">62.38%</td></tr><tr><td>Shea Langeliers</td><td class="prob-medium">10.12%</td><td class="prob-high">84.75%</td></tr><tr><td>Lawrence Butler</td><td>0.52%</td><td class="prob-high">84.47%</td></tr><tr><td>Nick Kurtz</td><td>0.24%</td><td>1.53%</td></tr><tr><td>Darell Hernaiz</td><td>0.08%</td><td>6.34%</td></tr><tr><td>Brent Rooker</td><td>0.05%</td><td class="prob-high">82.64%</td></tr><tr><td>Luis Urías</td><td>0.03%</td><td class="prob-high">78.55%</td></tr><tr><td>Gio Urshela</td><td>0.00%</td><td class="prob-medium">10.40%</td></tr></tbody></table><h3>Diamondbacks Batters vs. J. T. Ginn <span class="pitcher-stats">(Last 90d: 73 PA, 34.2% K, 0.143 ISO)</span></h3><table><thead><tr><th>Batter</th><th>90-Day Prob</th><th>2-Year Prob</th></tr></thead><tbody><tr><td>Lourdes Gurriel</td><td class="prob-high">93.49%</td><td class="prob-medium">33.06%</td></tr><tr><td>James McCann</td><td>4.59%</td><td class="prob-medium">21.37%</td></tr><tr><td>Ketel Marte</td><td>2.06%</td><td class="prob-medium">27.48%</td></tr><tr><td>Corbin Carroll</td><td>1.15%</td><td class="prob-medium">18.24%</td></tr><tr><td>Alek Thomas</td><td>0.86%</td><td class="prob-medium">45.31%</td></tr><tr><td>Adrian Del Castillo</td><td>0.48%</td><td>4.92%</td></tr><tr><td>Blaze Alexander</td><td>0.10%</td><td>6.84%</td></tr><tr><td>Geraldo Perdomo</td><td>0.07%</td><td>5.15%</td></tr></tbody></table>
-            </div>
-        </details>
-        
-        <details class="game-section">
-            <summary><h2>White Sox @ Angels (10:07 PM ET)</h2></summary>
-            <div class="game-content">
-        <h3>Angels Batters vs. Aaron Civale <span class="pitcher-stats">(Last 90d: 135 PA, 13.3% K, 0.168 ISO)</span></h3><table><thead><tr><th>Batter</th><th>90-Day Prob</th><th>2-Year Prob</th></tr></thead><tbody><tr><td>Taylor Ward</td><td class="prob-high">94.39%</td><td class="prob-high">86.41%</td></tr><tr><td>Mike Trout</td><td class="prob-high">82.26%</td><td class="prob-high">92.96%</td></tr><tr><td>Jo Adell</td><td class="prob-high">77.35%</td><td class="prob-high">72.07%</td></tr><tr><td>Yoán Moncada</td><td class="prob-high">50.04%</td><td>3.07%</td></tr><tr><td>Zach Neto</td><td class="prob-medium">37.21%</td><td class="prob-high">57.94%</td></tr><tr><td>Logan O'Hoppe</td><td>3.30%</td><td class="prob-high">79.63%</td></tr><tr><td>LaMonte Wade</td><td>0.22%</td><td class="prob-high">85.17%</td></tr><tr><td>Luis Rengifo</td><td>0.11%</td><td class="prob-high">98.12%</td></tr><tr><td>Nolan Schanuel</td><td>0.01%</td><td class="prob-high">71.73%</td></tr></tbody></table><h3>White Sox Batters vs. Kyle Hendricks <span class="pitcher-stats">(Last 90d: 154 PA, 14.9% K, 0.238 ISO)</span></h3><table><thead><tr><th>Batter</th><th>90-Day Prob</th><th>2-Year Prob</th></tr></thead><tbody><tr><td>Lenyn Sosa</td><td class="prob-high">77.88%</td><td>4.42%</td></tr><tr><td>Brooks Baldwin</td><td class="prob-medium">26.58%</td><td class="prob-high">84.87%</td></tr><tr><td>Miguel Vargas</td><td>2.85%</td><td class="prob-medium">17.40%</td></tr><tr><td>Andrew Benintendi</td><td>0.42%</td><td class="prob-medium">48.17%</td></tr><tr><td>Mike Tauchman</td><td>0.05%</td><td class="prob-high">66.70%</td></tr><tr><td>Chase Meidroth</td><td>0.02%</td><td>1.21%</td></tr><tr><td>Colson Montgomery</td><td>0.01%</td><td class="prob-high">82.77%</td></tr><tr><td>Luis Robert</td><td>0.01%</td><td class="prob-medium">33.93%</td></tr><tr><td>Kyle Teel</td><td>0.00%</td><td class="prob-medium">28.61%</td></tr></tbody></table>
-            </div>
-        </details>
-        
-        <details class="game-section">
-            <summary><h2>Cardinals @ Padres (10:10 PM ET)</h2></summary>
-            <div class="game-content">
-        <h3>Padres Batters vs. Michael McGreevy <span class="pitcher-stats">(Last 90d: 71 PA, 14.1% K, 0.118 ISO)</span></h3><table><thead><tr><th>Batter</th><th>90-Day Prob</th><th>2-Year Prob</th></tr></thead><tbody><tr><td>Xander Bogaerts</td><td class="prob-high">62.22%</td><td>5.55%</td></tr><tr><td>Jake Cronenworth</td><td>0.99%</td><td>5.09%</td></tr><tr><td>Manny Machado</td><td>0.52%</td><td>0.42%</td></tr><tr><td>Jackson Merrill</td><td>0.15%</td><td>3.42%</td></tr><tr><td>Fernando Tatís</td><td>0.10%</td><td>4.94%</td></tr><tr><td>Luis Arráez</td><td>0.06%</td><td>0.63%</td></tr><tr><td>Ramón Laureano</td><td>0.05%</td><td>4.77%</td></tr><tr><td>Ryan O'Hearn</td><td>0.03%</td><td>6.98%</td></tr></tbody></table><h3>Cardinals Batters vs. Randy Vásquez <span class="pitcher-stats">(Last 90d: 164 PA, 12.2% K, 0.135 ISO)</span></h3><table><thead><tr><th>Batter</th><th>90-Day Prob</th><th>2-Year Prob</th></tr></thead><tbody><tr><td>Alec Burleson</td><td class="prob-medium">40.28%</td><td class="prob-high">82.57%</td></tr><tr><td>Willson Contreras</td><td class="prob-medium">33.28%</td><td class="prob-high">75.34%</td></tr><tr><td>Nolan Gorman</td><td>2.33%</td><td class="prob-high">75.44%</td></tr><tr><td>Brendan Donovan</td><td>0.23%</td><td class="prob-high">53.81%</td></tr><tr><td>Iván Herrera</td><td>0.05%</td><td>6.82%</td></tr><tr><td>Yohel Pozo</td><td>0.04%</td><td>4.24%</td></tr><tr><td>Masyn Winn</td><td>0.04%</td><td class="prob-medium">23.61%</td></tr><tr><td>Jordan Walker</td><td>0.02%</td><td class="prob-medium">37.43%</td></tr><tr><td>Victor Scott</td><td>0.01%</td><td class="prob-medium">39.81%</td></tr></tbody></table>
-            </div>
-        </details>
-        
+        <div id="no-data-message" class="hidden text-center py-16">
+            <p class="text-xl text-gray-500">No high probability players found.</p>
+        </div>
+
     </div>
+
+    <script>
+        // Raw text data from the report
+        const reportText = `
+================================================================================
+                   HOME RUN PREDICTION REPORT FOR 2025-08-02                    
+================================================================================
+GAME: Dodgers @ Rays (1:10 PM ET)
+--------------------------------------------------------------------------------
+  Rays Batters vs. Blake Snell (Low Data)
+  Batter                    |   90-Day Prob   |   2-Year Prob  
+  ------------------------- | --------------- | ---------------
+  Yandy Díaz                |     Low Data    |      3.19%     
+  Ha-Seong Kim              |     Low Data    |      5.25%     
+  Brandon Lowe              |     Low Data    |      47.84%    
+  Junior Caminero           |     Low Data    |      51.21%    
+  Christopher Morel         |     Low Data    |      33.82%    
+  Josh Lowe                 |     Low Data    |      18.95%    
+  Jonny DeLuca              |     Low Data    |      2.62%     
+  Taylor Walls              |     Low Data    |      3.33%     
+  Hunter Feduccia           |     Low Data    |      4.58%     
+
+--------------------------------------------------------------------------------
+  Dodgers Batters vs. Drew Rasmussen (Last 90d: 129 PA, 18.6% K, 0.115 ISO)
+  Batter                    |   90-Day Prob   |   2-Year Prob  
+  ------------------------- | --------------- | ---------------
+  Shohei Ohtani             |      83.56%     |      77.88%    
+  Freddie Freeman           |      19.10%     |      63.92%    
+  Andy Pages                |      10.68%     |      37.96%    
+  Michael Conforto          |      8.84%      |      65.44%    
+  Tommy Edman               |      0.19%      |      5.93%     
+  Mookie Betts              |      0.15%      |      22.74%    
+  Teoscar Hernández         |      0.10%      |      86.81%    
+  Will Smith                |     Low Data    |     Low Data   
+
+================================================================================
+GAME: Orioles @ Cubs (2:20 PM ET)
+--------------------------------------------------------------------------------
+  Cubs Batters vs. Tomoyuki Sugano (Last 90d: 167 PA, 17.4% K, 0.160 ISO)
+  Batter                    |   90-Day Prob   |   2-Year Prob  
+  ------------------------- | --------------- | ---------------
+  Pete Crow-Armstrong       |      94.15%     |      78.21%    
+  Seiya Suzuki              |      15.20%     |      87.48%    
+  Kyle Tucker               |      14.56%     |      90.20%    
+  Michael Busch             |      10.39%     |      87.55%    
+  Ian Happ                  |      5.78%      |      90.17%    
+  Dansby Swanson            |      3.24%      |      21.46%    
+  Carson Kelly              |      1.78%      |      84.13%    
+  Matt Shaw                 |      0.44%      |      42.90%    
+  Nico Hoerner              |      0.04%      |      15.60%    
+
+--------------------------------------------------------------------------------
+  Orioles Batters vs. Matt Boyd (Last 90d: 253 PA, 22.5% K, 0.153 ISO)
+  Batter                    |   90-Day Prob   |   2-Year Prob  
+  ------------------------- | --------------- | ---------------
+  Jackson Holliday          |      60.24%     |      6.53%     
+  Colton Cowser             |      41.45%     |      78.22%    
+  Coby Mayo                 |      1.32%      |      1.41%     
+  Dylan Carlson             |      0.89%      |      65.43%    
+  Gunnar Henderson          |      0.65%      |      14.76%    
+  Adley Rutschman           |      0.39%      |      76.79%    
+  Jordan Westburg           |      0.00%      |      65.55%    
+  Tyler O'Neill             |      0.00%      |      93.70%    
+
+================================================================================
+GAME: Royals @ Blue Jays (3:07 PM ET)
+--------------------------------------------------------------------------------
+  Blue Jays Batters vs. Noah Cameron (Last 90d: 219 PA, 23.3% K, 0.118 ISO)
+  Batter                    |   90-Day Prob   |   2-Year Prob  
+  ------------------------- | --------------- | ---------------
+  Bo Bichette               |      96.07%     |      1.48%     
+  Ernie Clement             |      53.45%     |      53.85%    
+  Ty France                 |      38.98%     |      3.52%     
+  Daulton Varsho            |      0.48%      |      53.84%    
+  Tyler Heineman            |      0.01%      |      59.63%    
+  Addison Barger            |      0.01%      |      1.09%     
+  Vladimir Guerrero         |      0.00%      |      27.65%    
+  Leo Jimenez               |      0.00%      |      6.29%     
+  Davis Schneider           |      0.00%      |      17.30%    
+
+--------------------------------------------------------------------------------
+  Royals Batters vs. Max Scherzer (Last 90d: 59 PA, 40.7% K, 0.093 ISO)
+  Batter                    |   90-Day Prob   |   2-Year Prob  
+  ------------------------- | --------------- | ---------------
+  Randal Grichuk            |      33.32%     |      51.58%    
+  Jonathan India            |      11.19%     |      49.67%    
+  Salvador Pérez            |      6.46%      |      84.24%    
+  Adam Frazier              |      0.10%      |      0.99%     
+  Mike Yastrzemski          |      0.08%      |      35.46%    
+  Kyle Isbel                |      0.08%      |      12.94%    
+  Vinnie Pasquantino        |      0.04%      |      61.13%    
+  Maikel García             |      0.01%      |      15.00%    
+  Bobby Witt                |      0.00%      |      89.22%    
+        `;
+
+        /**
+         * Parses the raw text of the home run report into a structured JavaScript object.
+         * @param {string} text - The raw text content of the report.
+         * @returns {Array<Object>} An array of game objects, each containing details and player stats.
+         */
+        function parseReport(text) {
+            const games = [];
+            const gameBlocks = text.split('================================================================================').filter(b => b.trim().startsWith('GAME:'));
+
+            gameBlocks.forEach(block => {
+                const lines = block.trim().split('\n');
+                const gameTitle = lines.find(line => line.startsWith('GAME:')).replace('GAME: ', '').trim();
+                
+                const teamSections = block.split('--------------------------------------------------------------------------------').slice(1);
+                const teamsData = [];
+
+                teamSections.forEach(section => {
+                    const sectionLines = section.trim().split('\n');
+                    if (sectionLines.length < 3) return;
+
+                    const teamTitle = sectionLines[0].trim();
+                    const players = [];
+                    let hasHighProb = false;
+
+                    for (let i = 3; i < sectionLines.length; i++) {
+                        const line = sectionLines[i];
+                        if (!line.includes('|')) continue;
+
+                        const parts = line.split('|').map(p => p.trim());
+                        const name = parts[0];
+                        const prob90Day = parts[1];
+                        const prob2Year = parts[2];
+                        
+                        const prob90DayValue = parseFloat(prob90Day);
+                        const prob2YearValue = parseFloat(prob2Year);
+
+                        const isHigh = (prob90DayValue >= 50) || (prob2YearValue >= 50);
+                        if (isHigh) {
+                            hasHighProb = true;
+                        }
+
+                        players.push({ name, prob90Day, prob2Year, isHigh });
+                    }
+                    teamsData.push({ title: teamTitle, players, hasHighProb });
+                });
+                
+                const gameHasHighProb = teamsData.some(t => t.hasHighProb);
+                games.push({ title: gameTitle, teams: teamsData, hasHighProb: gameHasHighProb });
+            });
+
+            return games;
+        }
+
+        /**
+         * Renders the parsed game data into HTML cards and injects them into the DOM.
+         * @param {Array<Object>} gamesData - The array of game objects from parseReport.
+         */
+        function renderReport(gamesData) {
+            const container = document.getElementById('report-container');
+            container.innerHTML = ''; // Clear previous content
+
+            gamesData.forEach(game => {
+                const gameCard = document.createElement('div');
+                gameCard.className = 'card overflow-hidden';
+                gameCard.dataset.hasHighProb = game.hasHighProb;
+
+                let teamsHtml = '';
+                game.teams.forEach(team => {
+                    let playersHtml = '';
+                    team.players.forEach(player => {
+                        const highlightClass = player.isHigh ? 'highlight' : '';
+                        const prob90DayClass = player.prob90Day.toLowerCase().includes('low data') ? 'low-data' : '';
+                        const prob2YearClass = player.prob2Year.toLowerCase().includes('low data') ? 'low-data' : '';
+                        
+                        playersHtml += `
+                            <tr class="player-row ${highlightClass}" data-is-high="${player.isHigh}">
+                                <td class="py-2 px-4 border-b border-gray-200 text-sm player-name">${player.name}</td>
+                                <td class="py-2 px-4 border-b border-gray-200 text-sm text-center ${prob90DayClass}">${player.prob90Day}</td>
+                                <td class="py-2 px-4 border-b border-gray-200 text-sm text-center ${prob2YearClass}">${player.prob2Year}</td>
+                            </tr>
+                        `;
+                    });
+
+                    teamsHtml += `
+                        <div class="p-4">
+                            <h3 class="font-semibold text-gray-700 text-md mb-2">${team.title}</h3>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full bg-white">
+                                    <thead class="table-header">
+                                        <tr>
+                                            <th class="py-2 px-4 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Batter</th>
+                                            <th class="py-2 px-4 border-b-2 border-gray-200 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">90-Day Prob</th>
+                                            <th class="py-2 px-4 border-b-2 border-gray-200 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">2-Year Prob</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${playersHtml}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                gameCard.innerHTML = `
+                    <div class="bg-gray-800 text-white p-4">
+                        <h2 class="font-bold text-lg">${game.title}</h2>
+                    </div>
+                    <div class="divide-y divide-gray-200">
+                        ${teamsHtml}
+                    </div>
+                `;
+                container.appendChild(gameCard);
+            });
+        }
+
+        let isHighlightOnly = false;
+        const toggleBtn = document.getElementById('toggle-highlight-btn');
+        const noDataMessage = document.getElementById('no-data-message');
+
+        /**
+         * Toggles the view between showing all players and only high-probability players.
+         */
+        function toggleHighlightView() {
+            isHighlightOnly = !isHighlightOnly;
+            
+            const gameCards = document.querySelectorAll('#report-container .card');
+            let visibleCards = 0;
+
+            gameCards.forEach(card => {
+                if (isHighlightOnly) {
+                    // Hide games that have no high-probability players
+                    if (card.dataset.hasHighProb === 'true') {
+                        card.style.display = 'block';
+                        visibleCards++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+
+                    // Hide individual player rows that are not high-probability
+                    const playerRows = card.querySelectorAll('.player-row');
+                    playerRows.forEach(row => {
+                        if (row.dataset.isHigh === 'true') {
+                            row.style.display = 'table-row';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    });
+                } else {
+                    // Show all games and all players
+                    card.style.display = 'block';
+                    visibleCards++;
+                    const playerRows = card.querySelectorAll('.player-row');
+                    playerRows.forEach(row => {
+                        row.style.display = 'table-row';
+                    });
+                }
+            });
+            
+            // Update button style and text
+            if (isHighlightOnly) {
+                toggleBtn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+                toggleBtn.classList.add('bg-green-600', 'hover:bg-green-700');
+                toggleBtn.textContent = "Show All Players";
+            } else {
+                toggleBtn.classList.remove('bg-green-600', 'hover:bg-green-700');
+                toggleBtn.classList.add('bg-blue-600', 'hover:bg-blue-700');
+                toggleBtn.textContent = "Toggle High Probability Players";
+            }
+
+            // Show a message if no high-probability players are found when toggled
+            if (isHighlightOnly && visibleCards === 0) {
+                noDataMessage.classList.remove('hidden');
+            } else {
+                noDataMessage.classList.add('hidden');
+            }
+        }
+
+        // Initial setup
+        document.addEventListener('DOMContentLoaded', () => {
+            const parsedData = parseReport(reportText);
+            renderReport(parsedData);
+            toggleBtn.addEventListener('click', toggleHighlightView);
+        });
+    </script>
 </body>
 </html>
-    
