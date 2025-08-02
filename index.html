@@ -41,6 +41,21 @@
         .toggle-btn {
             transition: background-color 0.3s, color 0.3s;
         }
+        .sortable {
+            cursor: pointer;
+            user-select: none;
+        }
+        .sortable:hover {
+            background-color: #e5e7eb; /* gray-200 */
+        }
+        .sort-asc::after {
+            content: ' ▲';
+            font-size: 0.7em;
+        }
+        .sort-desc::after {
+            content: ' ▼';
+            font-size: 0.7em;
+        }
     </style>
 </head>
 <body class="p-4 sm:p-6 md:p-8">
@@ -49,9 +64,11 @@
         <header class="text-center mb-8">
             <h1 class="text-3xl sm:text-4xl font-bold text-gray-800">Home Run Prediction Report</h1>
             <p class="text-gray-600 mt-2">August 2, 2025</p>
-            <button id="toggle-highlight-btn" class="mt-6 px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 toggle-btn">
-                Toggle High Probability Players
-            </button>
+            <div class="flex justify-center items-center space-x-4 mt-6">
+                <button id="toggle-highlight-btn" class="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 toggle-btn">
+                    Toggle High Probability Players
+                </button>
+            </div>
         </header>
 
         <main id="report-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -65,7 +82,11 @@
     </div>
 
     <script>
-        // Raw text data from the report - NOW WITH ALL GAMES
+        // Store the parsed data globally to avoid re-parsing
+        let allGamesData = [];
+        let currentSort = { key: null, order: 'desc' };
+
+        // Raw text data from the report
         const reportText = `
 ================================================================================
                    HOME RUN PREDICTION REPORT FOR 2025-08-02                    
@@ -490,6 +511,7 @@ GAME: Cardinals @ Padres (10:10 PM ET)
 
         /**
          * Parses the raw text of the home run report into a structured JavaScript object.
+         * This function also converts probability strings to numbers for sorting.
          * @param {string} text - The raw text content of the report.
          * @returns {Array<Object>} An array of game objects, each containing details and player stats.
          */
@@ -506,37 +528,35 @@ GAME: Cardinals @ Padres (10:10 PM ET)
                 const teamSections = block.split('--------------------------------------------------------------------------------').slice(1);
                 const teamsData = [];
 
-                teamSections.forEach(section => {
+                teamSections.forEach((section, teamIndex) => {
                     const sectionLines = section.trim().split('\n');
-                    if (sectionLines.length < 3) return;
+                    if (sectionLines.length < 4) return;
 
                     const teamTitle = sectionLines[0].trim();
                     const players = [];
                     let hasHighProb = false;
 
-                    for (let i = 2; i < sectionLines.length; i++) {
+                    for (let i = 3; i < sectionLines.length; i++) {
                         const line = sectionLines[i];
-                        if (!line.includes('|')) continue;
+                        if (!line.includes('|') || line.includes('---')) continue;
 
                         const parts = line.split('|').map(p => p.trim());
                         if (parts.length < 3) continue;
 
                         const name = parts[0];
-                        const prob90Day = parts[1];
-                        const prob2Year = parts[2];
+                        const prob90DayStr = parts[1];
+                        const prob2YearStr = parts[2];
                         
-                        const prob90DayValue = parseFloat(prob90Day);
-                        const prob2YearValue = parseFloat(prob2Year);
+                        const prob90DayValue = prob90DayStr.toLowerCase().includes('low data') ? -1 : parseFloat(prob90DayStr);
+                        const prob2YearValue = prob2YearStr.toLowerCase().includes('low data') ? -1 : parseFloat(prob2YearStr);
 
                         const isHigh = (prob90DayValue >= 50) || (prob2YearValue >= 50);
-                        if (isHigh) {
-                            hasHighProb = true;
-                        }
+                        if (isHigh) hasHighProb = true;
 
-                        players.push({ name, prob90Day, prob2Year, isHigh });
+                        players.push({ name, prob90DayStr, prob2YearStr, prob90DayValue, prob2YearValue, isHigh });
                     }
                     if (players.length > 0) {
-                        teamsData.push({ title: teamTitle, players, hasHighProb });
+                        teamsData.push({ id: `${gameTitle}-${teamIndex}`, title: teamTitle, players, hasHighProb });
                     }
                 });
                 
@@ -567,28 +587,31 @@ GAME: Cardinals @ Padres (10:10 PM ET)
                     let playersHtml = '';
                     team.players.forEach(player => {
                         const highlightClass = player.isHigh ? 'highlight' : '';
-                        const prob90DayClass = player.prob90Day.toLowerCase().includes('low data') ? 'low-data' : '';
-                        const prob2YearClass = player.prob2Year.toLowerCase().includes('low data') ? 'low-data' : '';
+                        const prob90DayClass = player.prob90DayStr.toLowerCase().includes('low data') ? 'low-data' : '';
+                        const prob2YearClass = player.prob2YearStr.toLowerCase().includes('low data') ? 'low-data' : '';
                         
                         playersHtml += `
                             <tr class="player-row ${highlightClass}" data-is-high="${player.isHigh}">
                                 <td class="py-2 px-4 border-b border-gray-200 text-sm player-name">${player.name}</td>
-                                <td class="py-2 px-4 border-b border-gray-200 text-sm text-center ${prob90DayClass}">${player.prob90Day}</td>
-                                <td class="py-2 px-4 border-b border-gray-200 text-sm text-center ${prob2YearClass}">${player.prob2Year}</td>
+                                <td class="py-2 px-4 border-b border-gray-200 text-sm text-center ${prob90DayClass}">${player.prob90DayStr}</td>
+                                <td class="py-2 px-4 border-b border-gray-200 text-sm text-center ${prob2YearClass}">${player.prob2YearStr}</td>
                             </tr>
                         `;
                     });
+                    
+                    const sort90DayClass = currentSort.key === 'prob90DayValue' ? (currentSort.order === 'desc' ? 'sort-desc' : 'sort-asc') : '';
+                    const sort2YearClass = currentSort.key === 'prob2YearValue' ? (currentSort.order === 'desc' ? 'sort-desc' : 'sort-asc') : '';
 
                     teamsHtml += `
-                        <div class="p-4">
+                        <div class="p-4" data-team-id="${team.id}">
                             <h3 class="font-semibold text-gray-700 text-md mb-2">${team.title}</h3>
                             <div class="overflow-x-auto">
                                 <table class="min-w-full bg-white">
                                     <thead class="table-header">
                                         <tr>
                                             <th class="py-2 px-4 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Batter</th>
-                                            <th class="py-2 px-4 border-b-2 border-gray-200 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">90-Day Prob</th>
-                                            <th class="py-2 px-4 border-b-2 border-gray-200 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">2-Year Prob</th>
+                                            <th class="py-2 px-4 border-b-2 border-gray-200 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider sortable ${sort90DayClass}" data-sort-key="prob90DayValue">90-Day Prob</th>
+                                            <th class="py-2 px-4 border-b-2 border-gray-200 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider sortable ${sort2YearClass}" data-sort-key="prob2YearValue">2-Year Prob</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -611,14 +634,62 @@ GAME: Cardinals @ Padres (10:10 PM ET)
                 container.appendChild(gameCard);
             });
         }
+        
+        /**
+         * Sorts a specific team's player list and re-renders that table.
+         * @param {string} teamId - The unique ID of the team to sort.
+         * @param {string} sortKey - The key to sort by ('prob90DayValue' or 'prob2YearValue').
+         */
+        function sortTeam(teamId, sortKey) {
+             // Find the team data
+            const teamData = allGamesData.flatMap(g => g.teams).find(t => t.id === teamId);
+            if (!teamData) return;
+
+            // Determine sort order
+            const order = (currentSort.key === sortKey && currentSort.order === 'desc') ? 'asc' : 'desc';
+            currentSort = { key: sortKey, order };
+
+            // Sort the players
+            teamData.players.sort((a, b) => {
+                const valA = a[sortKey];
+                const valB = b[sortKey];
+                return order === 'desc' ? valB - valA : valA - valB;
+            });
+
+            // Re-render just the affected table
+            const teamContainer = document.querySelector(`[data-team-id="${teamId}"]`);
+            if (!teamContainer) return;
+            
+            const tableBody = teamContainer.querySelector('tbody');
+            tableBody.innerHTML = ''; // Clear existing rows
+
+            let playersHtml = '';
+            teamData.players.forEach(player => {
+                const highlightClass = player.isHigh ? 'highlight' : '';
+                const prob90DayClass = player.prob90DayStr.toLowerCase().includes('low data') ? 'low-data' : '';
+                const prob2YearClass = player.prob2YearStr.toLowerCase().includes('low data') ? 'low-data' : '';
+                
+                playersHtml += `
+                    <tr class="player-row ${highlightClass}" data-is-high="${player.isHigh}">
+                        <td class="py-2 px-4 border-b border-gray-200 text-sm player-name">${player.name}</td>
+                        <td class="py-2 px-4 border-b border-gray-200 text-sm text-center ${prob90DayClass}">${player.prob90DayStr}</td>
+                        <td class="py-2 px-4 border-b border-gray-200 text-sm text-center ${prob2YearClass}">${player.prob2YearStr}</td>
+                    </tr>
+                `;
+            });
+            tableBody.innerHTML = playersHtml;
+
+            // Update sort indicators
+            teamContainer.querySelectorAll('.sortable').forEach(th => th.classList.remove('sort-asc', 'sort-desc'));
+            const activeHeader = teamContainer.querySelector(`[data-sort-key="${sortKey}"]`);
+            activeHeader.classList.add(order === 'desc' ? 'sort-desc' : 'sort-asc');
+        }
+
 
         let isHighlightOnly = false;
         const toggleBtn = document.getElementById('toggle-highlight-btn');
         const noDataMessage = document.getElementById('no-data-message');
 
-        /**
-         * Toggles the view between showing all players and only high-probability players.
-         */
         function toggleHighlightView() {
             isHighlightOnly = !isHighlightOnly;
             
@@ -627,25 +698,17 @@ GAME: Cardinals @ Padres (10:10 PM ET)
 
             gameCards.forEach(card => {
                 if (isHighlightOnly) {
-                    // Hide games that have no high-probability players
                     if (card.dataset.hasHighProb === 'true') {
                         card.style.display = 'block';
                         visibleCards++;
                     } else {
                         card.style.display = 'none';
                     }
-
-                    // Hide individual player rows that are not high-probability
                     const playerRows = card.querySelectorAll('.player-row');
                     playerRows.forEach(row => {
-                        if (row.dataset.isHigh === 'true') {
-                            row.style.display = 'table-row';
-                        } else {
-                            row.style.display = 'none';
-                        }
+                        row.style.display = row.dataset.isHigh === 'true' ? 'table-row' : 'none';
                     });
                 } else {
-                    // Show all games and all players
                     card.style.display = 'block';
                     visibleCards++;
                     const playerRows = card.querySelectorAll('.player-row');
@@ -655,7 +718,6 @@ GAME: Cardinals @ Padres (10:10 PM ET)
                 }
             });
             
-            // Update button style and text
             if (isHighlightOnly) {
                 toggleBtn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
                 toggleBtn.classList.add('bg-green-600', 'hover:bg-green-700');
@@ -666,19 +728,27 @@ GAME: Cardinals @ Padres (10:10 PM ET)
                 toggleBtn.textContent = "Toggle High Probability Players";
             }
 
-            // Show a message if no high-probability players are found when toggled
-            if (isHighlightOnly && visibleCards === 0) {
-                noDataMessage.classList.remove('hidden');
-            } else {
-                noDataMessage.classList.add('hidden');
-            }
+            noDataMessage.classList.toggle('hidden', !(isHighlightOnly && visibleCards === 0));
         }
 
         // Initial setup
         document.addEventListener('DOMContentLoaded', () => {
-            const parsedData = parseReport(reportText);
-            renderReport(parsedData);
+            allGamesData = parseReport(reportText);
+            renderReport(allGamesData);
+            
             toggleBtn.addEventListener('click', toggleHighlightView);
+
+            // Event delegation for sorting
+            const container = document.getElementById('report-container');
+            container.addEventListener('click', (e) => {
+                const header = e.target.closest('.sortable');
+                if (header) {
+                    const sortKey = header.dataset.sortKey;
+                    const teamContainer = header.closest('[data-team-id]');
+                    const teamId = teamContainer.dataset.teamId;
+                    sortTeam(teamId, sortKey);
+                }
+            });
         });
     </script>
 </body>
