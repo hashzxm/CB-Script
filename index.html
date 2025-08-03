@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Run Prediction Report</title>
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+    <title> Similarity Slut Report</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
@@ -129,6 +129,9 @@
                 <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
                 <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
             </button>
+            <button id="zxm-button" class="absolute top-0 right-0 px-4 py-2 text-sm bg-gray-800 text-white font-bold rounded-lg shadow-lg hover:bg-black focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-75 transition-all transform hover:scale-105">
+                zxm
+            </button>
             <header class="text-center mb-8">
                 <h1 class="text-3xl sm:text-4xl font-bold text-gray-800">Home Run Prediction Report</h1>
                 <p class="text-gray-600 mt-2">August 3, 2025</p>
@@ -151,8 +154,7 @@
             <div id="top-picks-container" class="mb-8"></div>
 
             <main id="report-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Game cards will be injected here by JavaScript -->
-            </main>
+                </main>
             
             <div id="no-data-message" class="hidden text-center py-16">
                 <p class="text-xl text-gray-500">No matching players found for this filter.</p>
@@ -724,8 +726,8 @@ GAME: Cardinals @ Dodgers (10:10 PM ET)
                         const prob2YearValue = prob2YearStr.toLowerCase().includes('low data') ? -1 : parseFloat(prob2YearStr);
                         const hrCompScoreValue = hrCompScoreStr.toLowerCase().includes('low data') ? -1 : parseInt(hrCompScoreStr);
 
-                        const isHigh90Day = (prob90DayValue > 2);
-                        const isHigh2Year = (prob2YearValue > 50);
+                        const isHigh90Day = (prob90DayValue > 5);
+                        const isHigh2Year = (prob2YearValue > 25);
                         const isHighCompScore = (hrCompScoreValue >= 50);
 
                         players.push({ name, prob90DayStr, prob2YearStr, hrCompScoreStr, prob90DayValue, prob2YearValue, hrCompScoreValue, isHigh90Day, isHigh2Year, isHighCompScore });
@@ -963,6 +965,7 @@ GAME: Cardinals @ Dodgers (10:10 PM ET)
             const toggle90dayBtn = document.getElementById('toggle-90day-btn');
             const toggle2yearBtn = document.getElementById('toggle-2year-btn');
             const toggleCompscoreBtn = document.getElementById('toggle-compscore-btn');
+            const zxmButton = document.getElementById('zxm-button');
 
             if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 themeToggleLightIcon.classList.remove('hidden');
@@ -1003,6 +1006,10 @@ GAME: Cardinals @ Dodgers (10:10 PM ET)
             yepButton.addEventListener('click', function() {
                 this.textContent = 'I THOUGHT SO';
                 window.open('https://docs.google.com/document/d/1aKu86WYVzp6PYmPakztiz3pTwVMY-sPB85jJ4bvf8AI/edit?usp=sharing', '_blank');
+            });
+            
+            zxmButton.addEventListener('click', function() {
+                window.open('https://x.com/Zxmbuu', '_blank');
             });
 
             const container = document.getElementById('report-container');
