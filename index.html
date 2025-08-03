@@ -46,13 +46,25 @@
         .dark .highlight {
             background-color: #064e3b; /* green-900 */
         }
-        .highlight .player-name {
-            color: #065f46; /* green-800 */
+        .two-year-highlight {
+            background-color: #dbeafe; /* blue-200 */
+        }
+        .dark .two-year-highlight {
+            background-color: #1e3a8a; /* blue-900 */
+        }
+        .sim-highlight {
+            background-color: #fef3c7; /* amber-200 */
+        }
+        .dark .sim-highlight {
+            background-color: #78350f; /* amber-900 */
+        }
+        .highlight .player-name, .sim-highlight .player-name, .two-year-highlight .player-name {
             font-weight: 600;
         }
-        .dark .highlight .player-name {
-            color: #a7f3d0; /* green-300 */
-        }
+        .dark .highlight .player-name { color: #a7f3d0; }
+        .dark .two-year-highlight .player-name { color: #93c5fd; }
+        .dark .sim-highlight .player-name { color: #fcd34d; }
+
         .low-data {
             color: #6b7280; /* gray-500 */
             font-style: italic;
@@ -110,6 +122,7 @@
     </style>
 </head>
 <body class="p-4 sm:p-6 md:p-8">
+
     <div id="main-content">
         <div class="max-w-7xl mx-auto relative">
             <button id="theme-toggle" type="button" class="absolute top-0 left-0 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
@@ -118,12 +131,18 @@
             </button>
             <header class="text-center mb-8">
                 <h1 class="text-3xl sm:text-4xl font-bold text-gray-800">Home Run Prediction Report</h1>
-                <p class="text-gray-600 mt-2">August 2, 2025</p>
-                <div class="flex justify-center items-center space-x-4 mt-6">
-                    <button id="toggle-highlight-btn" class="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 toggle-btn">
-                        Toggle High Probability Players
+                <p class="text-gray-600 mt-2">August 3, 2025</p>
+                <div class="flex flex-wrap justify-center items-center gap-2 mt-6">
+                    <button id="toggle-90day-btn" class="px-4 py-2 text-sm bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 toggle-btn">
+                        Toggle High 90-Day Prob
                     </button>
-                    <button id="yep-button" class="bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-75 transition-transform transform hover:scale-105">
+                     <button id="toggle-2year-btn" class="px-4 py-2 text-sm bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 toggle-btn">
+                        Toggle Top 2-Year Prob
+                    </button>
+                     <button id="toggle-compscore-btn" class="px-4 py-2 text-sm bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 toggle-btn">
+                        Toggle High HR Similarity
+                    </button>
+                    <button id="yep-button" class="px-4 py-2 text-sm bg-indigo-600 text-white font-bold rounded-lg shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-75 transition-transform transform hover:scale-105">
                         Yep
                     </button>
                 </div>
@@ -136,13 +155,13 @@
             </main>
             
             <div id="no-data-message" class="hidden text-center py-16">
-                <p class="text-xl text-gray-500">No high probability players found.</p>
+                <p class="text-xl text-gray-500">No matching players found for this filter.</p>
             </div>
 
         </div>
         
         <footer class="mt-12 text-center">
-            <iframe src="https://giphy.com/embed/krkrHAEodHgzP72rTI" width="480" height="269" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/disneyplus-krkrHAEodHgzP72rTI" class="text-xs text-gray-500 dark:text-gray-400">via GIPHY</a></p>
+            <iframe src="https://giphy.com/embed/krkrHAEodHgzP72rTI" width="480" height="269" style="max-width: 100%;" frameBorder="0" class="giphy-embed mx-auto" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/disneyplus-krkrHAEodHgzP72rTI" class="text-xs text-gray-500 dark:text-gray-400">via GIPHY</a></p>
         </footer>
     </div>
 
@@ -150,428 +169,414 @@
         // Store the parsed data globally to avoid re-parsing
         let allGamesData = [];
         let currentSort = { key: null, order: 'desc' };
+        let activeFilter = 'none'; // 'none', '90day', '2year', 'compscore'
 
         // Raw text data from the new report
         const reportText = `
 ========================================================================================================================
                                        HOME RUN PREDICTION REPORT FOR 2025-08-03                                        
 ========================================================================================================================
-                                            --- TOP 10 PICKS OF THE DAY ---                                             
+                                     --- TOP 10 PICKS OF THE DAY (90-Day Model) ---                                     
 ------------------------------------------------------------------------------------------------------------------------
-  Rank  | Batter                    | Pitcher                   |   Model Score   | HR Probability 
-  ----- | ------------------------- | ------------------------- | --------------- | ---------------
-  #109  | Matt Chapman              | Frankie Montas            | 53.08 |      98.90%    
-  #231  | Trea Turner               | Charlie Morton            | 50.33 |      88.24%    
-  #108  | Willy Adames              | Frankie Montas            | 45.45 |      92.99%    
-  #134  | Bryan Reynolds            | Bradley Blalock           | 37.07 |      78.12%    
-  #29   | Brandon Lowe              | Yoshinobu Yamamoto        | 34.24 |      60.20%    
-  #237  | Max Kepler                | Charlie Morton            | 24.54 |      30.13%    
-  #110  | Dominic Smith             | Frankie Montas            | 21.10 |      2.50%     
-  #141  | Tyler Freeman             | Mitch Keller              | 20.65 |      30.69%    
-  #4    | Carlos Correa             | Lucas Giolito             | 20.60 |      1.48%     
-  #236  | Brandon Marsh             | Charlie Morton            | 20.19 |      0.46%     
+  Rank  | Batter               | Pitcher              |     XGBoost     |    LightGBM     |    CatBoost     |   Final Score  
+  ----- | -------------------- | -------------------- | --------------- | --------------- | --------------- | ---------------
+  #161  | Joey Loperfido       | Tanner Gordon        |      40.17%     |      35.05%     |      59.55%     |      83.41%    
+  #98   | Francisco Lindor     | Slade Cecconi        |      50.48%     |      19.24%     |      39.29%     |      82.28%    
+  #226  | Will Smith           | Sonny Gray           |      20.77%     |      29.77%     |      63.09%     |      66.02%    
+  #101  | Jeff McNeil          | Slade Cecconi        |      44.23%     |      19.84%     |      38.16%     |      59.53%    
+  #100  | Pete Alonso          | Slade Cecconi        |      67.93%     |      18.79%     |      20.74%     |      54.15%    
+  #229  | Andy Pages           | Sonny Gray           |      32.66%     |      20.25%     |      44.95%     |      54.11%    
+  #164  | Addison Barger       | Tanner Gordon        |      37.87%     |      9.92%      |      32.29%     |      50.72%    
+  #4    | Kody Clemens         | Casey Mize           |      59.78%     |      11.03%     |      17.74%     |      44.74%    
+  #6    | Royce Lewis          | Casey Mize           |      29.22%     |      14.48%     |      32.12%     |      12.97%    
+  #129  | Ben Rice             | Patrick Corbin       |      7.15%      |      12.80%     |      44.17%     |      10.95%    
 
 ========================================================================================================================
-GAME: Astros @ Red Sox (11:35 AM ET)
+GAME: Twins @ Tigers (6:40 PM ET)
 ------------------------------------------------------------------------------------------------------------------------
-  Red Sox Batters vs. Framber Valdez (Last 90d: 371 PA | 28.0% K | 7.8% BB | 29 BB | 1.1% HR)
+  Tigers Batters vs. Travis Adams (Last 90d: 59 PA | 8.5% K | 5.1% BB | 3 BB | 1.7% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Wilyer Abreu              |      0.01%      |      0.20%      |      37/100    
-  Roman Anthony             |      0.01%      |      0.12%      |      24/100    
-  Connor Wong               |      0.01%      |      0.48%      |      56/100    
-  Abraham Toro              |      0.01%      |      0.13%      |      65/100    
-  Trevor Story              |      0.00%      |      4.65%      |      53/100    
-  Rob Refsnyder             |      0.00%      |      0.05%      |      61/100    
-  Ceddanne Rafaela          |      0.00%      |      1.68%      |      38/100    
-  Romy Gonzalez             |      0.00%      |      0.78%      |      65/100    
-  Alex Bregman              |      0.00%      |      0.02%      |      46/100    
+  Kerry Carpenter           |      2.19%      |      0.23%      |      2/100     
+  Zach McKinstry            |      0.14%      |      1.05%      |      2/100     
+  Colt Keith                |      0.07%      |      1.31%      |      2/100     
+  Wenceel Pérez             |      0.03%      |      1.24%      |      2/100     
+  Javier Báez               |      0.01%      |      0.82%      |      2/100     
+  Dillon Dingler            |      0.01%      |      0.36%      |      2/100     
+  Gleyber Torres            |      0.01%      |      0.35%      |      2/100     
+  Riley Greene              |      0.01%      |      0.02%      |      2/100     
+  Spencer Torkelson         |      0.00%      |      0.23%      |      2/100     
 
 ------------------------------------------------------------------------------------------------------------------------
-  Astros Batters vs. Lucas Giolito (Last 90d: 342 PA | 20.5% K | 6.7% BB | 23 BB | 3.2% HR)
+  Twins Batters vs. Casey Mize (Last 90d: 259 PA | 11.2% K | 6.2% BB | 16 BB | 2.3% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Taylor Trammell           |      0.39%      |      0.04%      |      20/100    
-  Christian Walker          |      0.02%      |      3.50%      |      49/100    
-  Carlos Correa             |      0.01%      |      1.48%      |     100/100    
-  Ramón Urías               |      0.01%      |      5.31%      |      59/100    
-  Mauricio Dubón            |      0.01%      |      0.25%      |      20/100    
-  Yainer Diaz               |      0.00%      |      0.25%      |      42/100    
-  José Altuve               |      0.00%      |      0.02%      |      2/100     
-  Jeremy Peña               |      0.00%      |      0.44%      |      30/100    
+  Kody Clemens              |      44.74%     |      0.00%      |      35/100    
+  Royce Lewis               |      12.97%     |      0.00%      |      34/100    
+  Ryan Jeffers              |      1.63%      |      0.01%      |      33/100    
+  Matt Wallner              |      0.20%      |      0.00%      |      22/100    
+  Brooks Lee                |      0.09%      |      0.01%      |      56/100    
+  Trevor Larnach            |      0.03%      |      0.02%      |      40/100    
+  Austin Martin             |     Low Data    |      0.04%      |      59/100    
+  Edouard Julien            |     Low Data    |      0.02%      |     100/100    
+  Alan Roden                |      0.01%      |      0.14%      |      36/100    
+
+========================================================================================================================
+GAME: Giants @ Pirates (6:40 PM ET)
+------------------------------------------------------------------------------------------------------------------------
+  Pirates Batters vs. Justin Verlander (Last 90d: 241 PA | 14.1% K | 8.7% BB | 21 BB | 2.5% HR)
+  Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
+  ------------------------- | --------------- | --------------- | ---------------
+  Oneil Cruz                |      1.88%      |      0.06%      |      43/100    
+  Nick Gonzales             |      0.82%      |      0.03%      |      70/100    
+  Spencer Horwitz           |      0.40%      |      0.00%      |      43/100    
+  Andrew McCutchen          |      0.31%      |      0.03%      |      62/100    
+  Jared Triolo              |      0.23%      |      0.01%      |      47/100    
+  Tommy Pham                |      0.11%      |      0.02%      |      66/100    
+  Henry Davis               |      0.05%      |      0.00%      |      49/100    
+  Bryan Reynolds            |      0.03%      |      0.00%      |      69/100    
+  Isiah Kiner-Falefa        |      0.01%      |      0.00%      |      39/100    
+
+------------------------------------------------------------------------------------------------------------------------
+  Giants Batters vs. Johan Oviedo (Low Data)
+  Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
+  ------------------------- | --------------- | --------------- | ---------------
+  Heliot Ramos              |     Low Data    |      0.98%      |      13/100    
+  Rafael Devers             |     Low Data    |      0.61%      |      6/100     
+  Willy Adames              |     Low Data    |      59.71%     |      6/100     
+  Matt Chapman              |     Low Data    |      0.15%      |      6/100     
+  Jung Hoo Lee              |     Low Data    |      0.60%      |      11/100    
+  Wilmer Flores             |     Low Data    |      1.17%      |      13/100    
+  Casey Schmitt             |     Low Data    |      0.12%      |      24/100    
+  Patrick Bailey            |     Low Data    |      0.08%      |      15/100    
+  Grant McCray              |     Low Data    |      2.64%      |      4/100     
+
+========================================================================================================================
+GAME: Astros @ Marlins (6:40 PM ET)
+------------------------------------------------------------------------------------------------------------------------
+  Marlins Batters vs. Jason Alexander (Last 90d: 107 PA | 14.0% K | 12.1% BB | 13 BB | 4.7% HR)
+  Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
+  ------------------------- | --------------- | --------------- | ---------------
+  Liam Hicks                |      0.23%      |      0.18%      |      44/100    
+  Otto Lopez                |      0.08%      |      0.32%      |      32/100    
+  Graham Pauley             |      0.02%      |      0.80%      |      22/100    
+  Kyle Stowers              |      0.02%      |      0.13%      |      24/100    
+  Xavier Edwards            |      0.01%      |      0.43%      |      30/100    
+  Agustín Ramírez           |      0.01%      |      0.03%      |      29/100    
+  Dane Myers                |      0.00%      |      0.02%      |      29/100    
+
+------------------------------------------------------------------------------------------------------------------------
+  Astros Batters vs. Sandy Alcántara (Last 90d: 361 PA | 15.8% K | 6.9% BB | 25 BB | 2.5% HR)
+  Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
+  ------------------------- | --------------- | --------------- | ---------------
+  Mauricio Dubón            |      0.02%      |      0.00%      |     Low Data   
+  Yainer Diaz               |      0.00%      |      0.00%      |     Low Data   
+  Taylor Trammell           |      0.00%      |      0.01%      |     Low Data   
+  Carlos Correa             |      0.00%      |      0.00%      |     Low Data   
+  José Altuve               |      0.00%      |      0.01%      |     Low Data   
+  Christian Walker          |      0.00%      |      0.00%      |     Low Data   
+  Jeremy Peña               |      0.00%      |      0.00%      |     Low Data   
+  Cam Smith                 |      0.00%      |      0.01%      |     Low Data   
   T. J. McFarland           |     Low Data    |     Low Data    |     Low Data   
 
 ========================================================================================================================
-GAME: Dodgers @ Rays (12:10 PM ET)
+GAME: Orioles @ Phillies (6:45 PM ET)
 ------------------------------------------------------------------------------------------------------------------------
-  Rays Batters vs. Yoshinobu Yamamoto (Last 90d: 313 PA | 26.8% K | 8.3% BB | 26 BB | 2.6% HR)
+  Phillies Batters vs. Cade Povich (Last 90d: 152 PA | 20.4% K | 7.2% BB | 11 BB | 2.6% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Brandon Lowe              |      0.02%      |      60.20%     |      51/100    
-  Josh Lowe                 |      0.01%      |      0.22%      |      53/100    
-  Ha-Seong Kim              |      0.01%      |      0.41%      |     100/100    
-  Jonny DeLuca              |      0.01%      |      0.23%      |      36/100    
-  Yandy Díaz                |      0.00%      |      0.85%      |      50/100    
-  Taylor Walls              |      0.00%      |      0.21%      |      26/100    
-  Jake Mangum               |      0.00%      |      0.14%      |      31/100    
-  Junior Caminero           |      0.00%      |      2.78%      |      28/100    
-  Hunter Feduccia           |     Low Data    |      1.05%      |      6/100     
+  Otto Kemp                 |      3.06%      |      0.02%      |      34/100    
+  Harrison Bader            |      1.76%      |      0.00%      |      44/100    
+  Edmundo Sosa              |      0.87%      |      0.00%      |      37/100    
+  Bryce Harper              |      0.41%      |      0.00%      |      24/100    
+  Trea Turner               |      0.31%      |      0.00%      |      30/100    
+  Nick Castellanos          |      0.15%      |      0.00%      |      37/100    
+  Kyle Schwarber            |      0.08%      |      0.00%      |      13/100    
+  Brandon Marsh             |      0.06%      |      0.01%      |      41/100    
+  J. T. Realmuto            |      0.00%      |      0.00%      |      94/100    
 
 ------------------------------------------------------------------------------------------------------------------------
-  Dodgers Batters vs. Joe Boyle (Last 90d: 70 PA | 24.3% K | 10.0% BB | 7 BB | 2.9% HR)
+  Orioles Batters vs. Jesús Luzardo (Last 90d: 349 PA | 21.2% K | 9.5% BB | 33 BB | 2.6% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Freddie Freeman           |      0.01%      |      0.75%      |      37/100    
-  Tommy Edman               |      0.01%      |      0.75%      |      33/100    
-  Michael Conforto          |      0.01%      |      0.23%      |      46/100    
-  Mookie Betts              |      0.00%      |      0.22%      |      34/100    
-  Alex Call                 |      0.00%      |      0.23%      |      28/100    
-  Shohei Ohtani             |      0.00%      |      17.26%     |      21/100    
-  Andy Pages                |      0.00%      |      0.09%      |      31/100    
-  Will Smith                |      0.00%      |      0.19%      |     Low Data   
-  Kyle Freeland             |     Low Data    |     Low Data    |     Low Data   
-
-========================================================================================================================
-GAME: Brewers @ Nationals (1:35 PM ET)
-------------------------------------------------------------------------------------------------------------------------
-  Nationals Batters vs. Logan Henderson (Last 90d: 60 PA | 33.3% K | 8.3% BB | 5 BB | 3.3% HR)
-  Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
-  ------------------------- | --------------- | --------------- | ---------------
-  Daylen Lile               |      0.01%      |      0.05%      |      6/100     
-  José Tena                 |      0.01%      |      0.16%      |      17/100    
-  Drew Millas               |      0.01%      |      0.68%      |      52/100    
-  Jacob Young               |      0.01%      |      0.23%      |      9/100     
-  Josh Bell                 |      0.01%      |      0.35%      |      8/100     
-  Luis García               |      0.00%      |      0.28%      |      3/100     
-  James Wood                |      0.00%      |      0.14%      |      17/100    
-  Robert Hassell            |      0.00%      |      0.00%      |      3/100     
-  CJ Abrams                 |      0.00%      |      0.73%      |      9/100     
-
-------------------------------------------------------------------------------------------------------------------------
-  Brewers Batters vs. Brad Lord (Last 90d: 207 PA | 19.8% K | 6.8% BB | 14 BB | 1.9% HR)
-  Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
-  ------------------------- | --------------- | --------------- | ---------------
-  Isaac Collins             |      2.90%      |      0.10%      |      13/100    
-  Anthony Seigler           |      0.01%      |      0.98%      |      9/100     
-  William Contreras         |      0.01%      |      2.62%      |      42/100    
-  Brandon Lockridge         |      0.01%      |      0.98%      |      14/100    
-  Blake Perkins             |      0.01%      |      0.36%      |      24/100    
-  Brice Turang              |      0.01%      |      0.16%      |      34/100    
-  Joey Ortiz                |      0.00%      |      0.07%      |      22/100    
-  Christian Yelich          |      0.00%      |      0.10%      |      27/100    
-  Andrew Vaughn             |      0.00%      |      0.16%      |      37/100    
+  Colton Cowser             |      0.23%      |      0.03%      |      49/100    
+  Jackson Holliday          |      0.11%      |      0.04%      |      60/100    
+  Gunnar Henderson          |      0.06%      |      0.04%      |      35/100    
+  Adley Rutschman           |      0.00%      |      0.00%      |      35/100    
+  Tyler O'Neill             |      0.00%      |      0.00%      |      42/100    
+  Dylan Carlson             |      0.00%      |      0.12%      |      54/100    
+  Coby Mayo                 |      0.00%      |      0.18%      |      21/100    
+  Jordan Westburg           |      0.00%      |      0.00%      |      47/100    
 
 ========================================================================================================================
-GAME: Royals @ Blue Jays (1:37 PM ET)
+GAME: Royals @ Red Sox (7:10 PM ET)
 ------------------------------------------------------------------------------------------------------------------------
-  Blue Jays Batters vs. Seth Lugo (Last 90d: 308 PA | 22.7% K | 8.1% BB | 25 BB | 3.9% HR)
+  Red Sox Batters vs. Bailey Falter (Last 90d: 307 PA | 10.1% K | 9.1% BB | 28 BB | 3.6% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Ty France                 |      0.01%      |      0.39%      |      54/100    
-  Ernie Clement             |      0.01%      |      0.25%      |      38/100    
-  Nathan Lukes              |      0.00%      |      0.66%      |      28/100    
-  Vladimir Guerrero         |      0.00%      |      0.04%      |      29/100    
-  Bo Bichette               |      0.00%      |      0.78%      |      38/100    
-  Tyler Heineman            |      0.00%      |      0.12%      |      21/100    
-  Joey Loperfido            |      0.00%      |      0.20%      |      29/100    
-  Addison Barger            |      0.00%      |      1.19%      |      38/100    
-  Daulton Varsho            |      0.00%      |      0.04%      |      54/100    
+  Roman Anthony             |      0.05%      |      0.75%      |      29/100    
+  Jarren Duran              |      0.01%      |      0.02%      |      47/100    
+  Abraham Toro              |      0.01%      |      1.02%      |      39/100    
+  Alex Bregman              |      0.00%      |      0.00%      |      49/100    
+  Romy Gonzalez             |      0.00%      |      0.00%      |      57/100    
+  Ceddanne Rafaela          |      0.00%      |      0.00%      |      49/100    
+  Rob Refsnyder             |      0.00%      |      0.00%      |      55/100    
+  Carlos Narváez            |      0.00%      |      0.00%      |      58/100    
+  Trevor Story              |      0.00%      |      0.00%      |      59/100    
 
 ------------------------------------------------------------------------------------------------------------------------
-  Royals Batters vs. Chris Bassitt (Last 90d: 367 PA | 21.3% K | 6.3% BB | 23 BB | 3.8% HR)
+  Royals Batters vs. Brayan Bello (Last 90d: 394 PA | 14.0% K | 8.6% BB | 34 BB | 2.3% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  John Rave                 |      1.69%      |      0.02%      |     Low Data   
-  Adam Frazier              |      0.01%      |      0.29%      |     Low Data   
-  Jonathan India            |      0.00%      |      0.38%      |     Low Data   
-  Maikel García             |      0.00%      |      0.19%      |     Low Data   
-  Salvador Pérez            |      0.00%      |      0.01%      |     Low Data   
-  Mike Yastrzemski          |      0.00%      |      0.06%      |     Low Data   
-  Kyle Isbel                |      0.00%      |      0.17%      |     Low Data   
-  Bobby Witt                |      0.00%      |      0.12%      |     Low Data   
-  Vinnie Pasquantino        |      0.00%      |      1.81%      |     Low Data   
-
-========================================================================================================================
-GAME: Twins @ Guardians (1:40 PM ET)
-------------------------------------------------------------------------------------------------------------------------
-  Guardians Batters vs. José Ureña (Last 90d: 64 PA | 9.4% K | 4.7% BB | 3 BB | 4.7% HR)
-  Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
-  ------------------------- | --------------- | --------------- | ---------------
-  Kyle Manzardo             |      0.05%      |      0.07%      |      51/100    
-  Nolan Jones               |      0.01%      |      0.19%      |      54/100    
-  Gabriel Arias             |      0.01%      |      0.28%      |      41/100    
-  Daniel Schneemann         |      0.01%      |      0.21%      |      71/100    
-  Angel Martínez            |      0.00%      |      0.65%      |      78/100    
-  Bo Naylor                 |      0.00%      |      0.04%      |      49/100    
-  Steven Kwan               |      0.00%      |      0.32%      |      22/100    
-  José Ramírez              |      0.00%      |      0.35%      |      27/100    
-
-------------------------------------------------------------------------------------------------------------------------
-  Twins Batters vs. Joey Cantillo (Last 90d: 147 PA | 28.6% K | 12.9% BB | 19 BB | 3.4% HR)
-  Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
-  ------------------------- | --------------- | --------------- | ---------------
-  Brooks Lee                |      0.38%      |      0.09%      |     Low Data   
-  Royce Lewis               |      0.10%      |      0.09%      |     Low Data   
-  Ryan Jeffers              |      0.06%      |      5.38%      |     Low Data   
-  Christian Vázquez         |      0.01%      |      1.29%      |     Low Data   
-  Kody Clemens              |      0.01%      |      0.99%      |     Low Data   
-  Trevor Larnach            |      0.00%      |      0.02%      |     Low Data   
-  Matt Wallner              |      0.00%      |      3.60%      |     Low Data   
-  Austin Martin             |     Low Data    |      0.98%      |     Low Data   
-  Edouard Julien            |     Low Data    |      0.51%      |     Low Data   
+  Bobby Witt                |      0.01%      |      0.14%      |      75/100    
+  Salvador Pérez            |      0.00%      |      0.72%      |     100/100    
+  Maikel García             |      0.00%      |      0.00%      |      94/100    
+  Vinnie Pasquantino        |      0.00%      |      0.06%      |      62/100    
+  Kyle Isbel                |      0.00%      |      0.01%      |      71/100    
+  Adam Frazier              |      0.00%      |      0.05%      |     100/100    
+  Mike Yastrzemski          |      0.00%      |      0.12%      |      74/100    
+  Jonathan India            |      0.00%      |      0.02%      |      44/100    
+  Randal Grichuk            |      0.00%      |      0.02%      |      24/100    
 
 ========================================================================================================================
-GAME: Yankees @ Marlins (1:40 PM ET)
+GAME: Guardians @ Mets (7:10 PM ET)
 ------------------------------------------------------------------------------------------------------------------------
-  Marlins Batters vs. Luis Gil (Low Data)
+  Mets Batters vs. Slade Cecconi (Last 90d: 314 PA | 13.1% K | 6.7% BB | 21 BB | 4.1% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Xavier Edwards            |     Low Data    |      0.17%      |     Low Data   
-  Kyle Stowers              |     Low Data    |      0.22%      |     Low Data   
-  Agustín Ramírez           |     Low Data    |      0.63%      |     Low Data   
-  Liam Hicks                |     Low Data    |      0.23%      |     Low Data   
-  Otto Lopez                |     Low Data    |      1.40%      |     Low Data   
-  Heriberto Hernandez       |     Low Data    |      0.00%      |     Low Data   
-  Graham Pauley             |     Low Data    |      0.07%      |     Low Data   
+  Francisco Lindor          |      82.28%     |      0.46%      |     Low Data   
+  Jeff McNeil               |      59.53%     |      0.01%      |     Low Data   
+  Pete Alonso               |      54.15%     |      63.62%     |     Low Data   
+  Cedric Mullins            |      0.55%      |      0.04%      |     Low Data   
+  Mark Vientos              |      0.39%      |      0.01%      |     Low Data   
+  Brandon Nimmo             |      0.30%      |      0.17%      |     Low Data   
+  Ronny Mauricio            |      0.15%      |      0.00%      |     Low Data   
+  Juan Soto                 |      0.03%      |      3.24%      |     Low Data   
+  Francisco Álvarez         |      0.02%      |      0.00%      |     Low Data   
 
 ------------------------------------------------------------------------------------------------------------------------
-  Yankees Batters vs. Edward Cabrera (Last 90d: 307 PA | 24.8% K | 7.2% BB | 22 BB | 2.0% HR)
+  Guardians Batters vs. Sean Manaea (Last 90d: 68 PA | 27.9% K | 5.9% BB | 4 BB | 2.9% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Jasson Domínguez          |      0.03%      |      10.37%     |     Low Data   
-  Ben Rice                  |      0.01%      |      5.16%      |     Low Data   
-  Trent Grisham             |      0.01%      |      0.02%      |     Low Data   
-  Giancarlo Stanton         |      0.01%      |      0.05%      |     Low Data   
-  Austin Wells              |      0.00%      |      0.05%      |     Low Data   
-  Jazz Chisholm             |      0.00%      |      0.03%      |     Low Data   
-  Anthony Volpe             |      0.00%      |      0.11%      |     Low Data   
-  Ryan McMahon              |      0.00%      |      0.12%      |     Low Data   
-  Cody Bellinger            |      0.00%      |      0.12%      |     Low Data   
-
-========================================================================================================================
-GAME: Giants @ Mets (1:40 PM ET)
-------------------------------------------------------------------------------------------------------------------------
-  Giants Batters vs. Frankie Montas (Last 90d: 130 PA | 20.0% K | 6.2% BB | 8 BB | 4.6% HR)
-  Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
-  ------------------------- | --------------- | --------------- | ---------------
-  Casey Schmitt             |      0.91%      |      0.90%      |      41/100    
-  Dominic Smith             |      0.25%      |      2.50%      |     100/100    
-  Patrick Bailey            |      0.02%      |      0.54%      |      48/100    
-  Grant McCray              |      0.01%      |      0.02%      |      13/100    
-  Willy Adames              |      0.00%      |      92.99%     |      41/100    
-  Jung Hoo Lee              |      0.00%      |      0.14%      |      27/100    
-  Heliot Ramos              |      0.00%      |      1.46%      |      57/100    
-  Matt Chapman              |      0.00%      |      98.90%     |      68/100    
-  Rafael Devers             |      0.00%      |      0.69%      |      55/100    
+  David Fry                 |      0.04%      |      0.00%      |     Low Data   
+  Carlos Santana            |      0.01%      |      0.01%      |     Low Data   
+  Daniel Schneemann         |      0.01%      |      1.71%      |     Low Data   
+  Brayan Rocchio            |      0.01%      |      0.23%      |     Low Data   
+  Austin Hedges             |      0.01%      |      0.19%      |     Low Data   
+  Steven Kwan               |      0.01%      |      0.39%      |     Low Data   
+  Gabriel Arias             |      0.01%      |      0.05%      |     Low Data   
+  Angel Martínez            |      0.00%      |      0.06%      |     Low Data   
+  José Ramírez              |      0.00%      |      0.08%      |     Low Data   
 
 ========================================================================================================================
-GAME: Orioles @ Cubs (2:20 PM ET)
+GAME: Brewers @ Braves (7:15 PM ET)
 ------------------------------------------------------------------------------------------------------------------------
-  Cubs Batters vs. Brandon Young (Last 90d: 124 PA | 20.2% K | 6.5% BB | 8 BB | 5.6% HR)
+  Braves Batters vs. Quinn Priester (Last 90d: 338 PA | 12.1% K | 5.9% BB | 20 BB | 2.7% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Ian Happ                  |      0.52%      |      0.08%      |      8/100     
-  Seiya Suzuki              |      0.01%      |      4.12%      |      14/100    
-  Nico Hoerner              |      0.01%      |      0.09%      |      14/100    
-  Carson Kelly              |      0.01%      |      2.35%      |      19/100    
-  Justin Turner             |      0.01%      |      0.40%      |      50/100    
-  Matt Shaw                 |      0.01%      |      0.30%      |      21/100    
-  Kyle Tucker               |      0.00%      |      0.20%      |      8/100     
-  Dansby Swanson            |      0.00%      |      0.18%      |      13/100    
-  Pete Crow-Armstrong       |      0.00%      |      0.07%      |      18/100    
+  Austin Riley              |      0.06%      |      0.01%      |      45/100    
+  Ozzie Albies              |      0.05%      |      0.04%      |      41/100    
+  Nick Allen                |      0.01%      |      0.37%      |      31/100    
+  Drake Baldwin             |      0.00%      |      0.10%      |      32/100    
+  Jurickson Profar          |      0.00%      |      1.12%      |      70/100    
+  Michael Harris            |      0.00%      |      10.23%     |      96/100    
+  Eli White                 |      0.00%      |      0.02%      |      68/100    
+  Sean Murphy               |      0.00%      |      0.00%      |      55/100    
+  Matt Olson                |      0.00%      |      0.96%      |      33/100    
 
 ------------------------------------------------------------------------------------------------------------------------
-  Orioles Batters vs. Colin Rea (Last 90d: 348 PA | 15.5% K | 6.6% BB | 23 BB | 5.2% HR)
+  Brewers Batters vs. Erick Fedde (Last 90d: 332 PA | 12.7% K | 9.3% BB | 31 BB | 3.6% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Coby Mayo                 |      0.02%      |      0.17%      |     Low Data   
-  Adley Rutschman           |      0.00%      |      0.49%      |     Low Data   
-  Dylan Carlson             |      0.00%      |      0.34%      |     Low Data   
-  Colton Cowser             |      0.00%      |      0.06%      |     Low Data   
-  Gunnar Henderson          |      0.00%      |      12.28%     |     Low Data   
-  Jackson Holliday          |      0.00%      |      0.50%      |     Low Data   
-  Jordan Westburg           |      0.00%      |      0.31%      |     Low Data   
-  Alex Jackson              |      0.00%      |      0.28%      |     Low Data   
-
-========================================================================================================================
-GAME: Pirates @ Rockies (3:10 PM ET)
-------------------------------------------------------------------------------------------------------------------------
-  Rockies Batters vs. Mitch Keller (Last 90d: 361 PA | 19.4% K | 5.8% BB | 21 BB | 1.9% HR)
-  Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
-  ------------------------- | --------------- | --------------- | ---------------
-  Orlando Arcia             |      0.06%      |      0.30%      |      60/100    
-  Thairo Estrada            |      0.00%      |      1.63%      |      44/100    
-  Brenton Doyle             |      0.00%      |      2.90%      |      58/100    
-  Tyler Freeman             |      0.00%      |      30.69%     |      42/100    
-  Mickey Moniak             |      0.00%      |      4.47%      |      44/100    
-  Jordan Beck               |      0.00%      |      0.25%      |      65/100    
-  Warming Bernabel          |      0.00%      |      0.00%      |      1/100     
-  Ezequiel Tovar            |      0.00%      |      0.31%      |      43/100    
-  Hunter Goodman            |      0.00%      |      22.47%     |      38/100    
-
-------------------------------------------------------------------------------------------------------------------------
-  Pirates Batters vs. Bradley Blalock (Last 90d: 114 PA | 11.4% K | 4.4% BB | 5 BB | 3.5% HR)
-  Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
-  ------------------------- | --------------- | --------------- | ---------------
-  Henry Davis               |      0.06%      |      0.24%      |      11/100    
-  Spencer Horwitz           |      0.02%      |      1.97%      |      32/100    
-  Oneil Cruz                |      0.02%      |      1.98%      |      9/100     
-  Bryan Reynolds            |      0.02%      |      78.12%     |      29/100    
-  Nick Gonzales             |      0.01%      |      1.87%      |      33/100    
-  Jared Triolo              |      0.01%      |      1.08%      |      12/100    
-  Andrew McCutchen          |      0.01%      |      1.04%      |      27/100    
-  Isiah Kiner-Falefa        |      0.01%      |      0.27%      |      15/100    
-  Tommy Pham                |      0.00%      |      0.68%      |      45/100    
+  Christian Yelich          |      0.27%      |      0.00%      |      56/100    
+  Brice Turang              |      0.27%      |      0.00%      |      39/100    
+  Andrew Vaughn             |      0.13%      |      0.02%      |      39/100    
+  Sal Frelick               |      0.03%      |      0.00%      |      51/100    
+  Isaac Collins             |      0.01%      |      0.17%      |      15/100    
+  Blake Perkins             |      0.01%      |      0.09%      |      34/100    
+  William Contreras         |      0.00%      |      0.01%      |      49/100    
+  Joey Ortiz                |      0.00%      |      0.01%      |      47/100    
+  Caleb Durbin              |      0.00%      |      0.07%      |      12/100    
 
 ========================================================================================================================
-GAME: Diamondbacks @ Athletics (4:05 PM ET)
+GAME: Yankees @ Rangers (8:05 PM ET)
 ------------------------------------------------------------------------------------------------------------------------
-  Athletics Batters vs. Eduardo Rodríguez (Last 90d: 285 PA | 21.8% K | 8.4% BB | 24 BB | 4.2% HR)
+  Rangers Batters vs. Max Fried (Last 90d: 361 PA | 17.7% K | 5.8% BB | 21 BB | 2.2% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Lawrence Butler           |      2.72%      |      0.05%      |      38/100    
-  Luis Urías                |      0.08%      |      20.71%     |      34/100    
-  Gio Urshela               |      0.01%      |      0.97%      |      46/100    
-  Colby Thomas              |      0.01%      |      0.00%      |      3/100     
-  Max Schuemann             |      0.01%      |      0.26%      |      25/100    
-  Darell Hernaiz            |      0.01%      |      0.98%      |      13/100    
-  Shea Langeliers           |      0.00%      |      0.78%      |      30/100    
-  Brent Rooker              |      0.00%      |      0.34%      |      57/100    
-  Nick Kurtz                |      0.00%      |      0.00%      |      5/100     
+  Corey Seager              |      0.02%      |      0.07%      |      43/100    
+  Sam Haggerty              |      0.01%      |      1.07%      |      56/100    
+  Ezequiel Duran            |      0.01%      |      1.08%      |      35/100    
+  Wyatt Langford            |      0.00%      |      0.01%      |      36/100    
+  Jonah Heim                |      0.00%      |      0.01%      |      42/100    
+  Kyle Higashioka           |      0.00%      |      0.00%      |     100/100    
+  Josh Jung                 |      0.00%      |      0.03%      |      79/100    
+  Adolis García             |      0.00%      |      0.03%      |      64/100    
+  Marcus Semien             |      0.00%      |      0.03%      |      47/100    
 
 ------------------------------------------------------------------------------------------------------------------------
-  Diamondbacks Batters vs. Jack Perkins (Last 90d: 77 PA | 24.7% K | 9.1% BB | 7 BB | 2.6% HR)
+  Yankees Batters vs. Patrick Corbin (Last 90d: 353 PA | 17.3% K | 6.8% BB | 24 BB | 2.8% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  James McCann              |      1.05%      |      0.27%      |      7/100     
-  Alek Thomas               |      0.02%      |      0.34%      |      29/100    
-  Tyler Locklear            |      0.01%      |      0.00%      |      6/100     
-  Ketel Marte               |      0.01%      |      0.18%      |      6/100     
-  Adrian Del Castillo       |      0.01%      |      0.02%      |      5/100     
-  Blaze Alexander           |      0.01%      |      0.04%      |      7/100     
-  Geraldo Perdomo           |      0.01%      |      0.18%      |      4/100     
-  Lourdes Gurriel           |      0.00%      |      0.04%      |      3/100     
-  Corbin Carroll            |      0.00%      |      0.08%      |      7/100     
-
-========================================================================================================================
-GAME: White Sox @ Angels (4:07 PM ET)
-------------------------------------------------------------------------------------------------------------------------
-  Angels Batters vs. Sean Burke (Last 90d: 320 PA | 20.9% K | 10.3% BB | 33 BB | 2.8% HR)
-  Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
-  ------------------------- | --------------- | --------------- | ---------------
-  Nolan Schanuel            |      0.04%      |      0.11%      |      24/100    
-  Mike Trout                |      0.01%      |      0.02%      |      5/100     
-  Luis Rengifo              |      0.00%      |      13.07%     |      47/100    
-  Zach Neto                 |      0.00%      |      0.16%      |      34/100    
-  Jo Adell                  |      0.00%      |      0.11%      |      33/100    
-  Logan O'Hoppe             |      0.00%      |      3.56%      |      26/100    
-  Gustavo Campero           |      0.00%      |      0.00%      |      13/100    
-  Yoán Moncada              |      0.00%      |      2.34%      |      20/100    
-  Taylor Ward               |      0.00%      |      4.37%      |      45/100    
-
-------------------------------------------------------------------------------------------------------------------------
-  White Sox Batters vs. Jack Kochanowicz (Last 90d: 302 PA | 16.2% K | 12.3% BB | 37 BB | 3.3% HR)
-  Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
-  ------------------------- | --------------- | --------------- | ---------------
-  Brooks Baldwin            |      0.03%      |      0.74%      |     Low Data   
-  Mike Tauchman             |      0.02%      |      0.33%      |     Low Data   
-  Lenyn Sosa                |      0.02%      |      0.52%      |     Low Data   
-  Kyle Teel                 |      0.01%      |      0.01%      |     Low Data   
-  Chase Meidroth            |      0.00%      |      0.28%      |     Low Data   
-  Miguel Vargas             |      0.00%      |      1.24%      |     Low Data   
-  Luis Robert               |      0.00%      |      0.04%      |     Low Data   
-  Andrew Benintendi         |      0.00%      |      0.26%      |     Low Data   
-  Colson Montgomery         |      0.00%      |      0.00%      |     Low Data   
+  Ben Rice                  |      10.95%     |      0.14%      |     100/100    
+  Cody Bellinger            |      4.93%      |      3.61%      |      50/100    
+  Trent Grisham             |      0.06%      |      0.04%      |      48/100    
+  Ryan McMahon              |      0.03%      |      0.08%      |      37/100    
+  Jazz Chisholm             |      0.01%      |      4.82%      |     100/100    
+  Austin Slater             |      0.00%      |      0.02%      |     100/100    
+  Paul Goldschmidt          |      0.00%      |      0.00%      |      54/100    
+  Anthony Volpe             |      0.00%      |      0.02%      |      68/100    
+  Giancarlo Stanton         |      0.00%      |      0.00%      |      44/100    
 
 ========================================================================================================================
-GAME: Rangers @ Mariners (4:10 PM ET)
+GAME: Reds @ Cubs (8:05 PM ET)
 ------------------------------------------------------------------------------------------------------------------------
-  Mariners Batters vs. Jacob deGrom (Last 90d: 348 PA | 27.9% K | 5.5% BB | 19 BB | 3.2% HR)
+  Cubs Batters vs. Nick Lodolo (Last 90d: 348 PA | 21.8% K | 4.9% BB | 17 BB | 3.4% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Cole Young                |      0.01%      |      5.38%      |      16/100    
-  Josh Naylor               |      0.01%      |      0.32%      |      54/100    
-  Julio Rodríguez           |      0.00%      |      2.91%      |      38/100    
-  J. P. Crawford            |      0.00%      |      0.04%      |      38/100    
-  Jorge Polanco             |      0.00%      |      0.17%      |     100/100    
-  Cal Raleigh               |      0.00%      |      0.04%      |      34/100    
-  Dominic Canzone           |      0.00%      |      1.67%      |      54/100    
-  Randy Arozarena           |      0.00%      |      6.63%      |      52/100    
-  José Suarez               |     Low Data    |     Low Data    |     Low Data   
+  Pete Crow-Armstrong       |      1.01%      |      0.04%      |      67/100    
+  Kyle Tucker               |      0.55%      |      0.21%      |      42/100    
+  Justin Turner             |      0.01%      |      0.01%      |      73/100    
+  Seiya Suzuki              |      0.01%      |      0.00%      |      44/100    
+  Nico Hoerner              |      0.01%      |      0.04%      |      31/100    
+  Ian Happ                  |      0.00%      |      0.00%      |     100/100    
+  Carson Kelly              |      0.00%      |      0.02%      |      46/100    
+  Dansby Swanson            |      0.00%      |      0.00%      |     100/100    
+  Matt Shaw                 |      0.00%      |      0.00%      |      37/100    
 
 ------------------------------------------------------------------------------------------------------------------------
-  Rangers Batters vs. Logan Evans (Last 90d: 260 PA | 18.1% K | 7.3% BB | 19 BB | 3.8% HR)
+  Reds Batters vs. Michael Soroka (Last 90d: 325 PA | 15.4% K | 7.1% BB | 23 BB | 3.1% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Josh Jung                 |      0.11%      |      2.36%      |      53/100    
-  Wyatt Langford            |      0.09%      |      1.07%      |      34/100    
-  Joc Pederson              |      0.04%      |      0.19%      |      41/100    
-  Kyle Higashioka           |      0.01%      |      2.37%      |      51/100    
-  Marcus Semien             |      0.01%      |      12.50%     |      23/100    
-  Adolis García             |      0.01%      |      17.40%     |      39/100    
-  Josh Smith                |      0.00%      |      0.07%      |      42/100    
-  Sam Haggerty              |      0.00%      |      1.48%      |      34/100    
-  Corey Seager              |      0.00%      |      0.01%      |      38/100    
-
-========================================================================================================================
-GAME: Cardinals @ Padres (4:10 PM ET)
-------------------------------------------------------------------------------------------------------------------------
-  Padres Batters vs. Andre Pallante (Last 90d: 360 PA | 15.6% K | 6.9% BB | 25 BB | 2.2% HR)
-  Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
-  ------------------------- | --------------- | --------------- | ---------------
-  Jackson Merrill           |      0.03%      |      0.10%      |      38/100    
-  Jake Cronenworth          |      0.01%      |      0.48%      |      51/100    
-  Ryan O'Hearn              |      0.01%      |      0.18%      |     100/100    
-  Freddy Fermin             |      0.01%      |      0.80%      |      40/100    
-  Xander Bogaerts           |      0.00%      |      2.17%      |      47/100    
-  Luis Arráez               |      0.00%      |      0.05%      |      78/100    
-  Fernando Tatís            |      0.00%      |      0.02%      |      60/100    
-  Ramón Laureano            |      0.00%      |      0.49%      |      47/100    
-  Manny Machado             |      0.00%      |      13.09%     |      46/100    
-
-------------------------------------------------------------------------------------------------------------------------
-  Cardinals Batters vs. Dylan Cease (Last 90d: 357 PA | 31.7% K | 8.7% BB | 31 BB | 3.9% HR)
-  Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
-  ------------------------- | --------------- | --------------- | ---------------
-  Iván Herrera              |      0.05%      |      0.91%      |      41/100    
-  Nolan Gorman              |      0.04%      |      0.05%      |      68/100    
-  Yohel Pozo                |      0.01%      |      0.51%      |      11/100    
-  Masyn Winn                |      0.01%      |      0.18%      |      47/100    
-  Lars Nootbaar             |      0.01%      |      0.13%      |      44/100    
-  Brendan Donovan           |      0.01%      |      0.08%      |      39/100    
-  Alec Burleson             |      0.01%      |      0.26%      |      72/100    
-  Willson Contreras         |      0.01%      |      0.45%      |      55/100    
-  Victor Scott              |      0.00%      |      0.03%      |      5/100     
+  Spencer Steer             |      1.68%      |      0.01%      |      61/100    
+  Tyler Stephenson          |      0.15%      |      0.04%      |      45/100    
+  Matt McLain               |      0.09%      |      0.00%      |      29/100    
+  Ke'Bryan Hayes            |      0.02%      |      0.00%      |      57/100    
+  TJ Friedl                 |      0.02%      |      0.01%      |      53/100    
+  Austin Hays               |      0.02%      |      0.09%      |      34/100    
+  Elly De La Cruz           |      0.00%      |      0.01%      |      47/100    
+  Gavin Lux                 |      0.00%      |      0.03%      |      33/100    
+  Jake Fraley               |      0.00%      |      0.01%      |      64/100    
 
 ========================================================================================================================
-GAME: Tigers @ Phillies (7:10 PM ET)
+GAME: Blue Jays @ Rockies (8:40 PM ET)
 ------------------------------------------------------------------------------------------------------------------------
-  Phillies Batters vs. Charlie Morton (Last 90d: 327 PA | 22.6% K | 8.0% BB | 26 BB | 3.1% HR)
+  Rockies Batters vs. Eric Lauer (Last 90d: 274 PA | 21.2% K | 5.5% BB | 15 BB | 2.9% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Bryce Harper              |      0.02%      |      0.62%      |      53/100    
-  Kyle Schwarber            |      0.01%      |      0.37%      |      24/100    
-  Nick Castellanos          |      0.01%      |      4.93%      |      54/100    
-  Trea Turner               |      0.01%      |      88.24%     |      75/100    
-  Brandon Marsh             |      0.01%      |      0.46%      |     100/100    
-  Bryson Stott              |      0.01%      |      0.78%      |      38/100    
-  J. T. Realmuto            |      0.00%      |      0.03%      |      69/100    
-  Max Kepler                |      0.00%      |      30.13%     |      62/100    
-  Otto Kemp                 |      0.00%      |      0.01%      |      37/100    
+  Kyle Farmer               |      0.01%      |      0.01%      |      71/100    
+  Tyler Freeman             |      0.01%      |      0.12%      |      17/100    
+  Hunter Goodman            |      0.01%      |      0.00%      |      27/100    
+  Thairo Estrada            |      0.00%      |      0.11%      |      18/100    
+  Jordan Beck               |      0.00%      |      0.05%      |      21/100    
+  Orlando Arcia             |      0.00%      |      0.00%      |      66/100    
+  Brenton Doyle             |      0.00%      |      0.01%      |      31/100    
+  Warming Bernabel          |     Low Data    |     Low Data    |      2/100     
+  Ezequiel Tovar            |      0.00%      |      0.00%      |      14/100    
 
 ------------------------------------------------------------------------------------------------------------------------
-  Tigers Batters vs. Cristopher Sánchez (Last 90d: 396 PA | 25.3% K | 5.6% BB | 22 BB | 1.5% HR)
+  Blue Jays Batters vs. Tanner Gordon (Last 90d: 114 PA | 9.6% K | 7.0% BB | 8 BB | 2.6% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Dillon Dingler            |      3.40%      |      0.24%      |      27/100    
-  Andy Ibáñez               |      0.99%      |      11.43%     |      39/100    
-  Javier Báez               |      0.02%      |      0.18%      |      38/100    
-  Matt Vierling             |      0.01%      |      0.31%      |      63/100    
-  Gleyber Torres            |      0.00%      |      0.39%      |      35/100    
-  Wenceel Pérez             |      0.00%      |      0.18%      |      50/100    
-  Riley Greene              |      0.00%      |      0.12%      |      52/100    
-  Spencer Torkelson         |      0.00%      |      0.19%      |      69/100    
-  Jahmai Jones              |      0.00%      |      0.10%      |      34/100    
+  Joey Loperfido            |      83.41%     |      0.06%      |      37/100    
+  Addison Barger            |      50.72%     |      0.01%      |      68/100    
+  Daulton Varsho            |      10.22%     |      0.00%      |      73/100    
+  Nathan Lukes              |      2.63%      |      0.02%      |      23/100    
+  Alejandro Kirk            |      0.74%      |      0.07%      |      26/100    
+  Ernie Clement             |      0.10%      |      0.23%      |      30/100    
+  Vladimir Guerrero         |      0.05%      |      0.07%      |      69/100    
+  Bo Bichette               |      0.03%      |      0.02%      |      37/100    
+  Ty France                 |      0.02%      |      0.08%      |      33/100    
+
+========================================================================================================================
+GAME: Rays @ Angels (9:38 PM ET)
+------------------------------------------------------------------------------------------------------------------------
+  Angels Batters vs. Adrian Houser (Last 90d: 278 PA | 14.0% K | 7.9% BB | 22 BB | 1.1% HR)
+  Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
+  ------------------------- | --------------- | --------------- | ---------------
+  Gustavo Campero           |      0.13%      |      0.52%      |      29/100    
+  Logan O'Hoppe             |      0.01%      |      0.01%      |      48/100    
+  Taylor Ward               |      0.01%      |      0.00%      |      36/100    
+  Zach Neto                 |      0.01%      |      0.03%      |      52/100    
+  Jo Adell                  |      0.01%      |      0.02%      |      56/100    
+  Mike Trout                |      0.00%      |      0.01%      |      16/100    
+  Nolan Schanuel            |      0.00%      |      0.15%      |      30/100    
+  Christian Moore           |      0.00%      |      0.19%      |      15/100    
+  Yoán Moncada              |      0.00%      |      0.03%      |      56/100    
+
+------------------------------------------------------------------------------------------------------------------------
+  Rays Batters vs. Yusei Kikuchi (Last 90d: 388 PA | 19.8% K | 8.2% BB | 32 BB | 2.8% HR)
+  Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
+  ------------------------- | --------------- | --------------- | ---------------
+  Brandon Lowe              |      9.61%      |      0.00%      |      59/100    
+  Josh Lowe                 |      1.32%      |      0.17%      |      57/100    
+  Ha-Seong Kim              |      0.01%      |      0.27%      |      49/100    
+  Jonny DeLuca              |      0.01%      |      0.22%      |      42/100    
+  Nick Fortes               |      0.01%      |      0.29%      |      59/100    
+  Jake Mangum               |      0.01%      |      1.10%      |      31/100    
+  Yandy Díaz                |      0.00%      |      0.00%      |     100/100    
+  Junior Caminero           |      0.00%      |      0.00%      |      58/100    
+  Christopher Morel         |      0.00%      |      0.00%      |      52/100    
+
+========================================================================================================================
+GAME: Padres @ Diamondbacks (9:40 PM ET)
+------------------------------------------------------------------------------------------------------------------------
+  Diamondbacks Batters vs. JP Sears (Last 90d: 336 PA | 17.0% K | 6.8% BB | 23 BB | 5.7% HR)
+  Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
+  ------------------------- | --------------- | --------------- | ---------------
+  Ketel Marte               |      7.37%      |      0.00%      |      37/100    
+  Corbin Carroll            |      1.23%      |      0.00%      |      77/100    
+  Geraldo Perdomo           |      0.60%      |      0.04%      |      63/100    
+  Jake McCarthy             |      0.01%      |      1.09%      |      53/100    
+  Blaze Alexander           |      0.01%      |      0.01%      |      60/100    
+  Jorge Barrosa             |     Low Data    |      1.10%      |      9/100     
+  Tyler Locklear            |     Low Data    |      0.00%      |      16/100    
+  José Herrera              |      0.01%      |      1.08%      |      9/100     
+  Lourdes Gurriel           |      0.00%      |      0.00%      |     100/100    
+
+------------------------------------------------------------------------------------------------------------------------
+  Padres Batters vs. Brandon Pfaadt (Last 90d: 336 PA | 14.9% K | 5.4% BB | 18 BB | 3.9% HR)
+  Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
+  ------------------------- | --------------- | --------------- | ---------------
+  Manny Machado             |      1.12%      |      0.00%      |      58/100    
+  Ramón Laureano            |      0.71%      |      0.00%      |      46/100    
+  Xander Bogaerts           |      0.33%      |      0.00%      |      73/100    
+  Fernando Tatís            |      0.06%      |      0.05%      |     100/100    
+  Jackson Merrill           |      0.01%      |      0.00%      |     100/100    
+  Luis Arráez               |      0.01%      |      0.02%      |      76/100    
+  Freddy Fermin             |      0.00%      |      0.02%      |      49/100    
+  Jake Cronenworth          |      0.00%      |      0.03%      |      71/100    
+  Ryan O'Hearn              |      0.00%      |      0.02%      |      66/100    
+
+========================================================================================================================
+GAME: Cardinals @ Dodgers (10:10 PM ET)
+------------------------------------------------------------------------------------------------------------------------
+  Dodgers Batters vs. Sonny Gray (Last 90d: 343 PA | 12.8% K | 2.9% BB | 10 BB | 2.6% HR)
+  Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
+  ------------------------- | --------------- | --------------- | ---------------
+  Will Smith                |      66.02%     |      0.00%      |     Low Data   
+  Andy Pages                |      54.11%     |      0.00%      |      56/100    
+  Freddie Freeman           |      5.70%      |      0.02%      |      51/100    
+  Teoscar Hernández         |      3.25%      |      0.83%      |      65/100    
+  Mookie Betts              |      0.13%      |      0.01%      |      42/100    
+  Michael Conforto          |      0.12%      |      0.01%      |      75/100    
+  Shohei Ohtani             |      0.06%      |      0.00%      |     100/100    
+  Miguel Rojas              |      0.05%      |      0.04%      |      24/100    
+  Max Muncy                 |      0.01%      |      0.01%      |     Low Data   
+
+------------------------------------------------------------------------------------------------------------------------
+  Cardinals Batters vs. Tyler Glasnow (Last 90d: 88 PA | 26.1% K | 11.4% BB | 10 BB | 3.4% HR)
+  Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
+  ------------------------- | --------------- | --------------- | ---------------
+  Alec Burleson             |      5.53%      |      0.01%      |      34/100    
+  Lars Nootbaar             |      1.17%      |      0.03%      |      39/100    
+  Brendan Donovan           |      0.44%      |      0.01%      |      27/100    
+  Nolan Gorman              |      0.29%      |      0.01%      |      58/100    
+  Iván Herrera              |      0.02%      |      0.05%      |      44/100    
+  Yohel Pozo                |      0.02%      |      0.07%      |      15/100    
+  Masyn Winn                |      0.00%      |      0.05%      |      30/100    
+  Victor Scott              |      0.00%      |      0.01%      |      16/100    
+  Willson Contreras         |      0.00%      |      0.02%      |      51/100    
 
 ========================================================================================================================
         `;
@@ -581,7 +586,7 @@ GAME: Tigers @ Phillies (7:10 PM ET)
          */
         function parseTopPicks(text) {
             const topPicks = [];
-            const topPicksRegex = /--- TOP 10 PICKS OF THE DAY ---\s*([\s\S]*?)\s*================/m;
+            const topPicksRegex = /--- TOP 10 PICKS OF THE DAY \(90-Day Model\) ---\s*([\s\S]*?)\s*================/m;
             const match = text.match(topPicksRegex);
 
             if (match && match[1]) {
@@ -590,13 +595,15 @@ GAME: Tigers @ Phillies (7:10 PM ET)
                 for (let i = 3; i < lines.length; i++) {
                     const line = lines[i];
                     const parts = line.split('|').map(p => p.trim());
-                    if (parts.length === 5) {
+                    if (parts.length === 7) {
                         topPicks.push({
                             rank: parts[0],
                             batter: parts[1],
                             pitcher: parts[2],
-                            modelScore: parts[3],
-                            hrProbability: parts[4]
+                            xgboost: parts[3],
+                            lightgbm: parts[4],
+                            catboost: parts[5],
+                            finalScore: parts[6]
                         });
                     }
                 }
@@ -621,8 +628,10 @@ GAME: Tigers @ Phillies (7:10 PM ET)
                         <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm text-center">${player.rank}</td>
                         <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm">${player.batter}</td>
                         <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm">${player.pitcher}</td>
-                        <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm text-center">${player.modelScore}</td>
-                        <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm text-center font-semibold">${player.hrProbability}</td>
+                        <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm text-center">${player.xgboost}</td>
+                        <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm text-center">${player.lightgbm}</td>
+                        <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm text-center">${player.catboost}</td>
+                        <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm text-center font-semibold">${player.finalScore}</td>
                     </tr>
                 `;
             });
@@ -630,7 +639,7 @@ GAME: Tigers @ Phillies (7:10 PM ET)
             container.innerHTML = `
                 <details class="top-picks-card rounded-lg shadow-md overflow-hidden border dark:border-gray-700">
                     <summary class="p-4 flex justify-center items-center relative bg-gray-800 text-white game-header">
-                        <h2 class="text-lg font-bold">TOP 10 PICKS OF THE DAY</h2>
+                        <h2 class="text-lg font-bold text-center">TOP 10 PICKS OF THE DAY (90-Day Model)</h2>
                         <svg class="w-6 h-6 summary-chevron absolute right-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                         </svg>
@@ -643,8 +652,10 @@ GAME: Tigers @ Phillies (7:10 PM ET)
                                         <th class="py-2 px-4 border-b-2 border-gray-200 dark:border-gray-600 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">Rank</th>
                                         <th class="py-2 px-4 border-b-2 border-gray-200 dark:border-gray-600 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Batter</th>
                                         <th class="py-2 px-4 border-b-2 border-gray-200 dark:border-gray-600 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Pitcher</th>
-                                        <th class="py-2 px-4 border-b-2 border-gray-200 dark:border-gray-600 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">Model Score</th>
-                                        <th class="py-2 px-4 border-b-2 border-gray-200 dark:border-gray-600 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">HR Probability</th>
+                                        <th class="py-2 px-4 border-b-2 border-gray-200 dark:border-gray-600 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">XGBoost</th>
+                                        <th class="py-2 px-4 border-b-2 border-gray-200 dark:border-gray-600 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">LightGBM</th>
+                                        <th class="py-2 px-4 border-b-2 border-gray-200 dark:border-gray-600 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">CatBoost</th>
+                                        <th class="py-2 px-4 border-b-2 border-gray-200 dark:border-gray-600 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">Final Score</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -663,14 +674,24 @@ GAME: Tigers @ Phillies (7:10 PM ET)
          */
         function parseReport(text) {
             const games = [];
-            const gameBlocks = text.split(/={80,}/).filter(b => b.trim().startsWith('GAME:'));
+            const allBlocks = text.split(/={80,}/);
+            const gameStartIndex = allBlocks.findIndex(b => b.trim().startsWith('GAME:'));
+            
+            if (gameStartIndex === -1) {
+                console.error("No game blocks found in the report text.");
+                return [];
+            }
+
+            const gameBlocks = allBlocks.slice(gameStartIndex);
 
             gameBlocks.forEach(block => {
+                if (!block.trim()) return;
+
                 const lines = block.trim().split('\n');
                 const gameTitleLine = lines.find(line => line.startsWith('GAME:'));
                 if (!gameTitleLine) return;
-                const gameTitle = gameTitleLine.replace('GAME: ', '').trim();
                 
+                const gameTitle = gameTitleLine.replace('GAME: ', '').trim();
                 const teamSections = block.split(/-{80,}/).slice(1);
                 const teamsData = [];
 
@@ -687,14 +708,12 @@ GAME: Tigers @ Phillies (7:10 PM ET)
                     }
                     
                     const players = [];
-                    let hasHighProb = false;
-
                     for (let i = 2; i < sectionLines.length; i++) {
                         const line = sectionLines[i];
                         if (!line.includes('|') || line.includes('---')) continue;
 
                         const parts = line.split('|').map(p => p.trim());
-                        if (parts.length < 4) continue; // Expect 4 columns now
+                        if (parts.length < 4) continue;
 
                         const name = parts[0];
                         const prob90DayStr = parts[1];
@@ -705,21 +724,25 @@ GAME: Tigers @ Phillies (7:10 PM ET)
                         const prob2YearValue = prob2YearStr.toLowerCase().includes('low data') ? -1 : parseFloat(prob2YearStr);
                         const hrCompScoreValue = hrCompScoreStr.toLowerCase().includes('low data') ? -1 : parseInt(hrCompScoreStr);
 
-                        const isHigh = (prob90DayValue > 2);
-                        if (isHigh) {
-                            hasHighProb = true;
-                        }
+                        const isHigh90Day = (prob90DayValue > 2);
+                        const isHigh2Year = (prob2YearValue > 50);
+                        const isHighCompScore = (hrCompScoreValue >= 50);
 
-                        players.push({ name, prob90DayStr, prob2YearStr, hrCompScoreStr, prob90DayValue, prob2YearValue, hrCompScoreValue, isHigh });
+                        players.push({ name, prob90DayStr, prob2YearStr, hrCompScoreStr, prob90DayValue, prob2YearValue, hrCompScoreValue, isHigh90Day, isHigh2Year, isHighCompScore });
                     }
                     if (players.length > 0) {
-                        teamsData.push({ id: `${gameTitle}-${teamIndex}`, title: teamTitle, pitcherStats, players, hasHighProb });
+                        const hasHigh90Day = players.some(p => p.isHigh90Day);
+                        const hasHigh2Year = players.some(p => p.isHigh2Year);
+                        const hasHighCompScore = players.some(p => p.isHighCompScore);
+                        teamsData.push({ id: `${gameTitle}-${teamIndex}`, title: teamTitle, pitcherStats, players, hasHigh90Day, hasHigh2Year, hasHighCompScore });
                     }
                 });
                 
                 if (teamsData.length > 0) {
-                    const gameHasHighProb = teamsData.some(t => t.hasHighProb);
-                    games.push({ title: gameTitle, teams: teamsData, hasHighProb: gameHasHighProb });
+                    const gameHasHigh90Day = teamsData.some(t => t.hasHigh90Day);
+                    const gameHasHigh2Year = teamsData.some(t => t.hasHigh2Year);
+                    const gameHasHighCompScore = teamsData.some(t => t.hasHighCompScore);
+                    games.push({ title: gameTitle, teams: teamsData, hasHigh90Day: gameHasHigh90Day, hasHigh2Year: gameHasHigh2Year, hasHighCompScore: gameHasHighCompScore });
                 }
             });
 
@@ -727,45 +750,43 @@ GAME: Tigers @ Phillies (7:10 PM ET)
         }
 
         /**
-         * Renders the parsed game data into HTML cards and injects them into the DOM.
+         * Renders the parsed game data into HTML cards.
          */
         function renderReport(gamesData) {
             const container = document.getElementById('report-container');
-            container.innerHTML = ''; // Clear previous content
+            container.innerHTML = ''; 
+
+            if (!gamesData || gamesData.length === 0) return;
 
             gamesData.forEach(game => {
                 const gameCard = document.createElement('div');
-                gameCard.className = 'card border overflow-hidden rounded-lg shadow-md';
-                gameCard.dataset.hasHighProb = game.hasHighProb;
+                gameCard.className = 'card border overflow-hidden rounded-lg shadow-md transition-all duration-300';
+                
+                gameCard.dataset.hasHigh90day = game.hasHigh90Day;
+                gameCard.dataset.hasHigh2year = game.hasHigh2Year;
+                gameCard.dataset.hasHighCompscore = game.hasHighCompScore;
 
-                let teamsHtml = '';
-                game.teams.forEach(team => {
-                    let playersHtml = '';
-                    team.players.forEach(player => {
-                        const highlightClass = player.isHigh ? 'highlight' : '';
-                        
-                        playersHtml += `
-                            <tr class="player-row ${highlightClass}" data-is-high="${player.isHigh}">
-                                <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm player-name">${player.name}</td>
-                                <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm text-center ${player.prob90DayStr.toLowerCase().includes('low data') ? 'low-data' : ''}">${player.prob90DayStr}</td>
-                                <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm text-center ${player.prob2YearStr.toLowerCase().includes('low data') ? 'low-data' : ''}">${player.prob2YearStr}</td>
-                                <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm text-center ${player.hrCompScoreStr.toLowerCase().includes('low data') ? 'low-data' : ''}">${player.hrCompScoreStr}</td>
-                            </tr>
-                        `;
-                    });
+                const teamsHtml = game.teams.map(team => {
+                    const playersHtml = team.players.map(player => `
+                        <tr class="player-row" 
+                            data-filter-90day="${player.isHigh90Day}" 
+                            data-filter-2year="${player.isHigh2Year}" 
+                            data-filter-compscore="${player.isHighCompScore}">
+                            <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm player-name">${player.name}</td>
+                            <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm text-center ${player.prob90DayStr.toLowerCase().includes('low data') ? 'low-data' : ''}">${player.prob90DayStr}</td>
+                            <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm text-center ${player.prob2YearStr.toLowerCase().includes('low data') ? 'low-data' : ''}">${player.prob2YearStr}</td>
+                            <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm text-center ${player.hrCompScoreStr.toLowerCase().includes('low data') ? 'low-data' : ''}">${player.hrCompScoreStr}</td>
+                        </tr>
+                    `).join('');
                     
-                    const sort90DayClass = currentSort.key === 'prob90DayValue' ? (currentSort.order === 'desc' ? 'sort-desc' : 'sort-asc') : '';
-                    const sort2YearClass = currentSort.key === 'prob2YearValue' ? (currentSort.order === 'desc' ? 'sort-desc' : 'sort-asc') : '';
-                    const sortHrCompClass = currentSort.key === 'hrCompScoreValue' ? (currentSort.order === 'desc' ? 'sort-desc' : 'sort-asc') : '';
-
-                    teamsHtml += `
+                    return `
                         <div class="p-4" data-team-id="${team.id}">
                             <details class="mb-2">
                                 <summary class="font-semibold text-gray-700 dark:text-gray-300 text-md mb-2 flex justify-between items-center">
                                     <span>${team.title}</span>
                                     <svg class="w-5 h-5 summary-chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
                                 </summary>
-                                <div class="text-sm text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-700 p-2 rounded-md">
+                                <div class="text-sm text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-700 p-2 rounded-md mt-2">
                                     ${team.pitcherStats}
                                 </div>
                             </details>
@@ -774,9 +795,9 @@ GAME: Tigers @ Phillies (7:10 PM ET)
                                     <thead class="table-header">
                                         <tr>
                                             <th class="py-2 px-4 border-b-2 border-gray-200 dark:border-gray-600 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Batter</th>
-                                            <th class="py-2 px-4 border-b-2 border-gray-200 dark:border-gray-600 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider sortable ${sort90DayClass}" data-sort-key="prob90DayValue">90-Day Prob</th>
-                                            <th class="py-2 px-4 border-b-2 border-gray-200 dark:border-gray-600 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider sortable ${sort2YearClass}" data-sort-key="prob2YearValue">2-Year Prob</th>
-                                            <th class="py-2 px-4 border-b-2 border-gray-200 dark:border-gray-600 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider sortable ${sortHrCompClass}" data-sort-key="hrCompScoreValue">HR Comp Score</th>
+                                            <th class="py-2 px-4 border-b-2 border-gray-200 dark:border-gray-600 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider sortable" data-sort-key="prob90DayValue">90-Day Prob</th>
+                                            <th class="py-2 px-4 border-b-2 border-gray-200 dark:border-gray-600 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider sortable" data-sort-key="prob2YearValue">2-Year Prob</th>
+                                            <th class="py-2 px-4 border-b-2 border-gray-200 dark:border-gray-600 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider sortable" data-sort-key="hrCompScoreValue">HR SIMILARITY</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -786,7 +807,7 @@ GAME: Tigers @ Phillies (7:10 PM ET)
                             </div>
                         </div>
                     `;
-                });
+                }).join('');
 
                 gameCard.innerHTML = `
                     <div class="bg-gray-800 text-white p-4 game-header">
@@ -813,78 +834,124 @@ GAME: Tigers @ Phillies (7:10 PM ET)
             teamData.players.sort((a, b) => {
                 const valA = a[sortKey];
                 const valB = b[sortKey];
+
+                if (valA === -1 && valB !== -1) return 1;
+                if (valB === -1 && valA !== -1) return -1;
+                
                 return order === 'desc' ? valB - valA : valA - valB;
             });
 
             const teamContainer = document.querySelector(`[data-team-id="${teamId}"]`);
             if (!teamContainer) return;
-            
-            const tableBody = teamContainer.querySelector('tbody');
-            tableBody.innerHTML = ''; 
 
-            let playersHtml = '';
-            teamData.players.forEach(player => {
-                const highlightClass = player.isHigh ? 'highlight' : '';
-                playersHtml += `
-                    <tr class="player-row ${highlightClass}" data-is-high="${player.isHigh}">
-                        <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm player-name">${player.name}</td>
-                        <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm text-center ${player.prob90DayStr.toLowerCase().includes('low data') ? 'low-data' : ''}">${player.prob90DayStr}</td>
-                        <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm text-center ${player.prob2YearStr.toLowerCase().includes('low data') ? 'low-data' : ''}">${player.prob2YearStr}</td>
-                         <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm text-center ${player.hrCompScoreStr.toLowerCase().includes('low data') ? 'low-data' : ''}">${player.hrCompScoreStr}</td>
-                    </tr>
-                `;
+            const tableHeaders = teamContainer.querySelectorAll('th.sortable');
+            tableHeaders.forEach(th => {
+                th.classList.remove('sort-asc', 'sort-desc');
+                if (th.dataset.sortKey === sortKey) {
+                    th.classList.add(order === 'desc' ? 'sort-desc' : 'sort-asc');
+                }
             });
+
+            const tableBody = teamContainer.querySelector('tbody');
+            const playersHtml = teamData.players.map(player => `
+                 <tr class="player-row" 
+                    data-filter-90day="${player.isHigh90Day}" 
+                    data-filter-2year="${player.isHigh2Year}" 
+                    data-filter-compscore="${player.isHighCompScore}">
+                    <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm player-name">${player.name}</td>
+                    <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm text-center ${player.prob90DayStr.toLowerCase().includes('low data') ? 'low-data' : ''}">${player.prob90DayStr}</td>
+                    <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm text-center ${player.prob2YearStr.toLowerCase().includes('low data') ? 'low-data' : ''}">${player.prob2YearStr}</td>
+                    <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm text-center ${player.hrCompScoreStr.toLowerCase().includes('low data') ? 'low-data' : ''}">${player.hrCompScoreStr}</td>
+                </tr>
+            `).join('');
+
             tableBody.innerHTML = playersHtml;
+            applyFilter();
         }
 
-
-        let isHighlightOnly = false;
-        const toggleBtn = document.getElementById('toggle-highlight-btn');
-        const noDataMessage = document.getElementById('no-data-message');
-
-        function toggleHighlightView() {
-            isHighlightOnly = !isHighlightOnly;
-            
+        /**
+         * Applies the active filter to the report.
+         * THIS FUNCTION HAS BEEN REWRITTEN FOR CORRECTNESS.
+         */
+        function applyFilter() {
             const gameCards = document.querySelectorAll('#report-container .card');
-            let visibleCards = 0;
+            const noDataMessage = document.getElementById('no-data-message');
+            const toggle90dayBtn = document.getElementById('toggle-90day-btn');
+            const toggle2yearBtn = document.getElementById('toggle-2year-btn');
+            const toggleCompscoreBtn = document.getElementById('toggle-compscore-btn');
 
+            let totalVisibleCards = 0;
+
+            // Determine which data attribute to check based on the active filter
+            let filterAttributeName = '';
+            let highlightClass = '';
+
+            if (activeFilter === '90day') {
+                filterAttributeName = 'data-filter-90day';
+                highlightClass = 'highlight';
+            }
+            if (activeFilter === '2year') {
+                filterAttributeName = 'data-filter-2year';
+                highlightClass = 'two-year-highlight';
+            }
+            if (activeFilter === 'compscore') {
+                filterAttributeName = 'data-filter-compscore';
+                highlightClass = 'sim-highlight';
+            }
+
+            // Loop through each game card
             gameCards.forEach(card => {
-                if (isHighlightOnly) {
-                    if (card.dataset.hasHighProb === 'true') {
-                        card.style.display = 'block';
-                        visibleCards++;
+                const playerRows = card.querySelectorAll('.player-row');
+                let cardHasAVisiblePlayer = false;
+
+                // Loop through each player in the card
+                playerRows.forEach(row => {
+                    // Reset styles first
+                    row.classList.remove('highlight', 'two-year-highlight', 'sim-highlight');
+                    
+                    // If no filter is active, everyone is visible
+                    if (activeFilter === 'none') {
+                        row.style.display = 'table-row';
+                        cardHasAVisiblePlayer = true;
                     } else {
-                        card.style.display = 'none';
-                    }
-                    const playerRows = card.querySelectorAll('.player-row');
-                    playerRows.forEach(row => {
-                        if (row.dataset.isHigh === 'true') {
+                        // If a filter is active, check if this player matches using getAttribute
+                        if (row.getAttribute(filterAttributeName) === 'true') {
                             row.style.display = 'table-row';
+                            row.classList.add(highlightClass);
+                            cardHasAVisiblePlayer = true;
                         } else {
                             row.style.display = 'none';
                         }
-                    });
-                } else {
+                    }
+                });
+
+                // Now, show or hide the entire card based on whether it has any visible players
+                if (cardHasAVisiblePlayer) {
                     card.style.display = 'block';
-                    visibleCards++;
-                    const playerRows = card.querySelectorAll('.player-row');
-                    playerRows.forEach(row => {
-                        row.style.display = 'table-row';
-                    });
+                    totalVisibleCards++;
+                } else {
+                    card.style.display = 'none';
                 }
             });
             
-            if (isHighlightOnly) {
-                toggleBtn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
-                toggleBtn.classList.add('bg-green-600', 'hover:bg-green-700');
-                toggleBtn.textContent = "Show All Players";
-            } else {
-                toggleBtn.classList.remove('bg-green-600', 'hover:bg-green-700');
-                toggleBtn.classList.add('bg-blue-600', 'hover:bg-blue-700');
-                toggleBtn.textContent = "Toggle High Probability Players";
-            }
+            // Update "No data" message
+            noDataMessage.classList.toggle('hidden', totalVisibleCards > 0 || activeFilter === 'none');
 
-            noDataMessage.classList.toggle('hidden', !(isHighlightOnly && visibleCards === 0));
+            // Update button styles
+            toggle90dayBtn.classList.toggle('bg-green-600', activeFilter === '90day');
+            toggle90dayBtn.classList.toggle('hover:bg-green-700', activeFilter === '90day');
+            toggle90dayBtn.classList.toggle('bg-blue-600', activeFilter !== '90day');
+            toggle90dayBtn.classList.toggle('hover:bg-blue-700', activeFilter !== '90day');
+
+            toggle2yearBtn.classList.toggle('bg-green-600', activeFilter === '2year');
+            toggle2yearBtn.classList.toggle('hover:bg-green-700', activeFilter === '2year');
+            toggle2yearBtn.classList.toggle('bg-blue-600', activeFilter !== '2year');
+            toggle2yearBtn.classList.toggle('hover:bg-blue-700', activeFilter !== '2year');
+
+            toggleCompscoreBtn.classList.toggle('bg-green-600', activeFilter === 'compscore');
+            toggleCompscoreBtn.classList.toggle('hover:bg-green-700', activeFilter === 'compscore');
+            toggleCompscoreBtn.classList.toggle('bg-blue-600', activeFilter !== 'compscore');
+            toggleCompscoreBtn.classList.toggle('hover:bg-blue-700', activeFilter !== 'compscore');
         }
 
         // Initial setup
@@ -893,6 +960,9 @@ GAME: Tigers @ Phillies (7:10 PM ET)
             const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
             const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
             const yepButton = document.getElementById('yep-button');
+            const toggle90dayBtn = document.getElementById('toggle-90day-btn');
+            const toggle2yearBtn = document.getElementById('toggle-2year-btn');
+            const toggleCompscoreBtn = document.getElementById('toggle-compscore-btn');
 
             if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 themeToggleLightIcon.classList.remove('hidden');
@@ -904,25 +974,35 @@ GAME: Tigers @ Phillies (7:10 PM ET)
                 themeToggleDarkIcon.classList.toggle('hidden');
                 themeToggleLightIcon.classList.toggle('hidden');
                 document.documentElement.classList.toggle('dark');
-                if (document.documentElement.classList.contains('dark')) {
-                    localStorage.setItem('color-theme', 'dark');
-                } else {
-                    localStorage.setItem('color-theme', 'light');
-                }
+                const theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+                localStorage.setItem('color-theme', theme);
             });
 
+            // Parse and Render all data from the text block on load
             const topPicksData = parseTopPicks(reportText);
-            renderTopPicks(topPicksData);
+            allGamesData = parseReport(reportText);
             
-            const gamesText = reportText.substring(reportText.indexOf('GAME:'));
-            allGamesData = parseReport(gamesText);
+            renderTopPicks(topPicksData);
             renderReport(allGamesData);
             
-            toggleBtn.addEventListener('click', toggleHighlightView);
+            toggle90dayBtn.addEventListener('click', () => {
+                activeFilter = (activeFilter === '90day') ? 'none' : '90day';
+                applyFilter();
+            });
+
+            toggle2yearBtn.addEventListener('click', () => {
+                activeFilter = (activeFilter === '2year') ? 'none' : '2year';
+                applyFilter();
+            });
+
+            toggleCompscoreBtn.addEventListener('click', () => {
+                activeFilter = (activeFilter === 'compscore') ? 'none' : 'compscore';
+                applyFilter();
+            });
 
             yepButton.addEventListener('click', function() {
                 this.textContent = 'I THOUGHT SO';
-                window.location.href = 'https://docs.google.com/document/d/1aKu86WYVzp6PYmPakztiz3pTwVMY-sPB85jJ4bvf8AI/edit?usp=sharing';
+                window.open('https://docs.google.com/document/d/1aKu86WYVzp6PYmPakztiz3pTwVMY-sPB85jJ4bvf8AI/edit?usp=sharing', '_blank');
             });
 
             const container = document.getElementById('report-container');
@@ -931,8 +1011,10 @@ GAME: Tigers @ Phillies (7:10 PM ET)
                 if (header) {
                     const sortKey = header.dataset.sortKey;
                     const teamContainer = header.closest('[data-team-id]');
-                    const teamId = teamContainer.dataset.teamId;
-                    sortTeam(teamId, sortKey);
+                    if (teamContainer) {
+                        const teamId = teamContainer.dataset.teamId;
+                        sortTeam(teamId, sortKey);
+                    }
                 }
             });
         });
