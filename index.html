@@ -120,6 +120,33 @@
         details[open] .summary-chevron {
             transform: rotate(90deg);
         }
+        
+        /* Tab Styles */
+        .tab-btn {
+            border-color: transparent;
+            color: #6b7280; /* gray-500 */
+            transition: all 0.2s ease-in-out;
+        }
+        .dark .tab-btn {
+            color: #9ca3af; /* gray-400 */
+        }
+        .tab-btn:hover {
+            border-color: #d1d5db; /* gray-300 */
+            color: #374151; /* gray-700 */
+        }
+        .dark .tab-btn:hover {
+            border-color: #4b5563; /* gray-600 */
+            color: #e5e7eb; /* gray-200 */
+        }
+        .active-tab {
+            border-color: #4338ca; /* indigo-700 */
+            color: #4338ca; /* indigo-700 */
+            font-weight: 700;
+        }
+        .dark .active-tab {
+            border-color: #a5b4fc; /* indigo-400 */
+            color: #a5b4fc; /* indigo-400 */
+        }
     </style>
 </head>
 <body class="p-4 sm:p-6 md:p-8">
@@ -136,6 +163,9 @@
             <header class="text-center mb-8">
                 <h1 class="text-3xl sm:text-4xl font-bold text-gray-800">Similarity Slut</h1>
                 <div class="flex flex-wrap justify-center items-center gap-2 mt-6">
+                    <button id="toggle-tabs-btn" class="px-4 py-2 text-sm bg-purple-600 text-white font-semibold rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-75 toggle-btn">
+                        Hide Top Reports
+                    </button>
                     <button id="toggle-90day-btn" class="px-4 py-2 text-sm bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 toggle-btn">
                         Toggle High 90-Day Prob
                     </button>
@@ -148,9 +178,26 @@
                 </div>
             </header>
 
-            <div id="top-picks-container" class="mb-8"></div>
-            <div id="similarity-container" class="mb-8"></div>
-            <div id="strikeout-container" class="mb-8"></div>
+            <div id="tabs-container" class="mb-8">
+                <div class="border-b border-gray-200 dark:border-gray-700">
+                    <nav class="-mb-px flex space-x-4" aria-label="Tabs">
+                        <button class="tab-btn active-tab whitespace-nowrap py-3 px-4 border-b-2" data-tab="tab-ml-picks">
+                            Top 10 Picks From ML Models
+                        </button>
+                        <button class="tab-btn whitespace-nowrap py-3 px-4 border-b-2" data-tab="tab-similarity">
+                            Top 100 Similarity Sluts
+                        </button>
+                        <button class="tab-btn whitespace-nowrap py-3 px-4 border-b-2" data-tab="tab-predictions">
+                             Pitcher Strikeout Predictions 
+                        </button>
+                    </nav>
+                </div>
+                <div class="tab-content mt-4">
+                    <div id="tab-ml-picks" class="tab-panel"></div>
+                    <div id="tab-similarity" class="tab-panel" style="display: none;"></div>
+                    <div id="tab-predictions" class="tab-panel" style="display: none;"></div>
+                </div>
+            </div>
 
 
             <main id="report-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -739,7 +786,7 @@ GAME: Cardinals @ Dodgers (10:10 PM ET) | HR Park Factor: 102
         }
 
         function renderStrikeoutPredictions(strikeoutData) {
-            const container = document.getElementById('strikeout-container');
+            const container = document.getElementById('tab-predictions');
             if (!strikeoutData || strikeoutData.length === 0) {
                 container.innerHTML = '';
                 return;
@@ -756,14 +803,8 @@ GAME: Cardinals @ Dodgers (10:10 PM ET) | HR Park Factor: 102
             });
 
             container.innerHTML = `
-                <details class="top-picks-card rounded-lg shadow-md overflow-hidden border dark:border-gray-700">
-                    <summary class="p-4 flex justify-center items-center relative bg-gray-800 text-white game-header">
-                        <h2 class="text-lg font-bold text-center">⚾ Pitcher Strikeout Predictions ⚾</h2>
-                        <svg class="w-6 h-6 summary-chevron absolute right-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                        </svg>
-                    </summary>
-                    <div class="p-4">
+                <div class="top-picks-card rounded-lg shadow-md overflow-hidden border dark:border-gray-700">
+                     <div class="p-4">
                         <div class="overflow-x-auto">
                             <table class="min-w-full bg-white dark:bg-gray-800">
                                 <thead class="table-header">
@@ -778,7 +819,7 @@ GAME: Cardinals @ Dodgers (10:10 PM ET) | HR Park Factor: 102
                             </table>
                         </div>
                     </div>
-                </details>
+                </div>
             `;
         }
         function parseSimilarityReport(text) {
@@ -809,7 +850,7 @@ GAME: Cardinals @ Dodgers (10:10 PM ET) | HR Park Factor: 102
          * Renders the "TOP 100 SIMILARITY" into a collapsible accordion.
          */
         function renderSimilarityReport(similarityData) {
-            const container = document.getElementById('similarity-container');
+            const container = document.getElementById('tab-similarity');
             if (!similarityData || similarityData.length === 0) {
                 container.innerHTML = '';
                 return;
@@ -830,13 +871,7 @@ GAME: Cardinals @ Dodgers (10:10 PM ET) | HR Park Factor: 102
             });
 
             container.innerHTML = `
-                <details class="top-picks-card rounded-lg shadow-md overflow-hidden border dark:border-gray-700">
-                    <summary class="p-4 flex justify-center items-center relative bg-gray-800 text-white game-header">
-                        <h2 class="text-lg font-bold text-center">Top 100 Similarity Sluts of the Day</h2>
-                        <svg class="w-6 h-6 summary-chevron absolute right-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                        </svg>
-                    </summary>
+                <div class="top-picks-card rounded-lg shadow-md overflow-hidden border dark:border-gray-700">
                     <div class="p-4">
                         <div class="overflow-x-auto">
                             <table class="min-w-full bg-white dark:bg-gray-800">
@@ -856,7 +891,7 @@ GAME: Cardinals @ Dodgers (10:10 PM ET) | HR Park Factor: 102
                             </table>
                         </div>
                     </div>
-                </details>
+                </div>
             `;
         }
 
@@ -894,7 +929,7 @@ GAME: Cardinals @ Dodgers (10:10 PM ET) | HR Park Factor: 102
          * Renders the "TOP 10 PICKS" into a collapsible accordion.
          */
         function renderTopPicks(topPicksData) {
-            const container = document.getElementById('top-picks-container');
+            const container = document.getElementById('tab-ml-picks');
             if (!topPicksData || topPicksData.length === 0) {
                 container.innerHTML = '';
                 return;
@@ -916,13 +951,7 @@ GAME: Cardinals @ Dodgers (10:10 PM ET) | HR Park Factor: 102
             });
 
             container.innerHTML = `
-                <details class="top-picks-card rounded-lg shadow-md overflow-hidden border dark:border-gray-700">
-                    <summary class="p-4 flex justify-center items-center relative bg-gray-800 text-white game-header">
-                        <h2 class="text-lg font-bold text-center">Top 10 Picks From ML Models</h2>
-                        <svg class="w-6 h-6 summary-chevron absolute right-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                        </svg>
-                    </summary>
+                <div class="top-picks-card rounded-lg shadow-md overflow-hidden border dark:border-gray-700">
                     <div class="p-4">
                         <div class="overflow-x-auto">
                             <table class="min-w-full bg-white dark:bg-gray-800">
@@ -943,7 +972,7 @@ GAME: Cardinals @ Dodgers (10:10 PM ET) | HR Park Factor: 102
                             </table>
                         </div>
                     </div>
-                </details>
+                </div>
             `;
         }
 
@@ -1134,15 +1163,15 @@ GAME: Cardinals @ Dodgers (10:10 PM ET) | HR Park Factor: 102
             const tableBody = teamContainer.querySelector('tbody');
             const playersHtml = teamData.players.map(player => `
                  <tr class="player-row" 
-                    data-filter-90day="${player.isHigh90Day}" 
-                    data-filter-2year="${player.isHigh2Year}" 
-                    data-filter-compscore="${player.isHighCompScore}">
-                    <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm player-name">${player.name}</td>
-                    <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm text-center ${player.prob90DayStr.toLowerCase().includes('low data') ? 'low-data' : ''}">${player.prob90DayStr}</td>
-                    <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm text-center ${player.prob2YearStr.toLowerCase().includes('low data') ? 'low-data' : ''}">${player.prob2YearStr}</td>
-                    <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm text-center ${player.hrCompScoreStr.toLowerCase().includes('low data') ? 'low-data' : ''}">${player.hrCompScoreStr}</td>
-                </tr>
-            `).join('');
+                     data-filter-90day="${player.isHigh90Day}" 
+                     data-filter-2year="${player.isHigh2Year}" 
+                     data-filter-compscore="${player.isHighCompScore}">
+                     <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm player-name">${player.name}</td>
+                     <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm text-center ${player.prob90DayStr.toLowerCase().includes('low data') ? 'low-data' : ''}">${player.prob90DayStr}</td>
+                     <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm text-center ${player.prob2YearStr.toLowerCase().includes('low data') ? 'low-data' : ''}">${player.prob2YearStr}</td>
+                     <td class="py-2 px-4 border-b border-gray-200 dark:border-gray-700 text-sm text-center ${player.hrCompScoreStr.toLowerCase().includes('low data') ? 'low-data' : ''}">${player.hrCompScoreStr}</td>
+                 </tr>
+             `).join('');
 
             tableBody.innerHTML = playersHtml;
             applyFilter();
@@ -1298,6 +1327,36 @@ GAME: Cardinals @ Dodgers (10:10 PM ET) | HR Park Factor: 102
                         const teamId = teamContainer.dataset.teamId;
                         sortTeam(teamId, sortKey);
                     }
+                }
+            });
+
+            // Tab functionality
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabPanels = document.querySelectorAll('.tab-panel');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Deactivate all tabs
+                    tabButtons.forEach(btn => btn.classList.remove('active-tab'));
+                    tabPanels.forEach(panel => panel.style.display = 'none');
+
+                    // Activate the clicked tab
+                    button.classList.add('active-tab');
+                    const tabId = button.getAttribute('data-tab');
+                    document.getElementById(tabId).style.display = 'block';
+                });
+            });
+
+            // Toggle Tabs visibility
+            const toggleTabsBtn = document.getElementById('toggle-tabs-btn');
+            const tabsContainer = document.getElementById('tabs-container');
+
+            toggleTabsBtn.addEventListener('click', () => {
+                tabsContainer.classList.toggle('hidden');
+                if (tabsContainer.classList.contains('hidden')) {
+                    toggleTabsBtn.textContent = 'Show Top Reports';
+                } else {
+                    toggleTabsBtn.textContent = 'Hide Top Reports';
                 }
             });
         });
