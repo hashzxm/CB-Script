@@ -147,6 +147,16 @@
             border-color: #a5b4fc; /* indigo-400 */
             color: #a5b4fc; /* indigo-400 */
         }
+
+        /* Focus Mode Styles */
+        .focus-mode #page-header,
+        .focus-mode #tabs-container,
+        .focus-mode #main-footer {
+            display: none;
+        }
+        .focus-mode #report-container {
+            grid-template-columns: 1fr;
+        }
     </style>
 </head>
 <body class="p-4 sm:p-6 md:p-8">
@@ -160,7 +170,8 @@
             <button id="zxm-button" class="absolute top-0 right-0 px-4 py-2 text-sm bg-gray-800 text-white font-bold rounded-lg shadow-lg hover:bg-black focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-75 transition-all transform hover:scale-105">
                 zxm
             </button>
-            <header class="text-center mb-8">
+            
+            <header id="page-header" class="text-center mb-8">
                 <h1 class="text-3xl sm:text-4xl font-bold text-gray-800">Similarity Slut</h1>
                 <div class="flex flex-wrap justify-center items-center gap-2 mt-6">
                     <button id="toggle-tabs-btn" class="px-4 py-2 text-sm bg-purple-600 text-white font-semibold rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-75 toggle-btn">
@@ -177,6 +188,16 @@
                     </button>
                 </div>
             </header>
+
+            <div id="focus-controls" class="my-6 text-center">
+                 <div class="max-w-md mx-auto">
+                    <select id="game-selector" class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                        </select>
+                </div>
+                <button id="go-back-btn" class="hidden mt-4 px-4 py-2 bg-gray-600 text-white font-semibold rounded-lg shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-75">
+                    ← Go Back to Full Report
+                </button>
+            </div>
 
             <div id="tabs-container" class="mb-8">
                 <div class="border-b border-gray-200 dark:border-gray-700">
@@ -201,7 +222,7 @@
 
 
             <main id="report-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                </main>
+            </main>
             
             <div id="no-data-message" class="hidden text-center py-16">
                 <p class="text-xl text-gray-500">No matching players found for this filter.</p>
@@ -209,7 +230,7 @@
 
         </div>
         
-        <footer class="mt-12 text-center">
+        <footer id="main-footer" class="mt-12 text-center">
             <iframe src="https://giphy.com/embed/krkrHAEodHgzP72rTI" width="480" height="269" style="max-width: 100%;" frameBorder="0" class="giphy-embed mx-auto" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/disneyplus-krkrHAEodHgzP72rTI" class="text-xs text-gray-500 dark:text-gray-400">via GIPHY</a></p>
         </footer>
     </div>
@@ -1070,6 +1091,7 @@ GAME: Cardinals @ Dodgers (10:10 PM ET) | HR Park Factor: 102
                 const gameCard = document.createElement('div');
                 gameCard.className = 'card border overflow-hidden rounded-lg shadow-md transition-all duration-300';
                 
+                gameCard.dataset.gameTitle = game.title;
                 gameCard.dataset.hasHigh90day = game.hasHigh90Day;
                 gameCard.dataset.hasHigh2year = game.hasHigh2Year;
                 gameCard.dataset.hasHighCompscore = game.hasHighCompScore;
@@ -1271,6 +1293,7 @@ GAME: Cardinals @ Dodgers (10:10 PM ET) | HR Park Factor: 102
             const toggle2yearBtn = document.getElementById('toggle-2year-btn');
             const toggleCompscoreBtn = document.getElementById('toggle-compscore-btn');
             const zxmButton = document.getElementById('zxm-button');
+            const body = document.body;
 
             // Set the initial state of the theme toggle icons
             if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -1358,6 +1381,59 @@ GAME: Cardinals @ Dodgers (10:10 PM ET) | HR Park Factor: 102
                 } else {
                     toggleTabsBtn.textContent = 'Hide Top Reports';
                 }
+            });
+
+            // --- Game Selector Functionality ---
+            const gameSelector = document.getElementById('game-selector');
+            const goBackButton = document.getElementById('go-back-btn');
+
+            // Populate selector
+            const defaultOption = document.createElement('option');
+            defaultOption.textContent = '-- Select a Game to Focus On --';
+            defaultOption.value = "";
+            defaultOption.disabled = true;
+            defaultOption.selected = true;
+            gameSelector.appendChild(defaultOption);
+
+            allGamesData.forEach(game => {
+                const option = document.createElement('option');
+                option.value = game.title;
+                option.textContent = game.title;
+                gameSelector.appendChild(option);
+            });
+
+            // Handle selection change
+            gameSelector.addEventListener('change', (event) => {
+                const selectedGameTitle = event.target.value;
+                if (!selectedGameTitle) return;
+
+                body.classList.add('focus-mode');
+                goBackButton.classList.remove('hidden');
+
+                const allGameCards = document.querySelectorAll('#report-container .card');
+                allGameCards.forEach(card => {
+                    if (card.dataset.gameTitle === selectedGameTitle) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+
+            // Handle Go Back button click
+            goBackButton.addEventListener('click', () => {
+                body.classList.remove('focus-mode');
+                goBackButton.classList.add('hidden');
+                gameSelector.value = ""; // Reset dropdown
+                
+                // Show all cards again
+                const allGameCards = document.querySelectorAll('#report-container .card');
+                allGameCards.forEach(card => {
+                    card.style.display = 'block';
+                });
+                
+                // Re-apply any active filters
+                applyFilter();
             });
         });
     </script>
