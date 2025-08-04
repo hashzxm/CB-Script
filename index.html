@@ -231,6 +231,12 @@
         </div>
         
         <footer id="main-footer" class="mt-12 text-center">
+            <div class="disclaimer my-6 max-w-2xl mx-auto p-4 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-800">
+                <p class="text-sm text-gray-600 dark:text-gray-400 font-semibold text-center">Disclaimer</p>
+                <p class="text-xs text-gray-500 dark:text-gray-400 italic text-center mt-2">
+                    This report is generated for entertainment and data analysis purposes only. The predictions and similarities are based on statistical models and historical data, and they are not guaranteed to be accurate. This is not gambling advice. Please bet responsibly and within your means.
+                </p>
+            </div>
             <iframe src="https://giphy.com/embed/krkrHAEodHgzP72rTI" width="480" height="269" style="max-width: 100%;" frameBorder="0" class="giphy-embed mx-auto" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/disneyplus-krkrHAEodHgzP72rTI" class="text-xs text-gray-500 dark:text-gray-400">via GIPHY</a></p>
         </footer>
     </div>
@@ -242,7 +248,7 @@
         let activeFilter = 'none'; // 'none', '90day', '2year', 'compscore'
 
         const strikeoutPredictionsText = `
-⚾ Pitcher Strikeout Predictions ⚾
+⚾ Pitcher Strikeout Predictions (v2.0) ⚾
 
 - Cade Povich: 7.36
 - Max Fried: 6.99
@@ -251,22 +257,22 @@
 - Yusei Kikuchi: 5.33
 - Sean Manaea: 5.29
 - Nick Lodolo: 5.27
-- Quinn Priester: 5.22
+- Quinn Priester: 5.04
 - Casey Mize: 4.89
 - Tyler Glasnow: 4.85
-- Patrick Corbin: 4.69
+- Patrick Corbin: 4.68
 - Slade Cecconi: 4.67
 - Eric Lauer: 4.38
 - JP Sears: 4.27
 - Justin Verlander: 3.97
 - Brandon Pfaadt: 3.95
 - Johan Oviedo: 3.93
-- Brayan Bello: 3.89
+- Brayan Bello: 3.88
+- Darren McCaughan: 3.69
+- Bailey Falter: 3.44
 - Adrian Houser: 3.4
-- Bailey Falter: 3.36
 - Jason Alexander: 3.3
-- Travis Adams: 3.24
-- Erick Fedde: 3.03
+- Erick Fedde: 3.07
 - Tanner Gordon: 2.84
 `;
 
@@ -274,111 +280,113 @@
 ========================================================================================================================
                              BATTER SIMILARITY REPORT - 2025-08-04 - RANKED BY 90-DAY SCORE                             
 ========================================================================================================================
-  Rank  | Batter                    | Pitcher                   | 90-Day Sim    |   2-Year Sim    | Game                          
+  Rank  | Batter                    | Pitcher                   |   90-Day Sim    |   2-Year Sim    | Game                          
   ----- | ------------------------- | ------------------------- | --------------- | --------------- | ------------------------------
-  #1    | J. T. Realmuto            | Cade Povich               | 100.0/100    |    94.1/100     | Orioles @ Phillies            
-  #2    | Bobby Witt                | Brayan Bello              | 97.4/100     |    74.8/100     | Royals @ Red Sox              
-  #3    | Maikel García             | Brayan Bello              | 93.7/100     |    94.2/100     | Royals @ Red Sox              
-  #4    | Vladimir Guerrero         | Tanner Gordon             | 93.2/100     |    69.3/100     | Blue Jays @ Rockies           
-  #5    | Jazz Chisholm             | Patrick Corbin            |    90.5/100     | 83.9/100     | Yankees @ Rangers             
-  #6    | Fernando Tatís            | Brandon Pfaadt            |    88.0/100     | 72.9/100     | Padres @ Diamondbacks         
-  #7    | Josh Jung                 | Max Fried                 | 86.2/100     |    68.6/100     | Yankees @ Rangers             
-  #8    | Luis Arráez               | Brandon Pfaadt            |    84.7/100     | 75.4/100     | Padres @ Diamondbacks         
-  #9    | Brandon Nimmo             | Slade Cecconi             | 80.8/100     |    56.9/100     | Guardians @ Mets              
-  #10   | Carlos Narváez            | Bailey Falter             | 77.2/100     |    53.9/100     | Royals @ Red Sox              
-  #11   | Victor Scott              | Tyler Glasnow             | 76.5/100     |    15.6/100     | Cardinals @ Dodgers           
-  #12   | Mike Yastrzemski          | Brayan Bello              | 71.3/100     |    74.2/100     | Royals @ Red Sox              
-  #13   | Sam Haggerty              | Max Fried                 | 69.5/100     |    53.6/100     | Yankees @ Rangers             
-  #14   | Jake Cronenworth          | Brandon Pfaadt            |    69.5/100     | 72.2/100     | Padres @ Diamondbacks         
-  #15   | Salvador Pérez            | Brayan Bello              | 69.2/100     |    57.5/100     | Royals @ Red Sox              
-  #16   | Angel Martínez            | Sean Manaea               | 68.3/100     |    44.9/100     | Guardians @ Mets              
-  #17   | Shohei Ohtani             | Sonny Gray                | 67.7/100     |    27.1/100     | Cardinals @ Dodgers           
-  #18   | Bryan Reynolds            | Justin Verlander          |    65.7/100     | 57.7/100     | Giants @ Pirates              
-  #19   | Cedric Mullins            | Slade Cecconi             | 65.6/100     |    64.7/100     | Guardians @ Mets              
-  #20   | Matt Shaw                 | Nick Lodolo               | 65.3/100     |    36.5/100     | Reds @ Cubs                   
-  #21   | Joey Ortiz                | Erick Fedde               | 64.9/100     |    39.3/100     | Brewers @ Braves              
-  #22   | Pete Alonso               | Slade Cecconi             | 64.7/100     |    51.1/100     | Guardians @ Mets              
-  #23   | Freddie Freeman           | Sonny Gray                | 64.2/100     |    43.7/100     | Cardinals @ Dodgers           
-  #24   | Xander Bogaerts           | Brandon Pfaadt            |    64.0/100     | 70.0/100     | Padres @ Diamondbacks         
-  #25   | Trevor Story              | Bailey Falter             | 63.9/100     |    59.3/100     | Royals @ Red Sox              
-  #26   | Jurickson Profar          | Quinn Priester            |    63.7/100     | 69.6/100     | Brewers @ Braves              
-  #27   | José Herrera              | JP Sears                  | 63.0/100     |     8.7/100     | Padres @ Diamondbacks         
-  #28   | Manny Machado             | Brandon Pfaadt            |    61.4/100     | 56.4/100     | Padres @ Diamondbacks         
-  #29   | Andy Pages                | Sonny Gray                | 61.0/100     |    55.3/100     | Cardinals @ Dodgers           
-  #30   | Austin Slater             | Patrick Corbin            |    60.4/100     | 49.2/100     | Yankees @ Rangers             
-  #31   | Kyle Higashioka           | Max Fried                 | 60.3/100     |    58.6/100     | Yankees @ Rangers             
-  #32   | Jarren Duran              | Bailey Falter             | 60.2/100     |    46.2/100     | Royals @ Red Sox              
-  #33   | Teoscar Hernández         | Sonny Gray                | 59.9/100     |    64.8/100     | Cardinals @ Dodgers           
-  #34   | Alec Burleson             | Tyler Glasnow             | 59.4/100     |    33.9/100     | Cardinals @ Dodgers           
-  #35   | Brice Turang              | Erick Fedde               | 58.8/100     |    38.3/100     | Brewers @ Braves              
-  #36   | Jonah Heim                | Max Fried                 | 58.5/100     |    39.2/100     | Yankees @ Rangers             
-  #37   | Vinnie Pasquantino        | Brayan Bello              | 58.1/100     |    61.8/100     | Royals @ Red Sox              
-  #38   | Junior Caminero           | Yusei Kikuchi             | 57.1/100     |    57.9/100     | Rays @ Angels                 
-  #39   | Willson Contreras         | Tyler Glasnow             | 56.8/100     |    48.2/100     | Cardinals @ Dodgers           
-  #40   | Otto Lopez                | Jason Alexander           |    56.8/100     | 31.5/100     | Astros @ Marlins              
-  #41   | Ben Rice                  | Patrick Corbin            |    56.6/100     | 46.4/100     | Yankees @ Rangers             
-  #42   | Christian Yelich          | Erick Fedde               | 56.4/100     |    36.9/100     | Brewers @ Braves              
-  #43   | Andrew McCutchen          | Justin Verlander          |    56.1/100     | 61.0/100     | Giants @ Pirates              
-  #44   | Caleb Durbin              | Erick Fedde               | 56.1/100     |    11.2/100     | Brewers @ Braves              
-  #45   | Paul Goldschmidt          | Patrick Corbin            |    55.9/100     | 52.2/100     | Yankees @ Rangers             
-  #46   | Nolan Gorman              | Tyler Glasnow             | 55.7/100     |    57.5/100     | Cardinals @ Dodgers           
-  #47   | Oneil Cruz                | Justin Verlander          |    55.5/100     | 41.8/100     | Giants @ Pirates              
-  #48   | Freddy Fermin             | Brandon Pfaadt            |    55.2/100     | 49.9/100     | Padres @ Diamondbacks         
-  #49   | Kyle Isbel                | Brayan Bello              | 55.0/100     |    65.8/100     | Royals @ Red Sox              
-  #50   | Max Muncy                 | Sonny Gray                | 54.9/100     |    38.9/100     | Cardinals @ Dodgers           
-  #51   | Michael Harris            | Quinn Priester            |    54.7/100     | 95.9/100     | Brewers @ Braves              
-  #52   | Royce Lewis               | Casey Mize                | 54.3/100     |    33.6/100     | Twins @ Tigers                
-  #53   | Josh Lowe                 | Yusei Kikuchi             | 54.2/100     |    49.0/100     | Rays @ Angels                 
-  #54   | Thairo Estrada            | Eric Lauer                | 54.1/100     |    12.5/100     | Blue Jays @ Rockies           
-  #55   | Matt Olson                | Quinn Priester            |    54.1/100     | 32.4/100     | Brewers @ Braves              
-  #56   | Christopher Morel         | Yusei Kikuchi             | 53.8/100     |    43.3/100     | Rays @ Angels                 
-  #57   | Anthony Volpe             | Patrick Corbin            |    53.7/100     | 60.9/100     | Yankees @ Rangers             
-  #58   | Bryce Harper              | Cade Povich               | 53.6/100     |    22.7/100     | Orioles @ Phillies            
-  #59   | Abraham Toro              | Bailey Falter             | 53.2/100     |    38.0/100     | Royals @ Red Sox              
-  #60   | Spencer Steer             | Michael Soroka            |    53.1/100     | 38.5/100     | Reds @ Cubs                   
-  #61   | Carlos Santana            | Sean Manaea               | 52.9/100     |    63.9/100     | Guardians @ Mets              
-  #62   | Addison Barger            | Tanner Gordon             | 52.7/100     |    67.2/100     | Blue Jays @ Rockies           
-  #63   | Trevor Larnach            | Casey Mize                | 52.3/100     |    36.4/100     | Twins @ Tigers                
-  #64   | Sal Frelick               | Erick Fedde               | 52.0/100     |    50.6/100     | Brewers @ Braves              
-  #65   | Roman Anthony             | Bailey Falter             | 52.0/100     |    26.4/100     | Royals @ Red Sox              
-  #66   | Spencer Horwitz           | Justin Verlander          |    51.8/100     | 39.7/100     | Giants @ Pirates              
-  #67   | Ramón Laureano            | Brandon Pfaadt            |    51.8/100     | 42.2/100     | Padres @ Diamondbacks         
-  #68   | Ronny Mauricio            | Slade Cecconi             | 51.7/100     |    34.9/100     | Guardians @ Mets              
-  #69   | Francisco Lindor          | Slade Cecconi             | 51.5/100     |    41.0/100     | Guardians @ Mets              
-  #70   | Masyn Winn                | Tyler Glasnow             | 51.2/100     |    29.8/100     | Cardinals @ Dodgers           
-  #71   | Corey Seager              | Max Fried                 | 50.6/100     |    42.9/100     | Yankees @ Rangers             
-  #72   | Adolis García             | Max Fried                 | 50.5/100     |    50.9/100     | Yankees @ Rangers             
-  #73   | Gustavo Campero           | Adrian Houser             | 50.3/100     |    29.0/100     | Rays @ Angels                 
-  #74   | Agustín Ramírez           | Jason Alexander           |    50.2/100     | 28.5/100     | Astros @ Marlins              
-  #75   | Adley Rutschman           | Jesús Luzardo             | 50.2/100     |    24.6/100     | Orioles @ Phillies            
-  #76   | Carson Kelly              | Nick Lodolo               | 50.1/100     |    45.6/100     | Reds @ Cubs                   
-  #77   | Andrew Vaughn             | Erick Fedde               | 49.6/100     |    36.0/100     | Brewers @ Braves              
-  #78   | Drake Baldwin             | Quinn Priester            |    49.5/100     | 31.9/100     | Brewers @ Braves              
-  #79   | Rob Refsnyder             | Bailey Falter             | 49.4/100     |    50.9/100     | Royals @ Red Sox              
-  #80   | Jackson Merrill           | Brandon Pfaadt            |    49.0/100     | 48.5/100     | Padres @ Diamondbacks         
-  #81   | Ryan O'Hearn              | Brandon Pfaadt            |    49.0/100     | 66.7/100     | Padres @ Diamondbacks         
-  #82   | Henry Davis               | Justin Verlander          |    48.9/100     | 38.1/100     | Giants @ Pirates              
-  #83   | Christian Moore           | Adrian Houser             | 48.3/100     |    14.9/100     | Rays @ Angels                 
-  #84   | Wyatt Langford            | Max Fried                 | 48.1/100     |    35.4/100     | Yankees @ Rangers             
-  #85   | Mark Vientos              | Slade Cecconi             | 47.3/100     |    72.7/100     | Guardians @ Mets              
-  #86   | Harrison Bader            | Cade Povich               | 47.1/100     |    42.7/100     | Orioles @ Phillies            
-  #87   | Michael Conforto          | Sonny Gray                | 46.8/100     |    72.7/100     | Cardinals @ Dodgers           
-  #88   | Jordan Beck               | Eric Lauer                | 46.4/100     |    18.4/100     | Blue Jays @ Rockies           
-  #89   | Hunter Goodman            | Eric Lauer                | 46.4/100     |    23.0/100     | Blue Jays @ Rockies           
-  #90   | Brooks Lee                | Casey Mize                | 46.0/100     |    52.8/100     | Twins @ Tigers                
-  #91   | Jonathan India            | Brayan Bello              | 46.0/100     |    43.5/100     | Royals @ Red Sox              
-  #92   | Kody Clemens              | Casey Mize                | 45.2/100     |    34.4/100     | Twins @ Tigers                
-  #93   | Cody Bellinger            | Patrick Corbin            |    45.0/100     | 50.2/100     | Yankees @ Rangers             
-  #94   | Justin Turner             | Nick Lodolo               | 44.7/100     |    65.2/100     | Reds @ Cubs                   
-  #95   | Nick Castellanos          | Cade Povich               | 44.7/100     |    36.7/100     | Orioles @ Phillies            
-  #96   | William Contreras         | Erick Fedde               | 44.5/100     |    48.2/100     | Brewers @ Braves              
-  #97   | Iván Herrera              | Tyler Glasnow             | 44.2/100     |    28.7/100     | Cardinals @ Dodgers           
-  #98   | Lars Nootbaar             | Tyler Glasnow             | 44.1/100     |    39.1/100     | Cardinals @ Dodgers           
-  #99   | Geraldo Perdomo           | JP Sears                  | 43.9/100     |    62.7/100     | Padres @ Diamondbacks         
-  #100  | Nolan Schanuel            | Adrian Houser             | 43.6/100     |    30.0/100     | Rays @ Angels                 
+  #1    | J. T. Realmuto            | Cade Povich               |    100.0/100    |    94.1/100     | Orioles @ Phillies            
+  #2    | Bobby Witt                | Brayan Bello              |    97.4/100     |    74.8/100     | Royals @ Red Sox              
+  #3    | Maikel García             | Brayan Bello              |    93.7/100     |    94.2/100     | Royals @ Red Sox              
+  #4    | Vladimir Guerrero         | Tanner Gordon             |    93.2/100     |    69.3/100     | Blue Jays @ Rockies           
+  #5    | Jazz Chisholm             | Patrick Corbin            |    90.5/100     |    83.9/100     | Yankees @ Rangers             
+  #6    | Fernando Tatís            | Brandon Pfaadt            |    88.0/100     |    72.9/100     | Padres @ Diamondbacks         
+  #7    | Josh Jung                 | Max Fried                 |    86.2/100     |    68.6/100     | Yankees @ Rangers             
+  #8    | Luis Arráez               | Brandon Pfaadt            |    84.7/100     |    75.4/100     | Padres @ Diamondbacks         
+  #9    | Brandon Nimmo             | Slade Cecconi             |    80.8/100     |    56.9/100     | Guardians @ Mets              
+  #10   | Victor Scott              | Tyler Glasnow             |    76.5/100     |    15.6/100     | Cardinals @ Dodgers           
+  #11   | Nacho Alvarez             | Quinn Priester            |    71.4/100     |    67.5/100     | Brewers @ Braves              
+  #12   | Mike Yastrzemski          | Brayan Bello              |    71.3/100     |    74.2/100     | Royals @ Red Sox              
+  #13   | Sam Haggerty              | Max Fried                 |    69.5/100     |    53.6/100     | Yankees @ Rangers             
+  #14   | Jake Cronenworth          | Brandon Pfaadt            |    69.5/100     |    72.2/100     | Padres @ Diamondbacks         
+  #15   | Salvador Pérez            | Brayan Bello              |    69.2/100     |    57.5/100     | Royals @ Red Sox              
+  #16   | Angel Martínez            | Sean Manaea               |    68.3/100     |    44.9/100     | Guardians @ Mets              
+  #17   | Shohei Ohtani             | Sonny Gray                |    67.7/100     |    27.1/100     | Cardinals @ Dodgers           
+  #18   | Bryan Reynolds            | Justin Verlander          |    65.7/100     |    57.7/100     | Giants @ Pirates              
+  #19   | Cedric Mullins            | Slade Cecconi             |    65.6/100     |    64.7/100     | Guardians @ Mets              
+  #20   | Matt Shaw                 | Nick Lodolo               |    65.3/100     |    36.5/100     | Reds @ Cubs                   
+  #21   | Joey Ortiz                | Erick Fedde               |    64.9/100     |    39.3/100     | Brewers @ Braves              
+  #22   | John Rave                 | Brayan Bello              |    64.8/100     |    17.8/100     | Royals @ Red Sox              
+  #23   | Pete Alonso               | Slade Cecconi             |    64.7/100     |    51.1/100     | Guardians @ Mets              
+  #24   | Freddie Freeman           | Sonny Gray                |    64.2/100     |    43.7/100     | Cardinals @ Dodgers           
+  #25   | Xander Bogaerts           | Brandon Pfaadt            |    64.0/100     |    70.0/100     | Padres @ Diamondbacks         
+  #26   | Trevor Story              | Bailey Falter             |    63.9/100     |    59.3/100     | Royals @ Red Sox              
+  #27   | Jurickson Profar          | Quinn Priester            |    63.7/100     |    69.6/100     | Brewers @ Braves              
+  #28   | Josh Smith                | Max Fried                 |    63.1/100     |    57.1/100     | Yankees @ Rangers             
+  #29   | José Herrera              | JP Sears                  |    63.0/100     |     8.7/100     | Padres @ Diamondbacks         
+  #30   | Manny Machado             | Brandon Pfaadt            |    61.4/100     |    56.4/100     | Padres @ Diamondbacks         
+  #31   | Andy Pages                | Sonny Gray                |    61.0/100     |    55.3/100     | Cardinals @ Dodgers           
+  #32   | Austin Slater             | Patrick Corbin            |    60.4/100     |    49.2/100     | Yankees @ Rangers             
+  #33   | Jarren Duran              | Bailey Falter             |    60.2/100     |    46.2/100     | Royals @ Red Sox              
+  #34   | Teoscar Hernández         | Sonny Gray                |    59.9/100     |    64.8/100     | Cardinals @ Dodgers           
+  #35   | Alec Burleson             | Tyler Glasnow             |    59.4/100     |    33.9/100     | Cardinals @ Dodgers           
+  #36   | Brice Turang              | Erick Fedde               |    58.8/100     |    38.3/100     | Brewers @ Braves              
+  #37   | Jonah Heim                | Max Fried                 |    58.5/100     |    39.2/100     | Yankees @ Rangers             
+  #38   | Vinnie Pasquantino        | Brayan Bello              |    58.1/100     |    61.8/100     | Royals @ Red Sox              
+  #39   | Willi Castro              | Nick Lodolo               |    57.4/100     |    62.2/100     | Reds @ Cubs                   
+  #40   | Junior Caminero           | Yusei Kikuchi             |    57.1/100     |    57.9/100     | Rays @ Angels                 
+  #41   | Willson Contreras         | Tyler Glasnow             |    56.8/100     |    48.2/100     | Cardinals @ Dodgers           
+  #42   | Otto Lopez                | Jason Alexander           |    56.8/100     |    31.5/100     | Astros @ Marlins              
+  #43   | Christian Yelich          | Erick Fedde               |    56.4/100     |    36.9/100     | Brewers @ Braves              
+  #44   | Austin Wells              | Patrick Corbin            |    56.1/100     |    58.4/100     | Yankees @ Rangers             
+  #45   | Colt Keith                | Darren McCaughan          |    56.1/100     |    48.2/100     | Twins @ Tigers                
+  #46   | Andrew McCutchen          | Justin Verlander          |    56.1/100     |    61.0/100     | Giants @ Pirates              
+  #47   | Paul Goldschmidt          | Patrick Corbin            |    55.9/100     |    52.2/100     | Yankees @ Rangers             
+  #48   | Nolan Gorman              | Tyler Glasnow             |    55.7/100     |    57.5/100     | Cardinals @ Dodgers           
+  #49   | Oneil Cruz                | Justin Verlander          |    55.5/100     |    41.8/100     | Giants @ Pirates              
+  #50   | Freddy Fermin             | Brandon Pfaadt            |    55.2/100     |    49.9/100     | Padres @ Diamondbacks         
+  #51   | Kyle Isbel                | Brayan Bello              |    55.0/100     |    65.8/100     | Royals @ Red Sox              
+  #52   | Max Muncy                 | Sonny Gray                |    54.9/100     |    38.9/100     | Cardinals @ Dodgers           
+  #53   | Michael Harris            | Quinn Priester            |    54.7/100     |    95.9/100     | Brewers @ Braves              
+  #54   | Royce Lewis               | Casey Mize                |    54.3/100     |    33.6/100     | Twins @ Tigers                
+  #55   | Josh Lowe                 | Yusei Kikuchi             |    54.2/100     |    49.0/100     | Rays @ Angels                 
+  #56   | Thairo Estrada            | Eric Lauer                |    54.1/100     |    12.5/100     | Blue Jays @ Rockies           
+  #57   | Matt Olson                | Quinn Priester            |    54.1/100     |    32.4/100     | Brewers @ Braves              
+  #58   | Christopher Morel         | Yusei Kikuchi             |    53.8/100     |    43.3/100     | Rays @ Angels                 
+  #59   | Anthony Volpe             | Patrick Corbin            |    53.7/100     |    60.9/100     | Yankees @ Rangers             
+  #60   | Bryce Harper              | Cade Povich               |    53.6/100     |    22.7/100     | Orioles @ Phillies            
+  #61   | Abraham Toro              | Bailey Falter             |    53.2/100     |    38.0/100     | Royals @ Red Sox              
+  #62   | Spencer Steer             | Michael Soroka            |    53.1/100     |    38.5/100     | Reds @ Cubs                   
+  #63   | Carlos Santana            | Sean Manaea               |    52.9/100     |    63.9/100     | Guardians @ Mets              
+  #64   | Addison Barger            | Tanner Gordon             |    52.7/100     |    67.2/100     | Blue Jays @ Rockies           
+  #65   | Trevor Larnach            | Casey Mize                |    52.3/100     |    36.4/100     | Twins @ Tigers                
+  #66   | Roman Anthony             | Bailey Falter             |    52.0/100     |    26.4/100     | Royals @ Red Sox              
+  #67   | Spencer Horwitz           | Justin Verlander          |    51.8/100     |    39.7/100     | Giants @ Pirates              
+  #68   | Ramón Laureano            | Brandon Pfaadt            |    51.8/100     |    42.2/100     | Padres @ Diamondbacks         
+  #69   | Ronny Mauricio            | Slade Cecconi             |    51.7/100     |    34.9/100     | Guardians @ Mets              
+  #70   | Francisco Lindor          | Slade Cecconi             |    51.5/100     |    41.0/100     | Guardians @ Mets              
+  #71   | Masyn Winn                | Tyler Glasnow             |    51.2/100     |    29.8/100     | Cardinals @ Dodgers           
+  #72   | Corey Seager              | Max Fried                 |    50.6/100     |    42.9/100     | Yankees @ Rangers             
+  #73   | Adolis García             | Max Fried                 |    50.5/100     |    50.9/100     | Yankees @ Rangers             
+  #74   | Gustavo Campero           | Adrian Houser             |    50.3/100     |    29.0/100     | Rays @ Angels                 
+  #75   | Agustín Ramírez           | Jason Alexander           |    50.2/100     |    28.5/100     | Astros @ Marlins              
+  #76   | Adley Rutschman           | Jesús Luzardo             |    50.2/100     |    24.6/100     | Orioles @ Phillies            
+  #77   | Carson Kelly              | Nick Lodolo               |    50.1/100     |    45.6/100     | Reds @ Cubs                   
+  #78   | Andrew Vaughn             | Erick Fedde               |    49.6/100     |    36.0/100     | Brewers @ Braves              
+  #79   | Drake Baldwin             | Quinn Priester            |    49.5/100     |    31.9/100     | Brewers @ Braves              
+  #80   | Rob Refsnyder             | Bailey Falter             |    49.4/100     |    50.9/100     | Royals @ Red Sox              
+  #81   | Jackson Merrill           | Brandon Pfaadt            |    49.0/100     |    48.5/100     | Padres @ Diamondbacks         
+  #82   | Ryan O'Hearn              | Brandon Pfaadt            |    49.0/100     |    66.7/100     | Padres @ Diamondbacks         
+  #83   | Henry Davis               | Justin Verlander          |    48.9/100     |    38.1/100     | Giants @ Pirates              
+  #84   | Christian Moore           | Adrian Houser             |    48.3/100     |    14.9/100     | Rays @ Angels                 
+  #85   | Wyatt Langford            | Max Fried                 |    48.1/100     |    35.4/100     | Yankees @ Rangers             
+  #86   | José Caballero            | Patrick Corbin            |    47.9/100     |    49.5/100     | Yankees @ Rangers             
+  #87   | Mark Vientos              | Slade Cecconi             |    47.3/100     |    72.7/100     | Guardians @ Mets              
+  #88   | Harrison Bader            | Cade Povich               |    47.1/100     |    42.7/100     | Orioles @ Phillies            
+  #89   | Michael Conforto          | Sonny Gray                |    46.8/100     |    72.7/100     | Cardinals @ Dodgers           
+  #90   | Jordan Beck               | Eric Lauer                |    46.4/100     |    18.4/100     | Blue Jays @ Rockies           
+  #91   | Hunter Goodman            | Eric Lauer                |    46.4/100     |    23.0/100     | Blue Jays @ Rockies           
+  #92   | Brooks Lee                | Casey Mize                |    46.0/100     |    52.8/100     | Twins @ Tigers                
+  #93   | Jonathan India            | Brayan Bello              |    46.0/100     |    43.5/100     | Royals @ Red Sox              
+  #94   | Kody Clemens              | Casey Mize                |    45.2/100     |    34.4/100     | Twins @ Tigers                
+  #95   | Cody Bellinger            | Patrick Corbin            |    45.0/100     |    50.2/100     | Yankees @ Rangers             
+  #96   | Zach McKinstry            | Darren McCaughan          |    44.9/100     |    35.8/100     | Twins @ Tigers                
+  #97   | Spencer Torkelson         | Darren McCaughan          |    44.9/100     |    43.6/100     | Twins @ Tigers                
+  #98   | Justin Turner             | Nick Lodolo               |    44.7/100     |    65.2/100     | Reds @ Cubs                   
+  #99   | Nick Castellanos          | Cade Povich               |    44.7/100     |    36.7/100     | Orioles @ Phillies            
+  #100  | William Contreras         | Erick Fedde               |    44.5/100     |    48.2/100     | Brewers @ Braves              
+          
 `;
         // Raw text data from the new report
         const reportText = `
+
 ========================================================================================================================
                                        HOME RUN PREDICTION REPORT FOR 2025-08-04                                        
 ========================================================================================================================
@@ -394,24 +402,24 @@
   #229  | Andy Pages           | Sonny Gray           |      32.66%     |      20.25%     |      44.95%     |      54.11%    
   #164  | Addison Barger       | Tanner Gordon        |      37.87%     |      9.92%      |      32.29%     |      50.72%    
   #4    | Kody Clemens         | Casey Mize           |      59.78%     |      11.03%     |      17.74%     |      44.74%    
-  #6    | Royce Lewis          | Casey Mize           |      29.22%     |      14.48%     |      32.12%     |      12.97%    
-  #129  | Ben Rice             | Patrick Corbin       |      7.15%      |      12.80%     |      44.17%     |      10.95%    
+  #131  | Austin Wells         | Patrick Corbin       |      12.10%     |      29.46%     |      59.94%     |      25.78%    
+  #5    | Royce Lewis          | Casey Mize           |      29.22%     |      14.48%     |      32.12%     |      12.97%    
 
 ========================================================================================================================
 GAME: Twins @ Tigers (6:40 PM ET) | HR Park Factor: 99
 ------------------------------------------------------------------------------------------------------------------------
-  Tigers Batters vs. Travis Adams (Last 90d: 59 PA | 8.5% K | 5.1% BB | 3 BB | 1.7% HR)
+  Tigers Batters vs. Darren McCaughan (Low Data)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Kerry Carpenter           |      2.19%      |      0.23%      |      2/100     
-  Zach McKinstry            |      0.14%      |      1.05%      |      2/100     
-  Colt Keith                |      0.07%      |      1.31%      |      2/100     
-  Wenceel Pérez             |      0.03%      |      1.24%      |      2/100     
-  Javier Báez               |      0.01%      |      0.82%      |      2/100     
-  Dillon Dingler            |      0.01%      |      0.36%      |      2/100     
-  Gleyber Torres            |      0.01%      |      0.35%      |      2/100     
-  Riley Greene              |      0.01%      |      0.02%      |      2/100     
-  Spencer Torkelson         |      0.00%      |      0.23%      |      2/100     
+  Colt Keith                |     Low Data    |      0.22%      |      49/100    
+  Gleyber Torres            |     Low Data    |      0.68%      |      24/100    
+  Kerry Carpenter           |     Low Data    |      0.27%      |      19/100    
+  Riley Greene              |     Low Data    |      0.44%      |      52/100    
+  Spencer Torkelson         |     Low Data    |      2.06%      |      47/100    
+  Wenceel Pérez             |     Low Data    |      0.18%      |      28/100    
+  Zach McKinstry            |     Low Data    |      0.87%      |      37/100    
+  Dillon Dingler            |     Low Data    |      0.02%      |      14/100    
+  Javier Báez               |     Low Data    |      0.04%      |      13/100    
 
 ------------------------------------------------------------------------------------------------------------------------
   Twins Batters vs. Casey Mize (Last 90d: 259 PA | 11.2% K | 6.2% BB | 16 BB | 2.3% HR)
@@ -451,9 +459,9 @@ GAME: Giants @ Pirates (6:40 PM ET) | HR Park Factor: 99
   Rafael Devers             |     Low Data    |      0.61%      |      6/100     
   Willy Adames              |     Low Data    |      59.71%     |      6/100     
   Matt Chapman              |     Low Data    |      0.15%      |      6/100     
-  Jung Hoo Lee              |     Low Data    |      0.60%      |      11/100    
-  Wilmer Flores             |     Low Data    |      1.17%      |      13/100    
+  Dominic Smith             |     Low Data    |      0.24%      |      18/100    
   Casey Schmitt             |     Low Data    |      0.12%      |      24/100    
+  Jung Hoo Lee              |     Low Data    |      0.60%      |      11/100    
   Patrick Bailey            |     Low Data    |      0.08%      |      15/100    
   Grant McCray              |     Low Data    |      2.64%      |      4/100     
 
@@ -475,7 +483,7 @@ GAME: Astros @ Marlins (6:40 PM ET) | HR Park Factor: 101
   Astros Batters vs. Sandy Alcántara (Last 90d: 361 PA | 15.8% K | 6.9% BB | 25 BB | 2.5% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Mauricio Dubón            |      0.02%      |      0.00%      |     Low Data   
+  Víctor Caratini           |      0.01%      |      5.79%      |     Low Data   
   Yainer Diaz               |      0.00%      |      0.00%      |     Low Data   
   Taylor Trammell           |      0.00%      |      0.01%      |     Low Data   
   Carlos Correa             |      0.00%      |      0.00%      |     Low Data   
@@ -498,7 +506,7 @@ GAME: Orioles @ Phillies (6:45 PM ET) | HR Park Factor: 101
   Trea Turner               |      0.31%      |      0.00%      |      30/100    
   Nick Castellanos          |      0.15%      |      0.00%      |      37/100    
   Kyle Schwarber            |      0.08%      |      0.00%      |      13/100    
-  Brandon Marsh             |      0.06%      |      0.01%      |      41/100    
+  Weston Wilson             |      0.01%      |      0.00%      |      34/100    
   J. T. Realmuto            |      0.00%      |      0.00%      |      94/100    
 
 ------------------------------------------------------------------------------------------------------------------------
@@ -523,11 +531,11 @@ GAME: Royals @ Red Sox (7:10 PM ET) | HR Park Factor: 105
   Roman Anthony             |      0.05%      |      0.75%      |      29/100    
   Jarren Duran              |      0.01%      |      0.02%      |      47/100    
   Abraham Toro              |      0.01%      |      1.02%      |      39/100    
+  Connor Wong               |      0.01%      |      0.04%      |      60/100    
   Alex Bregman              |      0.00%      |      0.00%      |      49/100    
   Romy Gonzalez             |      0.00%      |      0.00%      |      57/100    
   Ceddanne Rafaela          |      0.00%      |      0.00%      |      49/100    
   Rob Refsnyder             |      0.00%      |      0.00%      |      55/100    
-  Carlos Narváez            |      0.00%      |      0.00%      |      58/100    
   Trevor Story              |      0.00%      |      0.00%      |      59/100    
 
 ------------------------------------------------------------------------------------------------------------------------
@@ -541,8 +549,8 @@ GAME: Royals @ Red Sox (7:10 PM ET) | HR Park Factor: 105
   Kyle Isbel                |      0.00%      |      0.01%      |      71/100    
   Adam Frazier              |      0.00%      |      0.05%      |     100/100    
   Mike Yastrzemski          |      0.00%      |      0.12%      |      74/100    
+  John Rave                 |      0.00%      |      0.24%      |      18/100    
   Jonathan India            |      0.00%      |      0.02%      |      44/100    
-  Randal Grichuk            |      0.00%      |      0.02%      |      24/100    
 
 ========================================================================================================================
 GAME: Guardians @ Mets (7:10 PM ET) | HR Park Factor: 98
@@ -566,9 +574,9 @@ GAME: Guardians @ Mets (7:10 PM ET) | HR Park Factor: 98
   ------------------------- | --------------- | --------------- | ---------------
   David Fry                 |      0.04%      |      0.00%      |     Low Data   
   Carlos Santana            |      0.01%      |      0.01%      |     Low Data   
-  Daniel Schneemann         |      0.01%      |      1.71%      |     Low Data   
   Brayan Rocchio            |      0.01%      |      0.23%      |     Low Data   
   Austin Hedges             |      0.01%      |      0.19%      |     Low Data   
+  Nolan Jones               |      0.01%      |      0.20%      |     Low Data   
   Steven Kwan               |      0.01%      |      0.39%      |     Low Data   
   Gabriel Arias             |      0.01%      |      0.05%      |     Low Data   
   Angel Martínez            |      0.00%      |      0.06%      |     Low Data   
@@ -581,7 +589,7 @@ GAME: Brewers @ Braves (7:15 PM ET) | HR Park Factor: 100
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
   Ozzie Albies              |      0.05%      |      0.04%      |      41/100    
-  Luke Williams             |      0.01%      |      1.10%      |      22/100    
+  Nacho Alvarez             |      0.01%      |      1.11%      |      68/100    
   Nick Allen                |      0.01%      |      0.37%      |      31/100    
   Drake Baldwin             |      0.00%      |      0.10%      |      32/100    
   Jurickson Profar          |      0.00%      |      1.12%      |      70/100    
@@ -597,12 +605,12 @@ GAME: Brewers @ Braves (7:15 PM ET) | HR Park Factor: 100
   Christian Yelich          |      0.27%      |      0.00%      |      56/100    
   Brice Turang              |      0.27%      |      0.00%      |      39/100    
   Andrew Vaughn             |      0.13%      |      0.02%      |      39/100    
-  Sal Frelick               |      0.03%      |      0.00%      |      51/100    
   Isaac Collins             |      0.01%      |      0.17%      |      15/100    
   Blake Perkins             |      0.01%      |      0.09%      |      34/100    
+  Anthony Seigler           |      0.01%      |      1.11%      |      6/100     
+  Brandon Lockridge         |      0.01%      |      1.10%      |      24/100    
   William Contreras         |      0.00%      |      0.01%      |      49/100    
   Joey Ortiz                |      0.00%      |      0.01%      |      47/100    
-  Caleb Durbin              |      0.00%      |      0.07%      |      12/100    
 
 ========================================================================================================================
 GAME: Yankees @ Rangers (8:05 PM ET) | HR Park Factor: 98
@@ -611,11 +619,11 @@ GAME: Yankees @ Rangers (8:05 PM ET) | HR Park Factor: 98
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
   Corey Seager              |      0.02%      |      0.07%      |      43/100    
+  Josh Smith                |      0.01%      |      0.07%      |      58/100    
   Sam Haggerty              |      0.01%      |      1.07%      |      56/100    
   Ezequiel Duran            |      0.01%      |      1.08%      |      35/100    
   Wyatt Langford            |      0.00%      |      0.01%      |      36/100    
   Jonah Heim                |      0.00%      |      0.01%      |      42/100    
-  Kyle Higashioka           |      0.00%      |      0.00%      |     100/100    
   Josh Jung                 |      0.00%      |      0.03%      |      79/100    
   Adolis García             |      0.00%      |      0.03%      |      64/100    
   Marcus Semien             |      0.00%      |      0.03%      |      47/100    
@@ -624,13 +632,13 @@ GAME: Yankees @ Rangers (8:05 PM ET) | HR Park Factor: 98
   Yankees Batters vs. Patrick Corbin (Last 90d: 353 PA | 17.3% K | 6.8% BB | 24 BB | 2.8% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Ben Rice                  |      10.95%     |      0.14%      |     100/100    
+  Austin Wells              |      25.78%     |      8.23%      |      59/100    
   Cody Bellinger            |      4.93%      |      3.61%      |      50/100    
-  Trent Grisham             |      0.06%      |      0.04%      |      48/100    
-  Ryan McMahon              |      0.03%      |      0.08%      |      37/100    
+  Amed Rosario              |      0.01%      |      0.03%      |      44/100    
   Jazz Chisholm             |      0.01%      |      4.82%      |     100/100    
   Austin Slater             |      0.00%      |      0.02%      |     100/100    
   Paul Goldschmidt          |      0.00%      |      0.00%      |      54/100    
+  José Caballero            |      0.00%      |      0.02%      |     100/100    
   Anthony Volpe             |      0.00%      |      0.02%      |      68/100    
   Giancarlo Stanton         |      0.00%      |      0.00%      |      44/100    
 
@@ -640,7 +648,7 @@ GAME: Reds @ Cubs (8:05 PM ET) | HR Park Factor: 95
   Cubs Batters vs. Nick Lodolo (Last 90d: 348 PA | 21.8% K | 4.9% BB | 17 BB | 3.4% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Pete Crow-Armstrong       |      1.01%      |      0.04%      |      67/100    
+  Willi Castro              |      8.85%      |      0.03%      |      73/100    
   Kyle Tucker               |      0.55%      |      0.21%      |      42/100    
   Justin Turner             |      0.01%      |      0.01%      |      73/100    
   Seiya Suzuki              |      0.01%      |      0.00%      |      44/100    
@@ -672,10 +680,10 @@ GAME: Blue Jays @ Rockies (8:40 PM ET) | HR Park Factor: 112
   ------------------------- | --------------- | --------------- | ---------------
   Kyle Farmer               |      0.01%      |      0.01%      |      71/100    
   Tyler Freeman             |      0.01%      |      0.12%      |      17/100    
+  Braxton Fulford           |     Low Data    |      1.11%      |      9/100     
   Hunter Goodman            |      0.01%      |      0.00%      |      27/100    
   Thairo Estrada            |      0.00%      |      0.11%      |      18/100    
   Jordan Beck               |      0.00%      |      0.05%      |      21/100    
-  Orlando Arcia             |      0.00%      |      0.00%      |      66/100    
   Brenton Doyle             |      0.00%      |      0.01%      |      31/100    
   Warming Bernabel          |     Low Data    |     Low Data    |      2/100     
   Ezequiel Tovar            |      0.00%      |      0.00%      |      14/100    
