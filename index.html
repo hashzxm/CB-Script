@@ -400,410 +400,411 @@
 `;
         // Raw text data from the new report
         const reportText = `
-========================================================================================================================
-                                       HOME RUN PREDICTION REPORT FOR 2025-08-04                                        
-========================================================================================================================
-                                     --- TOP 10 PICKS OF THE DAY (90-Day Model) ---                                     
-------------------------------------------------------------------------------------------------------------------------
-  Rank  | Batter               | Pitcher              |     XGBoost     |    LightGBM     |    CatBoost     |   Final Score  
-  ----- | -------------------- | -------------------- | --------------- | --------------- | --------------- | ---------------
-  #161  | Joey Loperfido       | Tanner Gordon        |      40.17%     |      35.05%     |      59.55%     |      83.41%    
-  #98   | Francisco Lindor     | Slade Cecconi        |      50.48%     |      19.24%     |      39.29%     |      82.28%    
-  #226  | Will Smith           | Sonny Gray           |      20.77%     |      29.77%     |      63.09%     |      66.02%    
-  #101  | Jeff McNeil          | Slade Cecconi        |      44.23%     |      19.84%     |      38.16%     |      59.53%    
-  #100  | Pete Alonso          | Slade Cecconi        |      67.93%     |      18.79%     |      20.74%     |      54.15%    
-  #229  | Andy Pages           | Sonny Gray           |      32.66%     |      20.25%     |      44.95%     |      54.11%    
-  #164  | Addison Barger       | Tanner Gordon        |      37.87%     |      9.92%      |      32.29%     |      50.72%    
-  #4    | Kody Clemens         | Casey Mize           |      59.78%     |      11.03%     |      17.74%     |      44.74%    
-  #6    | Royce Lewis          | Casey Mize           |      29.22%     |      14.48%     |      32.12%     |      12.97%    
-  #129  | Ben Rice             | Patrick Corbin       |      7.15%      |      12.80%     |      44.17%     |      10.95%    
+
+======================================================================================================================================================
+                                                      HOME RUN PREDICTION REPORT FOR 2025-08-05                                                       
+======================================================================================================================================================
+                                                    --- TOP 10 PICKS OF THE DAY (90-Day Model) ---                                                    
+------------------------------------------------------------------------------------------------------------------------------------------------------
+  Rank  | Batter               | Pitcher              |   Final Score   | Top Factors                                       
+  ----- | -------------------- | -------------------- | --------------- | --------------------------------------------------
+  #1    | Juan Soto            | Slade Cecconi        |      50.38%     | hr_per_9 (-), g (+), hr_per_fb (+)
+  #2    | Ketel Marte          | JP Sears             |      49.26%     | hr_per_9 (-), g (+), hr_per_fb (+)
+  #3    | Alec Burleson        | Tyler Glasnow        |      47.28%     | hr_per_9 (-), g (+), iso (-)
+  #4    | TJ Friedl            | Michael Soroka       |      46.63%     | hr_per_9 (-), g (+), iso (-)
+  #5    | Pete Alonso          | Slade Cecconi        |      45.07%     | hr_per_9 (-), g (+), iso (-)
+  #6    | Elly De La Cruz      | Michael Soroka       |      43.88%     | hr_per_9 (-), g (+), iso (-)
+  #7    | Ceddanne Rafaela     | Bailey Falter        |      42.83%     | hr_per_9 (-), g (+), iso (-)
+  #8    | Andrew Vaughn        | Erick Fedde          |      42.21%     | hr_per_9 (-), g (+), iso (-)
+  #9    | Max Muncy            | Sonny Gray           |      42.00%     | hr_per_9 (-), g (+), hr_per_fb (+)
+  #10   | Yainer Diaz          | Sandy Alcántara      |      42.00%     | hr_per_9 (-), g (+), iso (-)
 
 ========================================================================================================================
 GAME: Twins @ Tigers (6:40 PM ET) | HR Park Factor: 99
 ------------------------------------------------------------------------------------------------------------------------
-  Tigers Batters vs. Travis Adams (Last 90d: 59 PA | 8.5% K | 5.1% BB | 3 BB | 1.7% HR)
+  Tigers Batters vs. Darren McCaughan (Low Data)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Kerry Carpenter           |      2.19%      |      0.23%      |      2/100     
-  Zach McKinstry            |      0.14%      |      1.05%      |      2/100     
-  Colt Keith                |      0.07%      |      1.31%      |      2/100     
-  Wenceel Pérez             |      0.03%      |      1.24%      |      2/100     
-  Javier Báez               |      0.01%      |      0.82%      |      2/100     
-  Dillon Dingler            |      0.01%      |      0.36%      |      2/100     
-  Gleyber Torres            |      0.01%      |      0.35%      |      2/100     
-  Riley Greene              |      0.01%      |      0.02%      |      2/100     
-  Spencer Torkelson         |      0.00%      |      0.23%      |      2/100     
+  Colt Keith                |     Low Data    |      43.04%     |       N/A      
+  Gleyber Torres            |     Low Data    |      44.89%     |       N/A      
+  Kerry Carpenter           |     Low Data    |      48.62%     |       N/A      
+  Riley Greene              |     Low Data    |      47.40%     |       N/A      
+  Spencer Torkelson         |     Low Data    |      52.11%     |       N/A      
+  Wenceel Pérez             |     Low Data    |      39.65%     |       N/A      
+  Zach McKinstry            |     Low Data    |      38.30%     |       N/A      
+  Dillon Dingler            |     Low Data    |      39.24%     |       N/A      
+  Javier Báez               |     Low Data    |      42.70%     |       N/A      
 
 ------------------------------------------------------------------------------------------------------------------------
-  Twins Batters vs. Casey Mize (Last 90d: 259 PA | 11.2% K | 6.2% BB | 16 BB | 2.3% HR)
+  Twins Batters vs. Casey Mize (Last 90d: 259 PA | 22.0% K | 6.2% BB | 2.32% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Kody Clemens              |      44.74%     |      0.00%      |      35/100    
-  Royce Lewis               |      12.97%     |      0.00%      |      34/100    
-  Ryan Jeffers              |      1.63%      |      0.01%      |      33/100    
-  Matt Wallner              |      0.20%      |      0.00%      |      22/100    
-  Brooks Lee                |      0.09%      |      0.01%      |      56/100    
-  Trevor Larnach            |      0.03%      |      0.02%      |      40/100    
-  Austin Martin             |     Low Data    |      0.04%      |      59/100    
-  Edouard Julien            |     Low Data    |      0.02%      |     100/100    
-  Alan Roden                |      0.01%      |      0.14%      |      36/100    
+  Matt Wallner              |      41.89%     |      42.75%     |      44/100    
+  Kody Clemens              |      35.95%     |      40.38%     |      54/100    
+  Ryan Jeffers              |      33.25%     |      39.71%     |      31/100    
+  Trevor Larnach            |      32.01%     |      39.14%     |      29/100    
+  Brooks Lee                |      29.23%     |      31.68%     |      39/100    
+  Edouard Julien            |     Low Data    |      34.48%     |      12/100    
+  Royce Lewis               |      27.22%     |      42.62%     |      37/100    
+  Alan Roden                |      19.65%     |      20.15%     |      51/100    
+  Austin Martin             |     Low Data    |      19.72%     |      4/100     
 
 ========================================================================================================================
 GAME: Giants @ Pirates (6:40 PM ET) | HR Park Factor: 99
 ------------------------------------------------------------------------------------------------------------------------
-  Pirates Batters vs. Justin Verlander (Last 90d: 241 PA | 14.1% K | 8.7% BB | 21 BB | 2.5% HR)
+  Pirates Batters vs. Justin Verlander (Last 90d: 241 PA | 18.7% K | 8.7% BB | 2.49% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Oneil Cruz                |      1.88%      |      0.06%      |      43/100    
-  Nick Gonzales             |      0.82%      |      0.03%      |      70/100    
-  Spencer Horwitz           |      0.40%      |      0.00%      |      43/100    
-  Andrew McCutchen          |      0.31%      |      0.03%      |      62/100    
-  Jared Triolo              |      0.23%      |      0.01%      |      47/100    
-  Tommy Pham                |      0.11%      |      0.02%      |      66/100    
-  Henry Davis               |      0.05%      |      0.00%      |      49/100    
-  Bryan Reynolds            |      0.03%      |      0.00%      |      69/100    
-  Isiah Kiner-Falefa        |      0.01%      |      0.00%      |      39/100    
+  Oneil Cruz                |      32.75%     |      37.54%     |      7/100     
+  Henry Davis               |      30.56%     |      32.76%     |      9/100     
+  Nick Gonzales             |      29.49%     |      30.38%     |      6/100     
+  Isiah Kiner-Falefa        |      27.57%     |      28.36%     |      4/100     
+  Bryan Reynolds            |      27.49%     |      39.38%     |      11/100    
+  Tommy Pham                |      25.99%     |      35.15%     |      15/100    
+  Andrew McCutchen          |      25.95%     |      42.41%     |      39/100    
+  Jared Triolo              |      24.92%     |      33.73%     |      8/100     
+  Spencer Horwitz           |      24.63%     |      35.98%     |      28/100    
 
 ------------------------------------------------------------------------------------------------------------------------
   Giants Batters vs. Johan Oviedo (Low Data)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Heliot Ramos              |     Low Data    |      0.98%      |      13/100    
-  Rafael Devers             |     Low Data    |      0.61%      |      6/100     
-  Willy Adames              |     Low Data    |      59.71%     |      6/100     
-  Matt Chapman              |     Low Data    |      0.15%      |      6/100     
-  Jung Hoo Lee              |     Low Data    |      0.60%      |      11/100    
-  Wilmer Flores             |     Low Data    |      1.17%      |      13/100    
-  Casey Schmitt             |     Low Data    |      0.12%      |      24/100    
-  Patrick Bailey            |     Low Data    |      0.08%      |      15/100    
-  Grant McCray              |     Low Data    |      2.64%      |      4/100     
+  Heliot Ramos              |     Low Data    |      37.84%     |       N/A      
+  Rafael Devers             |     Low Data    |      38.31%     |       N/A      
+  Willy Adames              |     Low Data    |      47.23%     |       N/A      
+  Matt Chapman              |     Low Data    |      37.53%     |       N/A      
+  Dominic Smith             |     Low Data    |      38.63%     |       N/A      
+  Casey Schmitt             |     Low Data    |      34.15%     |       N/A      
+  Jung Hoo Lee              |     Low Data    |      25.95%     |       N/A      
+  Patrick Bailey            |     Low Data    |      28.82%     |       N/A      
+  Grant McCray              |     Low Data    |      30.54%     |       N/A      
 
 ========================================================================================================================
 GAME: Astros @ Marlins (6:40 PM ET) | HR Park Factor: 101
 ------------------------------------------------------------------------------------------------------------------------
-  Marlins Batters vs. Jason Alexander (Last 90d: 107 PA | 14.0% K | 12.1% BB | 13 BB | 4.7% HR)
+  Marlins Batters vs. Jason Alexander (Last 90d: 107 PA | 15.0% K | 12.1% BB | 4.67% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Liam Hicks                |      0.23%      |      0.18%      |      44/100    
-  Otto Lopez                |      0.08%      |      0.32%      |      32/100    
-  Graham Pauley             |      0.02%      |      0.80%      |      22/100    
-  Kyle Stowers              |      0.02%      |      0.13%      |      24/100    
-  Xavier Edwards            |      0.01%      |      0.43%      |      30/100    
-  Agustín Ramírez           |      0.01%      |      0.03%      |      29/100    
-  Dane Myers                |      0.00%      |      0.02%      |      29/100    
+  Kyle Stowers              |      40.04%     |      36.40%     |      38/100    
+  Otto Lopez                |      30.86%     |      35.11%     |      57/100    
+  Agustín Ramírez           |      30.42%     |      33.09%     |      53/100    
+  Liam Hicks                |      20.59%     |      28.65%     |      41/100    
+  Dane Myers                |      20.30%     |      35.62%     |      21/100    
+  Xavier Edwards            |      20.25%     |      24.85%     |      44/100    
+  Graham Pauley             |      19.11%     |      31.25%     |      14/100    
 
 ------------------------------------------------------------------------------------------------------------------------
-  Astros Batters vs. Sandy Alcántara (Last 90d: 361 PA | 15.8% K | 6.9% BB | 25 BB | 2.5% HR)
+  Astros Batters vs. Sandy Alcántara (Last 90d: 361 PA | 17.2% K | 6.9% BB | 2.49% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Mauricio Dubón            |      0.02%      |      0.00%      |     Low Data   
-  Yainer Diaz               |      0.00%      |      0.00%      |     Low Data   
-  Taylor Trammell           |      0.00%      |      0.01%      |     Low Data   
-  Carlos Correa             |      0.00%      |      0.00%      |     Low Data   
-  José Altuve               |      0.00%      |      0.01%      |     Low Data   
-  Christian Walker          |      0.00%      |      0.00%      |     Low Data   
-  Jeremy Peña               |      0.00%      |      0.00%      |     Low Data   
-  Cam Smith                 |      0.00%      |      0.01%      |     Low Data   
-  T. J. McFarland           |     Low Data    |     Low Data    |     Low Data   
+  Yainer Diaz               |      42.00%     |      37.92%     |      34/100    
+  Jeremy Peña               |      41.66%     |      33.42%     |      39/100    
+  Christian Walker          |      36.72%     |      41.11%     |      28/100    
+  Víctor Caratini           |      33.60%     |      38.51%     |      6/100     
+  José Altuve               |      33.50%     |      45.19%     |      6/100     
+  Carlos Correa             |      28.58%     |      33.58%     |      30/100    
+  Taylor Trammell           |      27.92%     |      28.86%     |      36/100    
+  Cam Smith                 |      25.65%     |      31.83%     |      20/100    
+  T. J. McFarland           |     Low Data    |     Low Data    |       N/A      
 
 ========================================================================================================================
 GAME: Orioles @ Phillies (6:45 PM ET) | HR Park Factor: 101
 ------------------------------------------------------------------------------------------------------------------------
-  Phillies Batters vs. Cade Povich (Last 90d: 152 PA | 20.4% K | 7.2% BB | 11 BB | 2.6% HR)
+  Phillies Batters vs. Cade Povich (Last 90d: 152 PA | 28.3% K | 7.2% BB | 2.63% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Otto Kemp                 |      3.06%      |      0.02%      |      34/100    
-  Harrison Bader            |      1.76%      |      0.00%      |      44/100    
-  Edmundo Sosa              |      0.87%      |      0.00%      |      37/100    
-  Bryce Harper              |      0.41%      |      0.00%      |      24/100    
-  Trea Turner               |      0.31%      |      0.00%      |      30/100    
-  Nick Castellanos          |      0.15%      |      0.00%      |      37/100    
-  Kyle Schwarber            |      0.08%      |      0.00%      |      13/100    
-  Brandon Marsh             |      0.06%      |      0.01%      |      41/100    
-  J. T. Realmuto            |      0.00%      |      0.00%      |      94/100    
+  Kyle Schwarber            |      41.18%     |      45.90%     |      3/100     
+  Nick Castellanos          |      36.14%     |      42.79%     |      13/100    
+  Trea Turner               |      34.15%     |      41.95%     |      9/100     
+  Weston Wilson             |      33.79%     |      30.07%     |      2/100     
+  Edmundo Sosa              |      33.13%     |      38.76%     |      6/100     
+  Harrison Bader            |      30.90%     |      39.28%     |      21/100    
+  Otto Kemp                 |      30.45%     |      27.43%     |      7/100     
+  Bryce Harper              |      27.67%     |      40.48%     |      21/100    
+  J. T. Realmuto            |      24.80%     |      43.57%     |      2/100     
 
 ------------------------------------------------------------------------------------------------------------------------
-  Orioles Batters vs. Jesús Luzardo (Last 90d: 349 PA | 21.2% K | 9.5% BB | 33 BB | 2.6% HR)
+  Orioles Batters vs. Jesús Luzardo (Last 90d: 349 PA | 26.6% K | 9.5% BB | 2.58% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Colton Cowser             |      0.23%      |      0.03%      |      49/100    
-  Jackson Holliday          |      0.11%      |      0.04%      |      60/100    
-  Gunnar Henderson          |      0.06%      |      0.04%      |      35/100    
-  Adley Rutschman           |      0.00%      |      0.00%      |      35/100    
-  Tyler O'Neill             |      0.00%      |      0.00%      |      42/100    
-  Dylan Carlson             |      0.00%      |      0.12%      |      54/100    
-  Coby Mayo                 |      0.00%      |      0.18%      |      21/100    
-  Jordan Westburg           |      0.00%      |      0.00%      |      47/100    
+  Tyler O'Neill             |      29.36%     |      42.56%     |      22/100    
+  Dylan Carlson             |      29.00%     |      28.11%     |      9/100     
+  Jordan Westburg           |      28.34%     |      29.82%     |      22/100    
+  Adley Rutschman           |      26.35%     |      36.37%     |      14/100    
+  Jackson Holliday          |      25.27%     |      35.42%     |      26/100    
+  Coby Mayo                 |      24.92%     |      25.93%     |      24/100    
+  Gunnar Henderson          |      24.75%     |      35.43%     |      10/100    
+  Colton Cowser             |      22.99%     |      33.53%     |      28/100    
 
 ========================================================================================================================
 GAME: Royals @ Red Sox (7:10 PM ET) | HR Park Factor: 105
 ------------------------------------------------------------------------------------------------------------------------
-  Red Sox Batters vs. Bailey Falter (Last 90d: 307 PA | 10.1% K | 9.1% BB | 28 BB | 3.6% HR)
+  Red Sox Batters vs. Bailey Falter (Last 90d: 307 PA | 13.4% K | 9.1% BB | 3.58% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Roman Anthony             |      0.05%      |      0.75%      |      29/100    
-  Jarren Duran              |      0.01%      |      0.02%      |      47/100    
-  Abraham Toro              |      0.01%      |      1.02%      |      39/100    
-  Alex Bregman              |      0.00%      |      0.00%      |      49/100    
-  Romy Gonzalez             |      0.00%      |      0.00%      |      57/100    
-  Ceddanne Rafaela          |      0.00%      |      0.00%      |      49/100    
-  Rob Refsnyder             |      0.00%      |      0.00%      |      55/100    
-  Carlos Narváez            |      0.00%      |      0.00%      |      58/100    
-  Trevor Story              |      0.00%      |      0.00%      |      59/100    
+  Ceddanne Rafaela          |      42.83%     |      37.47%     |      26/100    
+  Jarren Duran              |      39.85%     |      40.36%     |      24/100    
+  Trevor Story              |      38.21%     |      37.88%     |      42/100    
+  Rob Refsnyder             |      38.17%     |      41.23%     |      30/100    
+  Romy Gonzalez             |      32.17%     |      34.50%     |      27/100    
+  Alex Bregman              |      29.57%     |      42.88%     |      32/100    
+  Abraham Toro              |      25.18%     |      29.04%     |      33/100    
+  Roman Anthony             |      19.33%     |      25.89%     |      29/100    
+  Connor Wong               |      17.79%     |      33.12%     |      12/100    
 
 ------------------------------------------------------------------------------------------------------------------------
-  Royals Batters vs. Brayan Bello (Last 90d: 394 PA | 14.0% K | 8.6% BB | 34 BB | 2.3% HR)
+  Royals Batters vs. Brayan Bello (Last 90d: 394 PA | 18.0% K | 8.6% BB | 2.28% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Bobby Witt                |      0.01%      |      0.14%      |      75/100    
-  Salvador Pérez            |      0.00%      |      0.72%      |     100/100    
-  Maikel García             |      0.00%      |      0.00%      |      94/100    
-  Vinnie Pasquantino        |      0.00%      |      0.06%      |      62/100    
-  Kyle Isbel                |      0.00%      |      0.01%      |      71/100    
-  Adam Frazier              |      0.00%      |      0.05%      |     100/100    
-  Mike Yastrzemski          |      0.00%      |      0.12%      |      74/100    
-  Jonathan India            |      0.00%      |      0.02%      |      44/100    
-  Randal Grichuk            |      0.00%      |      0.02%      |      24/100    
+  Mike Yastrzemski          |      39.07%     |      36.74%     |      24/100    
+  John Rave                 |      39.02%     |      21.98%     |      49/100    
+  Vinnie Pasquantino        |      34.74%     |      34.93%     |      24/100    
+  Bobby Witt                |      26.06%     |      49.25%     |      2/100     
+  Adam Frazier              |      25.58%     |      24.46%     |      10/100    
+  Jonathan India            |      25.10%     |      35.42%     |      25/100    
+  Maikel García             |      25.05%     |      38.74%     |      2/100     
+  Kyle Isbel                |      25.02%     |      24.13%     |      11/100    
+  Salvador Pérez            |      21.86%     |      47.93%     |      2/100     
 
 ========================================================================================================================
 GAME: Guardians @ Mets (7:10 PM ET) | HR Park Factor: 98
 ------------------------------------------------------------------------------------------------------------------------
-  Mets Batters vs. Slade Cecconi (Last 90d: 314 PA | 13.1% K | 6.7% BB | 21 BB | 4.1% HR)
+  Mets Batters vs. Slade Cecconi (Last 90d: 314 PA | 20.1% K | 6.7% BB | 4.14% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Francisco Lindor          |      82.28%     |      0.46%      |     Low Data   
-  Jeff McNeil               |      59.53%     |      0.01%      |     Low Data   
-  Pete Alonso               |      54.15%     |      63.62%     |     Low Data   
-  Cedric Mullins            |      0.55%      |      0.04%      |     Low Data   
-  Mark Vientos              |      0.39%      |      0.01%      |     Low Data   
-  Brandon Nimmo             |      0.30%      |      0.17%      |     Low Data   
-  Ronny Mauricio            |      0.15%      |      0.00%      |     Low Data   
-  Juan Soto                 |      0.03%      |      3.24%      |     Low Data   
-  Francisco Álvarez         |      0.02%      |      0.00%      |     Low Data   
+  Juan Soto                 |      50.38%     |      48.44%     |      8/100     
+  Pete Alonso               |      45.07%     |      54.09%     |      53/100    
+  Ronny Mauricio            |      39.94%     |      39.20%     |      40/100    
+  Jeff McNeil               |      39.93%     |      43.92%     |      21/100    
+  Francisco Lindor          |      39.43%     |      51.44%     |      39/100    
+  Brandon Nimmo             |      35.61%     |      51.74%     |      72/100    
+  Mark Vientos              |      32.42%     |      48.28%     |      23/100    
+  Cedric Mullins            |      30.59%     |      51.39%     |      57/100    
+  Francisco Álvarez         |      24.90%     |      51.30%     |      2/100     
 
 ------------------------------------------------------------------------------------------------------------------------
-  Guardians Batters vs. Sean Manaea (Last 90d: 68 PA | 27.9% K | 5.9% BB | 4 BB | 2.9% HR)
+  Guardians Batters vs. Sean Manaea (Last 90d: 68 PA | 32.4% K | 5.9% BB | 2.94% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  David Fry                 |      0.04%      |      0.00%      |     Low Data   
-  Carlos Santana            |      0.01%      |      0.01%      |     Low Data   
-  Daniel Schneemann         |      0.01%      |      1.71%      |     Low Data   
-  Brayan Rocchio            |      0.01%      |      0.23%      |     Low Data   
-  Austin Hedges             |      0.01%      |      0.19%      |     Low Data   
-  Steven Kwan               |      0.01%      |      0.39%      |     Low Data   
-  Gabriel Arias             |      0.01%      |      0.05%      |     Low Data   
-  Angel Martínez            |      0.00%      |      0.06%      |     Low Data   
-  José Ramírez              |      0.00%      |      0.08%      |     Low Data   
+  David Fry                 |      32.99%     |      43.04%     |      2/100     
+  Angel Martínez            |      31.97%     |      29.65%     |      4/100     
+  José Ramírez              |      31.25%     |      42.24%     |      3/100     
+  Carlos Santana            |      27.60%     |      42.04%     |      4/100     
+  Steven Kwan               |      20.67%     |      28.98%     |      3/100     
+  Nolan Jones               |      18.30%     |      34.96%     |      5/100     
+  Gabriel Arias             |      17.63%     |      34.29%     |      2/100     
+  Austin Hedges             |      17.15%     |      27.36%     |      4/100     
+  Brayan Rocchio            |      17.01%     |      28.13%     |      4/100     
 
 ========================================================================================================================
 GAME: Brewers @ Braves (7:15 PM ET) | HR Park Factor: 100
 ------------------------------------------------------------------------------------------------------------------------
-  Braves Batters vs. Quinn Priester (Last 90d: 338 PA | 12.1% K | 5.9% BB | 20 BB | 2.7% HR)
+  Braves Batters vs. Quinn Priester (Last 90d: 338 PA | 21.0% K | 5.9% BB | 2.66% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Ozzie Albies              |      0.05%      |      0.04%      |      41/100    
-  Luke Williams             |      0.01%      |      1.10%      |      22/100    
-  Nick Allen                |      0.01%      |      0.37%      |      31/100    
-  Drake Baldwin             |      0.00%      |      0.10%      |      32/100    
-  Jurickson Profar          |      0.00%      |      1.12%      |      70/100    
-  Michael Harris            |      0.00%      |      10.23%     |      96/100    
-  Eli White                 |      0.00%      |      0.02%      |      68/100    
-  Sean Murphy               |      0.00%      |      0.00%      |      55/100    
-  Matt Olson                |      0.00%      |      0.96%      |      33/100    
+  Eli White                 |      37.13%     |      22.95%     |      17/100    
+  Sean Murphy               |      37.07%     |      35.42%     |      17/100    
+  Drake Baldwin             |      31.48%     |      29.29%     |      34/100    
+  Michael Harris            |      29.41%     |      38.30%     |      9/100     
+  Ozzie Albies              |      29.14%     |      35.20%     |      24/100    
+  Matt Olson                |      27.24%     |      37.47%     |      14/100    
+  Nick Allen                |      26.89%     |      20.73%     |      15/100    
+  Jurickson Profar          |      23.68%     |      33.80%     |      21/100    
+  Nacho Alvarez             |      17.98%     |      19.57%     |      2/100     
 
 ------------------------------------------------------------------------------------------------------------------------
-  Brewers Batters vs. Erick Fedde (Last 90d: 332 PA | 12.7% K | 9.3% BB | 31 BB | 3.6% HR)
+  Brewers Batters vs. Erick Fedde (Last 90d: 332 PA | 14.8% K | 9.3% BB | 3.61% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Christian Yelich          |      0.27%      |      0.00%      |      56/100    
-  Brice Turang              |      0.27%      |      0.00%      |      39/100    
-  Andrew Vaughn             |      0.13%      |      0.02%      |      39/100    
-  Sal Frelick               |      0.03%      |      0.00%      |      51/100    
-  Isaac Collins             |      0.01%      |      0.17%      |      15/100    
-  Blake Perkins             |      0.01%      |      0.09%      |      34/100    
-  William Contreras         |      0.00%      |      0.01%      |      49/100    
-  Joey Ortiz                |      0.00%      |      0.01%      |      47/100    
-  Caleb Durbin              |      0.00%      |      0.07%      |      12/100    
+  Andrew Vaughn             |      42.21%     |      42.37%     |      38/100    
+  Isaac Collins             |      40.61%     |      29.02%     |      35/100    
+  Brice Turang              |      34.89%     |      30.35%     |      57/100    
+  Christian Yelich          |      33.83%     |      40.96%     |      42/100    
+  Blake Perkins             |      33.67%     |      30.61%     |      7/100     
+  Joey Ortiz                |      33.53%     |      31.31%     |      28/100    
+  William Contreras         |      23.00%     |      38.24%     |      36/100    
+  Anthony Seigler           |      22.73%     |      15.22%     |      11/100    
+  Brandon Lockridge         |      19.74%     |      18.23%     |      21/100    
 
 ========================================================================================================================
 GAME: Yankees @ Rangers (8:05 PM ET) | HR Park Factor: 98
 ------------------------------------------------------------------------------------------------------------------------
-  Rangers Batters vs. Max Fried (Last 90d: 361 PA | 17.7% K | 5.8% BB | 21 BB | 2.2% HR)
+  Rangers Batters vs. Max Fried (Last 90d: 361 PA | 23.8% K | 5.8% BB | 2.22% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Corey Seager              |      0.02%      |      0.07%      |      43/100    
-  Sam Haggerty              |      0.01%      |      1.07%      |      56/100    
-  Ezequiel Duran            |      0.01%      |      1.08%      |      35/100    
-  Wyatt Langford            |      0.00%      |      0.01%      |      36/100    
-  Jonah Heim                |      0.00%      |      0.01%      |      42/100    
-  Kyle Higashioka           |      0.00%      |      0.00%      |     100/100    
-  Josh Jung                 |      0.00%      |      0.03%      |      79/100    
-  Adolis García             |      0.00%      |      0.03%      |      64/100    
-  Marcus Semien             |      0.00%      |      0.03%      |      47/100    
+  Marcus Semien             |      28.13%     |      28.99%     |      32/100    
+  Corey Seager              |      27.24%     |      26.93%     |      36/100    
+  Josh Jung                 |      26.25%     |      22.90%     |      40/100    
+  Adolis García             |      25.05%     |      26.03%     |      29/100    
+  Wyatt Langford            |      24.47%     |      26.03%     |      49/100    
+  Jonah Heim                |      23.50%     |      23.67%     |      30/100    
+  Ezequiel Duran            |      18.89%     |      16.60%     |      14/100    
+  Josh Smith                |      18.31%     |      22.31%     |      57/100    
+  Sam Haggerty              |      15.43%     |      15.50%     |      62/100    
 
 ------------------------------------------------------------------------------------------------------------------------
-  Yankees Batters vs. Patrick Corbin (Last 90d: 353 PA | 17.3% K | 6.8% BB | 24 BB | 2.8% HR)
+  Yankees Batters vs. Patrick Corbin (Last 90d: 353 PA | 21.5% K | 6.8% BB | 2.83% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Ben Rice                  |      10.95%     |      0.14%      |     100/100    
-  Cody Bellinger            |      4.93%      |      3.61%      |      50/100    
-  Trent Grisham             |      0.06%      |      0.04%      |      48/100    
-  Ryan McMahon              |      0.03%      |      0.08%      |      37/100    
-  Jazz Chisholm             |      0.01%      |      4.82%      |     100/100    
-  Austin Slater             |      0.00%      |      0.02%      |     100/100    
-  Paul Goldschmidt          |      0.00%      |      0.00%      |      54/100    
-  Anthony Volpe             |      0.00%      |      0.02%      |      68/100    
-  Giancarlo Stanton         |      0.00%      |      0.00%      |      44/100    
+  Cody Bellinger            |      39.16%     |      41.20%     |      37/100    
+  Austin Wells              |      31.17%     |      42.07%     |      27/100    
+  Giancarlo Stanton         |      28.99%     |      39.67%     |      20/100    
+  Austin Slater             |      28.87%     |      35.07%     |     100/100    
+  Anthony Volpe             |      28.11%     |      36.54%     |      34/100    
+  Amed Rosario              |      27.88%     |      31.03%     |      35/100    
+  Paul Goldschmidt          |      22.23%     |      40.50%     |      31/100    
+  Jazz Chisholm             |      20.55%     |      40.74%     |      41/100    
+  José Caballero            |      17.44%     |      29.84%     |      21/100    
 
 ========================================================================================================================
 GAME: Reds @ Cubs (8:05 PM ET) | HR Park Factor: 95
 ------------------------------------------------------------------------------------------------------------------------
-  Cubs Batters vs. Nick Lodolo (Last 90d: 348 PA | 21.8% K | 4.9% BB | 17 BB | 3.4% HR)
+  Cubs Batters vs. Nick Lodolo (Last 90d: 348 PA | 26.1% K | 4.9% BB | 3.45% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Pete Crow-Armstrong       |      1.01%      |      0.04%      |      67/100    
-  Kyle Tucker               |      0.55%      |      0.21%      |      42/100    
-  Justin Turner             |      0.01%      |      0.01%      |      73/100    
-  Seiya Suzuki              |      0.01%      |      0.00%      |      44/100    
-  Nico Hoerner              |      0.01%      |      0.04%      |      31/100    
-  Ian Happ                  |      0.00%      |      0.00%      |     100/100    
-  Carson Kelly              |      0.00%      |      0.02%      |      46/100    
-  Dansby Swanson            |      0.00%      |      0.00%      |     100/100    
-  Matt Shaw                 |      0.00%      |      0.00%      |      37/100    
+  Kyle Tucker               |      40.10%     |      48.30%     |      32/100    
+  Ian Happ                  |      38.58%     |      37.95%     |      26/100    
+  Seiya Suzuki              |      35.19%     |      45.42%     |      12/100    
+  Willi Castro              |      33.91%     |      39.23%     |      21/100    
+  Carson Kelly              |      30.91%     |      33.67%     |      48/100    
+  Dansby Swanson            |      28.55%     |      38.35%     |      18/100    
+  Nico Hoerner              |      25.20%     |      25.19%     |      22/100    
+  Matt Shaw                 |      24.12%     |      26.88%     |      60/100    
+  Justin Turner             |      23.21%     |      35.41%     |      51/100    
 
 ------------------------------------------------------------------------------------------------------------------------
-  Reds Batters vs. Michael Soroka (Last 90d: 325 PA | 15.4% K | 7.1% BB | 23 BB | 3.1% HR)
+  Reds Batters vs. Michael Soroka (Last 90d: 325 PA | 25.8% K | 7.1% BB | 3.08% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Spencer Steer             |      1.68%      |      0.01%      |      61/100    
-  Tyler Stephenson          |      0.15%      |      0.04%      |      45/100    
-  Matt McLain               |      0.09%      |      0.00%      |      29/100    
-  Ke'Bryan Hayes            |      0.02%      |      0.00%      |      57/100    
-  TJ Friedl                 |      0.02%      |      0.01%      |      53/100    
-  Austin Hays               |      0.02%      |      0.09%      |      34/100    
-  Elly De La Cruz           |      0.00%      |      0.01%      |      47/100    
-  Gavin Lux                 |      0.00%      |      0.03%      |      33/100    
-  Jake Fraley               |      0.00%      |      0.01%      |      64/100    
+  TJ Friedl                 |      46.63%     |      42.58%     |      24/100    
+  Elly De La Cruz           |      43.88%     |      48.56%     |      28/100    
+  Austin Hays               |      35.30%     |      45.72%     |      34/100    
+  Spencer Steer             |      32.64%     |      49.22%     |      39/100    
+  Ke'Bryan Hayes            |      32.39%     |      35.94%     |      11/100    
+  Tyler Stephenson          |      31.52%     |      46.34%     |      28/100    
+  Jake Fraley               |      31.13%     |      38.46%     |      7/100     
+  Matt McLain               |      30.61%     |      43.17%     |      17/100    
+  Gavin Lux                 |      22.32%     |      40.71%     |      22/100    
 
 ========================================================================================================================
 GAME: Blue Jays @ Rockies (8:40 PM ET) | HR Park Factor: 112
 ------------------------------------------------------------------------------------------------------------------------
-  Rockies Batters vs. Eric Lauer (Last 90d: 274 PA | 21.2% K | 5.5% BB | 15 BB | 2.9% HR)
+  Rockies Batters vs. Eric Lauer (Last 90d: 274 PA | 25.9% K | 5.5% BB | 2.92% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Kyle Farmer               |      0.01%      |      0.01%      |      71/100    
-  Tyler Freeman             |      0.01%      |      0.12%      |      17/100    
-  Hunter Goodman            |      0.01%      |      0.00%      |      27/100    
-  Thairo Estrada            |      0.00%      |      0.11%      |      18/100    
-  Jordan Beck               |      0.00%      |      0.05%      |      21/100    
-  Orlando Arcia             |      0.00%      |      0.00%      |      66/100    
-  Brenton Doyle             |      0.00%      |      0.01%      |      31/100    
-  Warming Bernabel          |     Low Data    |     Low Data    |      2/100     
-  Ezequiel Tovar            |      0.00%      |      0.00%      |      14/100    
+  Warming Bernabel          |     Low Data    |     Low Data    |      3/100     
+  Kyle Farmer               |      33.00%     |      38.57%     |      13/100    
+  Ezequiel Tovar            |      32.45%     |      44.00%     |      18/100    
+  Jordan Beck               |      29.60%     |      35.04%     |      28/100    
+  Hunter Goodman            |      28.40%     |      38.26%     |      30/100    
+  Braxton Fulford           |     Low Data    |      29.33%     |      4/100     
+  Tyler Freeman             |      25.46%     |      32.08%     |      7/100     
+  Brenton Doyle             |      24.81%     |      41.12%     |      19/100    
+  Thairo Estrada            |      23.76%     |      33.87%     |      38/100    
 
 ------------------------------------------------------------------------------------------------------------------------
-  Blue Jays Batters vs. Tanner Gordon (Last 90d: 114 PA | 9.6% K | 7.0% BB | 8 BB | 2.6% HR)
+  Blue Jays Batters vs. Tanner Gordon (Last 90d: 114 PA | 13.2% K | 7.0% BB | 2.63% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Joey Loperfido            |      83.41%     |      0.06%      |      37/100    
-  Addison Barger            |      50.72%     |      0.01%      |      68/100    
-  Daulton Varsho            |      10.22%     |      0.00%      |      73/100    
-  Nathan Lukes              |      2.63%      |      0.02%      |      23/100    
-  Alejandro Kirk            |      0.74%      |      0.07%      |      26/100    
-  Ernie Clement             |      0.10%      |      0.23%      |      30/100    
-  Vladimir Guerrero         |      0.05%      |      0.07%      |      69/100    
-  Bo Bichette               |      0.03%      |      0.02%      |      37/100    
-  Ty France                 |      0.02%      |      0.08%      |      33/100    
+  Nathan Lukes              |      34.48%     |      36.21%     |      9/100     
+  Daulton Varsho            |      33.91%     |      49.70%     |      3/100     
+  Joey Loperfido            |      26.50%     |      39.09%     |      8/100     
+  Addison Barger            |      26.22%     |      43.00%     |      8/100     
+  Ernie Clement             |      25.61%     |      37.84%     |      4/100     
+  Bo Bichette               |      25.08%     |      39.60%     |      4/100     
+  Vladimir Guerrero         |      20.75%     |      56.68%     |      2/100     
+  Ty France                 |      19.01%     |      42.85%     |      7/100     
+  Alejandro Kirk            |      18.28%     |      34.91%     |      7/100     
 
 ========================================================================================================================
 GAME: Rays @ Angels (9:38 PM ET) | HR Park Factor: 101
 ------------------------------------------------------------------------------------------------------------------------
-  Angels Batters vs. Adrian Houser (Last 90d: 278 PA | 14.0% K | 7.9% BB | 22 BB | 1.1% HR)
+  Angels Batters vs. Adrian Houser (Last 90d: 278 PA | 16.5% K | 7.9% BB | 1.08% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Gustavo Campero           |      0.13%      |      0.52%      |      29/100    
-  Logan O'Hoppe             |      0.01%      |      0.01%      |      48/100    
-  Taylor Ward               |      0.01%      |      0.00%      |      36/100    
-  Zach Neto                 |      0.01%      |      0.03%      |      52/100    
-  Jo Adell                  |      0.01%      |      0.02%      |      56/100    
-  Mike Trout                |      0.00%      |      0.01%      |      16/100    
-  Nolan Schanuel            |      0.00%      |      0.15%      |      30/100    
-  Christian Moore           |      0.00%      |      0.19%      |      15/100    
-  Yoán Moncada              |      0.00%      |      0.03%      |      56/100    
+  Yoán Moncada              |      34.30%     |      23.05%     |      5/100     
+  Jo Adell                  |      33.41%     |      29.47%     |      7/100     
+  Christian Moore           |      33.16%     |      21.24%     |      3/100     
+  Taylor Ward               |      33.02%     |      33.66%     |      5/100     
+  Logan O'Hoppe             |      29.61%     |      25.35%     |      7/100     
+  Mike Trout                |      27.09%     |      31.65%     |      5/100     
+  Zach Neto                 |      26.58%     |      27.00%     |      8/100     
+  Gustavo Campero           |      25.90%     |      20.68%     |      10/100    
+  Nolan Schanuel            |      25.12%     |      23.82%     |      20/100    
 
 ------------------------------------------------------------------------------------------------------------------------
-  Rays Batters vs. Yusei Kikuchi (Last 90d: 388 PA | 19.8% K | 8.2% BB | 32 BB | 2.8% HR)
+  Rays Batters vs. Yusei Kikuchi (Last 90d: 388 PA | 25.3% K | 8.2% BB | 2.84% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Brandon Lowe              |      9.61%      |      0.00%      |      59/100    
-  Josh Lowe                 |      1.32%      |      0.17%      |      57/100    
-  Ha-Seong Kim              |      0.01%      |      0.27%      |      49/100    
-  Jonny DeLuca              |      0.01%      |      0.22%      |      42/100    
-  Nick Fortes               |      0.01%      |      0.29%      |      59/100    
-  Jake Mangum               |      0.01%      |      1.10%      |      31/100    
-  Yandy Díaz                |      0.00%      |      0.00%      |     100/100    
-  Junior Caminero           |      0.00%      |      0.00%      |      58/100    
-  Christopher Morel         |      0.00%      |      0.00%      |      52/100    
+  Junior Caminero           |      38.36%     |      36.12%     |      56/100    
+  Yandy Díaz                |      38.28%     |      32.30%     |      26/100    
+  Christopher Morel         |      35.22%     |      36.83%     |      32/100    
+  Josh Lowe                 |      34.66%     |      36.53%     |      50/100    
+  Brandon Lowe              |      33.00%     |      35.85%     |      34/100    
+  Nick Fortes               |      28.65%     |      24.23%     |      25/100    
+  Ha-Seong Kim              |      27.99%     |      28.60%     |      16/100    
+  Jake Mangum               |      26.85%     |      18.82%     |      27/100    
+  Jonny DeLuca              |      14.49%     |      25.12%     |      15/100    
 
 ========================================================================================================================
 GAME: Padres @ Diamondbacks (9:40 PM ET) | HR Park Factor: 104
 ------------------------------------------------------------------------------------------------------------------------
-  Diamondbacks Batters vs. JP Sears (Last 90d: 336 PA | 17.0% K | 6.8% BB | 23 BB | 5.7% HR)
+  Diamondbacks Batters vs. JP Sears (Last 90d: 336 PA | 19.9% K | 6.8% BB | 5.65% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Ketel Marte               |      7.37%      |      0.00%      |      37/100    
-  Corbin Carroll            |      1.23%      |      0.00%      |      77/100    
-  Geraldo Perdomo           |      0.60%      |      0.04%      |      63/100    
-  Jake McCarthy             |      0.01%      |      1.09%      |      53/100    
-  Blaze Alexander           |      0.01%      |      0.01%      |      60/100    
-  Jorge Barrosa             |     Low Data    |      1.10%      |      9/100     
-  Tyler Locklear            |     Low Data    |      0.00%      |      16/100    
-  José Herrera              |      0.01%      |      1.08%      |      9/100     
-  Lourdes Gurriel           |      0.00%      |      0.00%      |     100/100    
+  Ketel Marte               |      49.26%     |      46.26%     |      25/100    
+  Corbin Carroll            |      38.82%     |      43.06%     |      28/100    
+  Geraldo Perdomo           |      33.13%     |      29.53%     |      38/100    
+  Jake McCarthy             |      31.67%     |      30.10%     |      28/100    
+  José Herrera              |      25.39%     |      31.01%     |      50/100    
+  Lourdes Gurriel           |      24.88%     |      48.82%     |      22/100    
+  Blaze Alexander           |      24.16%     |      26.95%     |      32/100    
+  Tyler Locklear            |     Low Data    |      34.08%     |      1/100     
+  Jorge Barrosa             |     Low Data    |      17.85%     |      10/100    
 
 ------------------------------------------------------------------------------------------------------------------------
-  Padres Batters vs. Brandon Pfaadt (Last 90d: 336 PA | 14.9% K | 5.4% BB | 18 BB | 3.9% HR)
+  Padres Batters vs. Brandon Pfaadt (Last 90d: 336 PA | 18.8% K | 5.4% BB | 3.87% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Manny Machado             |      1.12%      |      0.00%      |      58/100    
-  Ramón Laureano            |      0.71%      |      0.00%      |      46/100    
-  Xander Bogaerts           |      0.33%      |      0.00%      |      73/100    
-  Fernando Tatís            |      0.06%      |      0.05%      |     100/100    
-  Jackson Merrill           |      0.01%      |      0.00%      |     100/100    
-  Luis Arráez               |      0.01%      |      0.02%      |      76/100    
-  Freddy Fermin             |      0.00%      |      0.02%      |      49/100    
-  Jake Cronenworth          |      0.00%      |      0.03%      |      71/100    
-  Ryan O'Hearn              |      0.00%      |      0.02%      |      66/100    
+  Ramón Laureano            |      39.18%     |      43.47%     |      45/100    
+  Ryan O'Hearn              |      38.66%     |      47.00%     |      42/100    
+  Xander Bogaerts           |      38.33%     |      39.11%     |      61/100    
+  Manny Machado             |      37.95%     |      42.71%     |      39/100    
+  Jake Cronenworth          |      35.84%     |      42.18%     |      35/100    
+  Fernando Tatís            |      34.41%     |      54.67%     |      83/100    
+  Luis Arráez               |      31.17%     |      39.44%     |      65/100    
+  Freddy Fermin             |      29.47%     |      33.65%     |      37/100    
+  Jackson Merrill           |      23.46%     |      39.60%     |      44/100    
 
 ========================================================================================================================
 GAME: Cardinals @ Dodgers (10:10 PM ET) | HR Park Factor: 102
 ------------------------------------------------------------------------------------------------------------------------
-  Dodgers Batters vs. Sonny Gray (Last 90d: 343 PA | 12.8% K | 2.9% BB | 10 BB | 2.6% HR)
+  Dodgers Batters vs. Sonny Gray (Last 90d: 343 PA | 27.1% K | 2.9% BB | 2.62% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Will Smith                |      66.02%     |      0.00%      |     Low Data   
-  Andy Pages                |      54.11%     |      0.00%      |      56/100    
-  Freddie Freeman           |      5.70%      |      0.02%      |      51/100    
-  Teoscar Hernández         |      3.25%      |      0.83%      |      65/100    
-  Mookie Betts              |      0.13%      |      0.01%      |      42/100    
-  Michael Conforto          |      0.12%      |      0.01%      |      75/100    
-  Shohei Ohtani             |      0.06%      |      0.00%      |     100/100    
-  Miguel Rojas              |      0.05%      |      0.04%      |      24/100    
-  Max Muncy                 |      0.01%      |      0.01%      |     Low Data   
+  Max Muncy                 |      42.00%     |      44.88%     |       N/A      
+  Michael Conforto          |      35.39%     |      43.79%     |      35/100    
+  Miguel Rojas              |      34.05%     |      30.23%     |      28/100    
+  Shohei Ohtani             |      32.94%     |      40.75%     |      74/100    
+  Teoscar Hernández         |      31.45%     |      40.02%     |      30/100    
+  Will Smith                |      30.11%     |      47.78%     |      22/100    
+  Mookie Betts              |      29.19%     |      46.63%     |      41/100    
+  Andy Pages                |      28.45%     |      43.50%     |      64/100    
+  Freddie Freeman           |      22.58%     |      43.39%     |      39/100    
 
 ------------------------------------------------------------------------------------------------------------------------
-  Cardinals Batters vs. Tyler Glasnow (Last 90d: 88 PA | 26.1% K | 11.4% BB | 10 BB | 3.4% HR)
+  Cardinals Batters vs. Tyler Glasnow (Last 90d: 88 PA | 29.5% K | 11.4% BB | 3.41% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Alec Burleson             |      5.53%      |      0.01%      |      34/100    
-  Lars Nootbaar             |      1.17%      |      0.03%      |      39/100    
-  Brendan Donovan           |      0.44%      |      0.01%      |      27/100    
-  Nolan Gorman              |      0.29%      |      0.01%      |      58/100    
-  Iván Herrera              |      0.02%      |      0.05%      |      44/100    
-  Yohel Pozo                |      0.02%      |      0.07%      |      15/100    
-  Masyn Winn                |      0.00%      |      0.05%      |      30/100    
-  Victor Scott              |      0.00%      |      0.01%      |      16/100    
-  Willson Contreras         |      0.00%      |      0.02%      |      51/100    
+  Alec Burleson             |      47.28%     |      41.13%     |      10/100    
+  Nolan Gorman              |      40.67%     |      46.68%     |      12/100    
+  Lars Nootbaar             |      38.69%     |      36.68%     |      13/100    
+  Willson Contreras         |      37.27%     |      36.43%     |      5/100     
+  Iván Herrera              |      34.47%     |      36.70%     |      11/100    
+  Victor Scott              |      33.23%     |      37.79%     |      6/100     
+  Brendan Donovan           |      32.14%     |      35.41%     |      27/100    
+  Yohel Pozo                |      28.92%     |      25.88%     |      8/100     
+  Masyn Winn                |      28.20%     |      31.48%     |      29/100    
 
 ========================================================================================================================
         `;
@@ -1252,3 +1253,4 @@ GAME: Cardinals @ Dodgers (10:10 PM ET) | HR Park Factor: 102
     </script>
 </body>
 </html>
+
