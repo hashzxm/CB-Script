@@ -1,4 +1,4 @@
-initializePage();<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -71,9 +71,9 @@ initializePage();<!DOCTYPE html>
 </head>
 <body class="p-4 sm:p-6 md:p-8">
 
-    <div id="main-content" class="hidden">
+    <div id="main-content">
         <div class="max-w-7xl mx-auto relative">
-            <div class="absolute top-4 left-4 z-20">
+             <div class="absolute top-4 left-4 z-20">
                 <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-700/50 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-sm p-2.5 shadow-md">
                     <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
                     <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
@@ -110,6 +110,7 @@ initializePage();<!DOCTYPE html>
 
             <main>
                 <div id="game-ticker-container" class="my-6"></div>
+                <div id="focus-game-primary" class="mb-6"></div>
                 <div id="dashboard-container" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
                 <div id="grid-container" class="hidden grid grid-cols-1 md:grid-cols-2 gap-6"></div>
                 <div id="picks-container" class="hidden"></div>
@@ -971,7 +972,6 @@ GAME: Padres @ Diamondbacks (9:40 PM ET) | HR Park Factor: 100
 
         document.addEventListener('DOMContentLoaded', () => {
             const mainContent = document.getElementById('main-content');
-            function checkPassword() { const p = prompt("Please enter the password:"); if (p === "slutforme") { mainContent.classList.remove('hidden'); initializePage(); } else { alert("Password incorrect. Access denied."); document.body.innerHTML = '<div class="h-screen flex items-center justify-center bg-gray-900 text-white"><h1 class="text-2xl">Access Denied</h1></div>'; } }
 
             function initializePage() {
                 const themeToggleBtn = document.getElementById('theme-toggle');
@@ -1018,6 +1018,7 @@ GAME: Padres @ Diamondbacks (9:40 PM ET) | HR Park Factor: 100
                         gridContainer.classList.toggle('hidden', view !== 'grid');
                         picksContainer.classList.toggle('hidden', view !== 'picks');
                         focusViewContainer.classList.add('hidden');
+                        document.getElementById('focus-game-primary').innerHTML = '';
 
                         if(view === 'dashboard' || view === 'grid') {
                             const container = view === 'dashboard' ? dashboardContainer : gridContainer;
@@ -1039,15 +1040,17 @@ GAME: Padres @ Diamondbacks (9:40 PM ET) | HR Park Factor: 100
                     const tickerItem = e.target.closest('.ticker-item');
                     if(tickerItem) {
                         const gameTitle = tickerItem.dataset.gameTitle;
-                        dashboardContainer.classList.add('hidden');
+                        dashboardContainer.classList.remove('hidden');
                         gridContainer.classList.add('hidden');
                         picksContainer.classList.add('hidden');
-                        focusViewContainer.classList.remove('hidden');
-                        focusLists.innerHTML = '';
-                        renderSimilarityReport(similarityData, focusLists);
-                        renderStrikeoutPredictions(strikeoutData, focusLists);
+                        document.getElementById('focus-game-primary').innerHTML = '';
+
                         const gameData = allGamesData.find(g => g.title === gameTitle);
-                        if(gameData) { focusGame.innerHTML = `<div class="card border rounded-lg shadow-lg overflow-hidden" data-game-title="${gameTitle}">${buildGameCardHTML(gameData)}</div>`; }
+                        if(gameData) {
+                            const gameCardHTML = `<div class="card border rounded-lg shadow-lg overflow-hidden" data-game-title="${gameTitle}">${buildGameCardHTML(gameData)}</div>`;
+                            document.getElementById('focus-game-primary').innerHTML = gameCardHTML;
+                            document.querySelector('.tab-item[data-view="dashboard"]').click();
+                        }
                     }
                 });
 
@@ -1114,7 +1117,7 @@ GAME: Padres @ Diamondbacks (9:40 PM ET) | HR Park Factor: 100
                 window.addEventListener('load', () => { moveSlider(document.querySelector('.tab-item.active')); });
             }
 
-            checkPassword();
+            initializePage();
         });
     </script>
 </body>
