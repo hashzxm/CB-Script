@@ -70,64 +70,67 @@
     </style>
 </head>
 <body class="p-4 sm:p-6 md:p-8">
+    <div id="protected-content" class="hidden">
+        <div id="main-content">
+            <div class="max-w-7xl mx-auto relative">
+                 <div class="absolute top-4 left-4 z-20">
+                    <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-700/50 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-sm p-2.5 shadow-md">
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    </button>
+                </div>
+                <div class="absolute top-4 right-4 flex items-center gap-4 z-20">
+                    <button id="settings-btn" class="text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-700/50 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-sm p-2.5 shadow-md">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 4a1 1 0 00-2 0v2.016a2 2 0 00.748 1.55l1 1A2 2 0 006 10.016V11a1 1 0 102 0v-.984a2 2 0 00.252-1.55l-1-1A2 2 0 006.502 6.016H6V4zM14 4a1 1 0 10-2 0v2.016a2 2 0 00.748 1.55l1 1A2 2 0 0015 10.016V11a1 1 0 102 0v-.984a2 2 0 00.252-1.55l-1-1A2 2 0 0015.502 6.016H15V4zM8 12a1 1 0 10-2 0v2.016a2 2 0 00.748 1.55l1 1A2 2 0 009 18.016V19a1 1 0 102 0v-.984a2 2 0 00.252-1.55l-1-1A2 2 0 0010.502 14.016H10v-2.016z"/></svg>
+                    </button>
+                    <button id="zxm-button" class="px-4 py-2 text-sm bg-gray-800 text-white font-bold rounded-lg shadow-lg hover:bg-black">zxm</button>
+                </div>
 
-    <div id="main-content">
-        <div class="max-w-7xl mx-auto relative">
-             <div class="absolute top-4 left-4 z-20">
-                <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-700/50 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-sm p-2.5 shadow-md">
-                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-                </button>
-            </div>
-            <div class="absolute top-4 right-4 flex items-center gap-4 z-20">
-                <button id="settings-btn" class="text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-700/50 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-sm p-2.5 shadow-md">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 4a1 1 0 00-2 0v2.016a2 2 0 00.748 1.55l1 1A2 2 0 006 10.016V11a1 1 0 102 0v-.984a2 2 0 00.252-1.55l-1-1A2 2 0 006.502 6.016H6V4zM14 4a1 1 0 10-2 0v2.016a2 2 0 00.748 1.55l1 1A2 2 0 0015 10.016V11a1 1 0 102 0v-.984a2 2 0 00.252-1.55l-1-1A2 2 0 0015.502 6.016H15V4zM8 12a1 1 0 10-2 0v2.016a2 2 0 00.748 1.55l1 1A2 2 0 009 18.016V19a1 1 0 102 0v-.984a2 2 0 00.252-1.55l-1-1A2 2 0 0010.502 14.016H10v-2.016z"/></svg>
-                </button>
-                <button id="zxm-button" class="px-4 py-2 text-sm bg-gray-800 text-white font-bold rounded-lg shadow-lg hover:bg-black">zxm</button>
-            </div>
+                <header class="text-center pt-8 mb-4">
+                    <h1 class="text-3xl sm:text-4xl font-bold text-gray-800 dark:text-gray-100">Similarity Slut</h1>
 
-            <header class="text-center pt-8 mb-4">
-                <h1 class="text-3xl sm:text-4xl font-bold text-gray-800 dark:text-gray-100">Similarity Slut</h1>
-
-                <div class="flex justify-center items-center gap-2 mt-4">
-                    <div id="tab-bar-container">
-                        <div id="tab-bar-slider"></div>
-                        <button class="tab-item active" data-view="dashboard">
-                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" /><path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" /></svg>
-                            <span>Dashboard</span>
-                        </button>
-                        <button class="tab-item" data-view="grid">
-                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg>
-                            <span>All Games</span>
-                        </button>
-                        <button class="tab-item" data-view="picks">
-                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                            <span>My Picks</span>
-                        </button>
+                    <div class="flex justify-center items-center gap-2 mt-4">
+                        <div id="tab-bar-container">
+                            <div id="tab-bar-slider"></div>
+                            <button class="tab-item active" data-view="dashboard">
+                                <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" /><path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" /></svg>
+                                <span>Dashboard</span>
+                            </button>
+                            <button class="tab-item" data-view="grid">
+                                <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg>
+                                <span>All Games</span>
+                            </button>
+                            <button class="tab-item" data-view="picks">
+                                <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                <span>My Picks</span>
+                            </button>
+                        </div>
                     </div>
-                </div>
-            </header>
+                </header>
 
-            <main>
-                <div id="game-ticker-container" class="my-6"></div>
-                <div id="focus-view-container" class="hidden grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div id="focus-game" class="lg:col-span-2"></div>
-                    <div id="focus-lists" class="space-y-6"></div>
-                </div>
-                <div id="dashboard-container" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
-                <div id="grid-container" class="hidden grid grid-cols-1 md:grid-cols-2 gap-6"></div>
-                <div id="picks-container" class="hidden"></div>
-            </main>
+                <main>
+                    <div id="game-ticker-container" class="my-6"></div>
+
+                    <div id="focus-view-container" class="hidden space-y-6">
+                        <div id="focus-game"></div>
+                        <div id="focus-lists" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+                    </div>
+
+                    <div id="dashboard-container" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+                    <div id="grid-container" class="hidden grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+                    <div id="picks-container" class="hidden"></div>
+                </main>
+            </div>
+
+            <footer class="mt-12 text-center">
+                 <div class="disclaimer my-6 max-w-3xl mx-auto p-4 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-800">
+                     <p class="text-sm text-gray-600 dark:text-gray-400 font-semibold text-center">Disclaimer</p>
+                     <p class="text-xs text-gray-500 dark:text-gray-400 text-center mt-2">
+                         This report is for informational and entertainment purposes only. All predictions are generated by statistical models using historical data and are not guaranteed to be accurate. This information should not be considered as financial or gambling advice. Please gamble responsibly and only wager what you can afford to lose. The creators of this tool are not responsible for any financial losses incurred.
+                     </p>
+                 </div>
+            </footer>
         </div>
-
-        <footer class="mt-12 text-center">
-             <div class="disclaimer my-6 max-w-3xl mx-auto p-4 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-800">
-                 <p class="text-sm text-gray-600 dark:text-gray-400 font-semibold text-center">Disclaimer</p>
-                 <p class="text-xs text-gray-500 dark:text-gray-400 text-center mt-2">
-                     This report is for informational and entertainment purposes only. All predictions are generated by statistical models using historical data and are not guaranteed to be accurate. This information should not be considered as financial or gambling advice. Please gamble responsibly and only wager what you can afford to lose. The creators of this tool are not responsible for any financial losses incurred.
-                 </p>
-             </div>
-        </footer>
     </div>
 
     <div id="settings-modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
@@ -139,19 +142,19 @@
                 </div>
                 <div class="space-y-4">
                     <div>
-                        <label for="thresh-90day" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Highlight 90-Day Prob &gt;= (%)</label>
+                        <label for="thresh-90day" class="block text-sm font-medium text-gray-700 dark:text-gray-300">🔥 Highlight 90-Day Prob &gt;= (%)</label>
                         <input type="number" id="thresh-90day" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                     </div>
                     <div>
-                        <label for="thresh-2year" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Highlight 2-Year Prob &gt;= (%)</label>
+                        <label for="thresh-2year" class="block text-sm font-medium text-gray-700 dark:text-gray-300">⭐ Highlight 2-Year Prob &gt;= (%)</label>
                         <input type="number" id="thresh-2year" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                     </div>
                     <div>
-                        <label for="thresh-hrsim" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Highlight HR Similarity Score &gt;=</label>
+                        <label for="thresh-hrsim" class="block text-sm font-medium text-gray-700 dark:text-gray-300">⚾ Highlight HR Similarity Score &gt;=</label>
                         <input type="number" id="thresh-hrsim" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                     </div>
                     <div>
-                        <label for="thresh-parkfactor" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Highlight Park Factor &gt;=</label>
+                        <label for="thresh-parkfactor" class="block text-sm font-medium text-gray-700 dark:text-gray-300">🏟️ Highlight Park Factor &gt;=</label>
                         <input type="number" id="thresh-parkfactor" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                     </div>
                 </div>
@@ -207,7 +210,7 @@ GAME: Orioles @ Phillies (12:35 PM ET) | HR Park Factor: 105
   Orioles Batters vs. Ranger Suárez (Last 90d: 410 PA | 23.2% K | 6.6% BB | 1.71% HR)
   Batter                    |   90-Day Prob   |   2-Year Prob   |  HR Comp Score 
   ------------------------- | --------------- | --------------- | ---------------
-  Tyler O'Neill             |      24.61%     |      36.29%     |      17/100    
+  Alex Jackson              |      28.10%     |      27.93%     |      4/100     
   Dylan Carlson             |      23.91%     |      22.76%     |      23/100    
   Jordan Westburg           |      22.28%     |      24.69%     |      14/100    
   Colton Cowser             |      21.78%     |      28.15%     |      19/100    
@@ -304,7 +307,6 @@ GAME: Guardians @ Mets (1:10 PM ET) | HR Park Factor: 99
   Steven Kwan               |      16.02%     |      19.53%     |      7/100     
   Brayan Rocchio            |      15.62%     |      19.14%     |      45/100    
   Austin Hedges             |      14.99%     |      18.78%     |      18/100    
-  Nolan Jones               |      13.55%     |      23.20%     |      29/100    
 
 ========================================================================================================================
 GAME: Reds @ Cubs (2:20 PM ET) | HR Park Factor: 98
@@ -331,7 +333,7 @@ GAME: Reds @ Cubs (2:20 PM ET) | HR Park Factor: 98
   Ke'Bryan Hayes            |      28.89%     |      25.40%     |      14/100    
   Austin Hays               |      28.87%     |      34.37%     |      26/100    
   Spencer Steer             |      28.77%     |      36.77%     |      23/100    
-  Matt McLain               |      28.52%     |      32.30%     |      67/100    
+  Noelvi Marte              |      26.80%     |      31.00%     |      7/100     
   Tyler Stephenson          |      26.01%     |      34.55%     |      10/100    
   Jake Fraley               |      25.09%     |      28.03%     |      5/100     
   Gavin Lux                 |      20.59%     |      28.44%     |      20/100    
@@ -347,7 +349,7 @@ GAME: Yankees @ Rangers (2:35 PM ET) | HR Park Factor: 104
   Josh Jung                 |      40.32%     |      38.61%     |      25/100    
   Adolis García             |      39.06%     |      44.75%     |      29/100    
   Wyatt Langford            |      38.59%     |      43.22%     |      38/100    
-  Jonah Heim                |      34.99%     |      39.40%     |      24/100    
+  Josh Smith                |      29.86%     |      37.31%     |      33/100    
   Ezequiel Duran            |      28.16%     |      28.31%     |      23/100    
   Kyle Higashioka           |      27.26%     |      46.32%     |      25/100    
   Sam Haggerty              |      23.89%     |      26.51%     |      23/100    
@@ -971,151 +973,173 @@ GAME: Padres @ Diamondbacks (9:40 PM ET) | HR Park Factor: 100
         function renderGameTicker(gamesData, container) { container.innerHTML = allGamesData.map(game => { const match = game.title.match(/(.*?) \((.*?)\) \| HR Park Factor: (.*)/); if (!match) return `<button class="ticker-item" data-game-title="${game.title}"><div class="flex flex-col"><span class="font-bold text-sm">${game.title.split(' | ')[0]}</span></div></button>`; const [, matchup, time, parkFactor] = match; const teams = matchup.split(' @ '); const awayTeam = teams[0].trim(); const homeTeam = teams[1].trim(); const awayLogo = teamLogoMap[awayTeam] ? `<img src="https://a.espncdn.com/i/teamlogos/mlb/500/${teamLogoMap[awayTeam]}.png" alt="${awayTeam}" class="ticker-logo">` : `<div class="w-7 h-7"></div>`; const homeLogo = teamLogoMap[homeTeam] ? `<img src="https://a.espncdn.com/i/teamlogos/mlb/500/${teamLogoMap[homeTeam]}.png" alt="${homeTeam}" class="ticker-logo">` : `<div class="w-7 h-7"></div>`; const highlightClass = parseInt(parkFactor) >= userSettings.highParkFactor ? 'high-park-factor' : ''; return `<button class="ticker-item ${highlightClass}" data-game-title="${game.title}"><div class="flex flex-col"><div class="flex items-center justify-center gap-2"><div class="w-7">${awayLogo}</div><span class="font-bold text-sm">@</span><div class="w-7">${homeLogo}</div></div><span class="text-xs text-gray-500 dark:text-gray-400 mt-1">${time} | PF: ${parkFactor}</span></div></button>`; }).join(''); }
         function renderMyPicks(container) { container.innerHTML = ''; const headerHTML = `<div class="relative p-4 flex justify-between items-center bg-gray-50 dark:bg-gray-800 border-b dark:border-gray-700 rounded-t-lg"><h2 class="text-lg font-bold">My Picks</h2><div class="flex gap-2">${myPicks.length > 0 ? `<button id="copy-picks-btn" class="action-btn text-sm"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M7 9a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2H9a2 2 0 01-2-2V9z" /><path d="M4 3a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H4z" /></svg><span>Copy</span></button><button id="download-picks-btn" class="action-btn text-sm"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" /></svg><span>Download .txt</span></button>` : ''}</div><span id="copy-feedback" class="hidden absolute right-4 top-16 text-xs bg-green-500 text-white px-2 py-1 rounded-md">Copied!</span></div>`; if (myPicks.length === 0) { container.innerHTML = `<div class="card rounded-lg shadow-md overflow-hidden">${headerHTML}<div class="text-center p-8 text-gray-500">You haven't selected any picks. Click the ⭐ next to a player's name to add them here.</div></div>`; return; } const picksHtml = myPicks.map(p => `<tr class="player-row"><td class="p-4 border-b dark:border-gray-700">${p.name}</td><td class="p-4 border-b dark:border-gray-700">${p.gameTitle}</td><td class="p-4 border-b dark:border-gray-700 text-right"><button class="text-red-500 hover:text-red-700 text-sm remove-pick-btn" data-player-name="${p.name}" data-game-title="${p.gameTitle}">Remove</button></td></tr>`).join(''); container.innerHTML = `<div class="card rounded-lg shadow-md overflow-hidden">${headerHTML}<table class="w-full"><thead><tr class="table-header"><th class="p-4 text-left text-xs font-semibold uppercase">Player</th><th class="p-4 text-left text-xs font-semibold uppercase">Game</th><th></th></tr></thead><tbody>${picksHtml}</tbody></table></div>`; }
 
-        document.addEventListener('DOMContentLoaded', () => {
+        // All the page setup logic is now inside a function called initializePage
+        function initializePage() {
             const mainContent = document.getElementById('main-content');
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const dashboardContainer = document.getElementById('dashboard-container');
+            const gridContainer = document.getElementById('grid-container');
+            const picksContainer = document.getElementById('picks-container');
+            const focusViewContainer = document.getElementById('focus-view-container');
+            const tabBarSlider = document.getElementById('tab-bar-slider');
+            const tabItems = document.querySelectorAll('.tab-item');
+            const gameTickerContainer = document.getElementById('game-ticker-container');
+            const focusLists = document.getElementById('focus-lists');
+            const focusGame = document.getElementById('focus-game');
+            const settingsBtn = document.getElementById('settings-btn');
+            const settingsModal = document.getElementById('settings-modal');
 
-            function initializePage() {
-                const themeToggleBtn = document.getElementById('theme-toggle');
-                const dashboardContainer = document.getElementById('dashboard-container');
-                const gridContainer = document.getElementById('grid-container');
-                const picksContainer = document.getElementById('picks-container');
-                const focusViewContainer = document.getElementById('focus-view-container');
-                const tabBarSlider = document.getElementById('tab-bar-slider');
-                const tabItems = document.querySelectorAll('.tab-item');
-                const gameTickerContainer = document.getElementById('game-ticker-container');
-                const focusLists = document.getElementById('focus-lists');
-                const focusGame = document.getElementById('focus-game');
-                const settingsBtn = document.getElementById('settings-btn');
-                const settingsModal = document.getElementById('settings-modal');
+            function loadSettings() { const saved = localStorage.getItem('userSettings'); if (saved) { userSettings = JSON.parse(saved); } }
+            loadSettings();
 
-                function loadSettings() { const saved = localStorage.getItem('userSettings'); if (saved) { userSettings = JSON.parse(saved); } }
-                loadSettings();
+            myPicks = JSON.parse(localStorage.getItem('myPicks')) || [];
+            allGamesData = parseReport(reportText, userSettings);
+            const similarityData = parseSimilarityReport(similarityReportText);
+            const strikeoutData = parseStrikeoutPredictions(strikeoutPredictionsText);
 
-                myPicks = JSON.parse(localStorage.getItem('myPicks')) || [];
-                allGamesData = parseReport(reportText, userSettings);
-                const similarityData = parseSimilarityReport(similarityReportText);
-                const strikeoutData = parseStrikeoutPredictions(strikeoutPredictionsText);
+            function applyCascadeAnimation(containerSelector) { const cards = document.querySelectorAll(`${containerSelector} > *`); cards.forEach(c => c.classList.remove('card-cascade')); setTimeout(() => { cards.forEach((card, index) => { card.style.animationDelay = `${index * 80}ms`; card.classList.add('card-cascade'); }); }, 10); }
 
-                function applyCascadeAnimation(containerSelector) { const cards = document.querySelectorAll(`${containerSelector} > *`); cards.forEach(c => c.classList.remove('card-cascade')); setTimeout(() => { cards.forEach((card, index) => { card.style.animationDelay = `${index * 80}ms`; card.classList.add('card-cascade'); }); }, 10); }
+            function reRenderAllViews() { allGamesData = parseReport(reportText, userSettings); const activeTabView = document.querySelector('.tab-item.active')?.dataset.view || 'dashboard'; if (activeTabView === 'dashboard' || !focusViewContainer.classList.contains('hidden')) { dashboardContainer.innerHTML = ''; renderSimilarityReport(similarityData, dashboardContainer); renderStrikeoutPredictions(strikeoutData, dashboardContainer); } if (activeTabView === 'grid' || !focusViewContainer.classList.contains('hidden')) { gridContainer.innerHTML = ''; renderGridReport(allGamesData, gridContainer); } if(!focusViewContainer.classList.contains('hidden')) { const gameTitle = focusGame.querySelector('.card')?.dataset.gameTitle; if(gameTitle) { const gameData = allGamesData.find(g => g.title === gameTitle); if(gameData) focusGame.innerHTML = `<div class="card border rounded-lg shadow-lg overflow-hidden" data-game-title="${gameTitle}">${buildGameCardHTML(gameData)}</div>`; } } renderGameTicker(allGamesData, gameTickerContainer); applyCascadeAnimation(`#${activeTabView}-container`); }
 
-                function reRenderAllViews() { allGamesData = parseReport(reportText, userSettings); const activeTabView = document.querySelector('.tab-item.active')?.dataset.view || 'dashboard'; if (activeTabView === 'dashboard' || !focusViewContainer.classList.contains('hidden')) { dashboardContainer.innerHTML = ''; renderSimilarityReport(similarityData, dashboardContainer); renderStrikeoutPredictions(strikeoutData, dashboardContainer); } if (activeTabView === 'grid' || !focusViewContainer.classList.contains('hidden')) { gridContainer.innerHTML = ''; renderGridReport(allGamesData, gridContainer); } if(!focusViewContainer.classList.contains('hidden')) { const gameTitle = focusGame.querySelector('.card')?.dataset.gameTitle; if(gameTitle) { const gameData = allGamesData.find(g => g.title === gameTitle); if(gameData) focusGame.innerHTML = `<div class="card border rounded-lg shadow-lg overflow-hidden" data-game-title="${gameTitle}">${buildGameCardHTML(gameData)}</div>`; } } renderGameTicker(allGamesData, gameTickerContainer); applyCascadeAnimation(`#${activeTabView}-container`); }
+            renderSimilarityReport(similarityData, dashboardContainer);
+            renderStrikeoutPredictions(strikeoutData, dashboardContainer);
+            renderGridReport(allGamesData, gridContainer);
+            renderGameTicker(allGamesData, gameTickerContainer);
+            applyCascadeAnimation('#dashboard-container');
 
-                renderSimilarityReport(similarityData, dashboardContainer);
-                renderStrikeoutPredictions(strikeoutData, dashboardContainer);
-                renderGridReport(allGamesData, gridContainer);
-                renderGameTicker(allGamesData, gameTickerContainer);
-                applyCascadeAnimation('#dashboard-container');
+            if (document.documentElement.classList.contains('dark')) { document.getElementById('theme-toggle-light-icon').classList.remove('hidden'); } else { document.getElementById('theme-toggle-dark-icon').classList.remove('hidden'); }
 
-                if (document.documentElement.classList.contains('dark')) { document.getElementById('theme-toggle-light-icon').classList.remove('hidden'); } else { document.getElementById('theme-toggle-dark-icon').classList.remove('hidden'); }
+            const moveSlider = (targetTab) => { if (!targetTab) return; const { offsetLeft, offsetWidth } = targetTab; tabBarSlider.style.left = `${offsetLeft}px`; tabBarSlider.style.width = `${offsetWidth}px`; };
 
-                const moveSlider = (targetTab) => { if (!targetTab) return; const { offsetLeft, offsetWidth } = targetTab; tabBarSlider.style.left = `${offsetLeft}px`; tabBarSlider.style.width = `${offsetWidth}px`; };
+            tabItems.forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    document.querySelector('.tab-item.active').classList.remove('active');
+                    tab.classList.add('active');
+                    const view = tab.dataset.view;
+                    dashboardContainer.classList.toggle('hidden', view !== 'dashboard');
+                    gridContainer.classList.toggle('hidden', view !== 'grid');
+                    picksContainer.classList.toggle('hidden', view !== 'picks');
+                    focusViewContainer.classList.add('hidden');
 
-                tabItems.forEach(tab => {
-                    tab.addEventListener('click', (e) => {
-                        document.querySelector('.tab-item.active').classList.remove('active');
-                        tab.classList.add('active');
-                        const view = tab.dataset.view;
-                        dashboardContainer.classList.toggle('hidden', view !== 'dashboard');
-                        gridContainer.classList.toggle('hidden', view !== 'grid');
-                        picksContainer.classList.toggle('hidden', view !== 'picks');
-                        focusViewContainer.classList.add('hidden');
-
-                        if(view === 'dashboard' || view === 'grid') {
-                            const container = view === 'dashboard' ? dashboardContainer : gridContainer;
-                            container.innerHTML = '';
-                            if(view === 'dashboard') {
-                                renderSimilarityReport(similarityData, dashboardContainer);
-                                renderStrikeoutPredictions(strikeoutData, dashboardContainer);
-                            } else {
-                                renderGridReport(allGamesData, gridContainer);
-                            }
-                            applyCascadeAnimation(`#${view}-container`);
+                    if(view === 'dashboard' || view === 'grid') {
+                        const container = view === 'dashboard' ? dashboardContainer : gridContainer;
+                        container.innerHTML = '';
+                        if(view === 'dashboard') {
+                            renderSimilarityReport(similarityData, dashboardContainer);
+                            renderStrikeoutPredictions(strikeoutData, dashboardContainer);
+                        } else {
+                            renderGridReport(allGamesData, gridContainer);
                         }
-                        if (view === 'picks') { renderMyPicks(picksContainer); }
-                        moveSlider(tab);
-                    });
-                });
-
-                gameTickerContainer.addEventListener('click', (e) => {
-                    const tickerItem = e.target.closest('.ticker-item');
-                    if(tickerItem) {
-                        const gameTitle = tickerItem.dataset.gameTitle;
-                        dashboardContainer.classList.add('hidden');
-                        gridContainer.classList.add('hidden');
-                        picksContainer.classList.add('hidden');
-                        focusViewContainer.classList.remove('hidden');
-                        focusLists.innerHTML = '';
-                        renderSimilarityReport(similarityData, focusLists);
-                        renderStrikeoutPredictions(strikeoutData, focusLists);
-                        const gameData = allGamesData.find(g => g.title === gameTitle);
-                        if(gameData) { focusGame.innerHTML = `<div class="card border rounded-lg shadow-lg overflow-hidden" data-game-title="${gameTitle}">${buildGameCardHTML(gameData)}</div>`; }
+                        applyCascadeAnimation(`#${view}-container`);
                     }
+                    if (view === 'picks') { renderMyPicks(picksContainer); }
+                    moveSlider(tab);
                 });
+            });
 
-                function generatePicksText() { if (myPicks.length === 0) return "No picks selected."; const date = new Date().toLocaleDateString(); let text = `Similarity Slut Picks for ${date}\n=====================================\n\n`; text += myPicks.map(p => `- ${p.name} (${p.gameTitle})`).join('\n'); return text; }
-                function togglePick(playerName, gameTitle) { const pickIndex = myPicks.findIndex(p => p.name === playerName && p.gameTitle === gameTitle); if (pickIndex > -1) { myPicks.splice(pickIndex, 1); } else { myPicks.push({ name: playerName, gameTitle: gameTitle }); } localStorage.setItem('myPicks', JSON.stringify(myPicks)); document.querySelectorAll(`.star-btn[data-player-name="${playerName}"][data-game-title="${gameTitle}"]`).forEach(btn => { btn.classList.toggle('starred', pickIndex === -1); }); if (!picksContainer.classList.contains('hidden')) { renderMyPicks(picksContainer); } }
+            gameTickerContainer.addEventListener('click', (e) => {
+                const tickerItem = e.target.closest('.ticker-item');
+                if(tickerItem) {
+                    const gameTitle = tickerItem.dataset.gameTitle;
+                    dashboardContainer.classList.add('hidden');
+                    gridContainer.classList.add('hidden');
+                    picksContainer.classList.add('hidden');
+                    focusViewContainer.classList.remove('hidden');
+                    focusLists.innerHTML = '';
+                    renderSimilarityReport(similarityData, focusLists);
+                    renderStrikeoutPredictions(strikeoutData, focusLists);
+                    const gameData = allGamesData.find(g => g.title === gameTitle);
+                    if(gameData) { focusGame.innerHTML = `<div class="card border rounded-lg shadow-lg overflow-hidden" data-game-title="${gameTitle}">${buildGameCardHTML(gameData)}</div>`; }
+                }
+            });
 
-                mainContent.addEventListener('click', (e) => {
-                    const starBtn = e.target.closest('.star-btn');
-                    const removeBtn = e.target.closest('.remove-pick-btn');
-                    const sortHeader = e.target.closest('.sortable');
-                    const downloadBtn = e.target.closest('#download-picks-btn');
-                    const copyBtn = e.target.closest('#copy-picks-btn');
+            function generatePicksText() { if (myPicks.length === 0) return "No picks selected."; const date = new Date().toLocaleDateString(); let text = `Similarity Slut Picks for ${date}\n=====================================\n\n`; text += myPicks.map(p => `- ${p.name} (${p.gameTitle})`).join('\n'); return text; }
+            function togglePick(playerName, gameTitle) { const pickIndex = myPicks.findIndex(p => p.name === playerName && p.gameTitle === gameTitle); if (pickIndex > -1) { myPicks.splice(pickIndex, 1); } else { myPicks.push({ name: playerName, gameTitle: gameTitle }); } localStorage.setItem('myPicks', JSON.stringify(myPicks)); document.querySelectorAll(`.star-btn[data-player-name="${playerName}"][data-game-title="${gameTitle}"]`).forEach(btn => { btn.classList.toggle('starred', pickIndex === -1); }); if (!picksContainer.classList.contains('hidden')) { renderMyPicks(picksContainer); } }
 
-                    if (starBtn) { togglePick(starBtn.dataset.playerName, starBtn.dataset.gameTitle); }
-                    if (removeBtn) { togglePick(removeBtn.dataset.playerName, removeBtn.dataset.gameTitle); }
-                    if(sortHeader) {
-                        const teamContainer = sortHeader.closest('[data-team-id]');
-                        if (teamContainer) {
-                             const gameCard = teamContainer.closest('.card');
-                             const gameTitle = gameCard.dataset.gameTitle;
-                             const gameData = allGamesData.find(g => g.title === gameTitle);
-                             const teamData = gameData.teams.find(t => t.id === teamContainer.dataset.teamId);
-                            if(teamData) {
-                                const sortKey = sortHeader.dataset.sortKey;
-                                const order = (currentSort.key === sortKey && currentSort.order === 'desc') ? 'asc' : 'desc';
-                                currentSort = { key: sortKey, order: order };
-                                teamData.players.sort((a, b) => { const vA = a[sortKey]; const vB = b[sortKey]; if (vA === -1 && vB !== -1) return 1; if (vB === -1 && vA !== -1) return -1; return order === 'desc' ? vB - vA : vA - vB; });
-                                gameCard.innerHTML = buildGameCardHTML(gameData);
-                            }
+            mainContent.addEventListener('click', (e) => {
+                const starBtn = e.target.closest('.star-btn');
+                const removeBtn = e.target.closest('.remove-pick-btn');
+                const sortHeader = e.target.closest('.sortable');
+                const downloadBtn = e.target.closest('#download-picks-btn');
+                const copyBtn = e.target.closest('#copy-picks-btn');
+
+                if (starBtn) { togglePick(starBtn.dataset.playerName, starBtn.dataset.gameTitle); }
+                if (removeBtn) { togglePick(removeBtn.dataset.playerName, removeBtn.dataset.gameTitle); }
+                if(sortHeader) {
+                    const teamContainer = sortHeader.closest('[data-team-id]');
+                    if (teamContainer) {
+                         const gameCard = teamContainer.closest('.card');
+                         const gameTitle = gameCard.dataset.gameTitle;
+                         const gameData = allGamesData.find(g => g.title === gameTitle);
+                         const teamData = gameData.teams.find(t => t.id === teamContainer.dataset.teamId);
+                        if(teamData) {
+                            const sortKey = sortHeader.dataset.sortKey;
+                            const order = (currentSort.key === sortKey && currentSort.order === 'desc') ? 'asc' : 'desc';
+                            currentSort = { key: sortKey, order: order };
+                            teamData.players.sort((a, b) => { const vA = a[sortKey]; const vB = b[sortKey]; if (vA === -1 && vB !== -1) return 1; if (vB === -1 && vA !== -1) return -1; return order === 'desc' ? vB - vA : vA - vB; });
+                            gameCard.innerHTML = buildGameCardHTML(gameData);
                         }
                     }
-                    if (downloadBtn) { const text = generatePicksText(); const blob = new Blob([text], { type: 'text/plain' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = `my_picks_${new Date().toISOString().split('T')[0]}.txt`; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url); }
-                    if (copyBtn) { const text = generatePicksText(); navigator.clipboard.writeText(text).then(() => { const feedback = document.getElementById('copy-feedback'); if (feedback) { feedback.classList.remove('hidden'); feedback.classList.add('show'); setTimeout(() => { feedback.classList.remove('show'); setTimeout(() => feedback.classList.add('hidden'), 500); }, 1500); } }).catch(err => console.error('Failed to copy picks: ', err)); }
-                });
+                }
+                if (downloadBtn) { const text = generatePicksText(); const blob = new Blob([text], { type: 'text/plain' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = `my_picks_${new Date().toISOString().split('T')[0]}.txt`; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url); }
+                if (copyBtn) { const text = generatePicksText(); navigator.clipboard.writeText(text).then(() => { const feedback = document.getElementById('copy-feedback'); if (feedback) { feedback.classList.remove('hidden'); feedback.classList.add('show'); setTimeout(() => { feedback.classList.remove('show'); setTimeout(() => feedback.classList.add('hidden'), 500); }, 1500); } }).catch(err => console.error('Failed to copy picks: ', err)); }
+            });
 
-                themeToggleBtn.addEventListener('click', () => {
-                    document.documentElement.classList.toggle('dark');
-                    const isDark = document.documentElement.classList.contains('dark');
-                    localStorage.setItem('color-theme', isDark ? 'dark' : 'light');
-                    document.getElementById('theme-toggle-dark-icon').classList.toggle('hidden', !isDark);
-                    document.getElementById('theme-toggle-light-icon').classList.toggle('hidden', isDark);
-                });
+            themeToggleBtn.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+                const isDark = document.documentElement.classList.contains('dark');
+                localStorage.setItem('color-theme', isDark ? 'dark' : 'light');
+                document.getElementById('theme-toggle-dark-icon').classList.toggle('hidden', !isDark);
+                document.getElementById('theme-toggle-light-icon').classList.toggle('hidden', isDark);
+            });
 
-                settingsBtn.addEventListener('click', () => {
-                    document.getElementById('thresh-90day').value = userSettings.isHigh90Day;
-                    document.getElementById('thresh-2year').value = userSettings.isHigh2Year;
-                    document.getElementById('thresh-hrsim').value = userSettings.isHighCompScore;
-                    document.getElementById('thresh-parkfactor').value = userSettings.highParkFactor;
-                    settingsModal.classList.remove('hidden');
-                });
-                document.getElementById('settings-close-btn').addEventListener('click', () => settingsModal.classList.add('hidden'));
-                document.getElementById('settings-cancel-btn').addEventListener('click', () => settingsModal.classList.add('hidden'));
-                document.getElementById('settings-save-btn').addEventListener('click', () => {
-                    userSettings.isHigh90Day = parseInt(document.getElementById('thresh-90day').value, 10);
-                    userSettings.isHigh2Year = parseInt(document.getElementById('thresh-2year').value, 10);
-                    userSettings.isHighCompScore = parseInt(document.getElementById('thresh-hrsim').value, 10);
-                    userSettings.highParkFactor = parseInt(document.getElementById('thresh-parkfactor').value, 10);
-                    localStorage.setItem('userSettings', JSON.stringify(userSettings));
-                    settingsModal.classList.add('hidden');
-                    reRenderAllViews();
-                });
+            settingsBtn.addEventListener('click', () => {
+                document.getElementById('thresh-90day').value = userSettings.isHigh90Day;
+                document.getElementById('thresh-2year').value = userSettings.isHigh2Year;
+                document.getElementById('thresh-hrsim').value = userSettings.isHighCompScore;
+                document.getElementById('thresh-parkfactor').value = userSettings.highParkFactor;
+                settingsModal.classList.remove('hidden');
+            });
+            document.getElementById('settings-close-btn').addEventListener('click', () => settingsModal.classList.add('hidden'));
+            document.getElementById('settings-cancel-btn').addEventListener('click', () => settingsModal.classList.add('hidden'));
+            document.getElementById('settings-save-btn').addEventListener('click', () => {
+                userSettings.isHigh90Day = parseInt(document.getElementById('thresh-90day').value, 10);
+                userSettings.isHigh2Year = parseInt(document.getElementById('thresh-2year').value, 10);
+                userSettings.isHighCompScore = parseInt(document.getElementById('thresh-hrsim').value, 10);
+                userSettings.highParkFactor = parseInt(document.getElementById('thresh-parkfactor').value, 10);
+                localStorage.setItem('userSettings', JSON.stringify(userSettings));
+                settingsModal.classList.add('hidden');
+                reRenderAllViews();
+            });
 
-                document.getElementById('zxm-button').addEventListener('click', () => window.open('https://x.com/Zxmbuu', '_blank'));
-                window.addEventListener('load', () => { moveSlider(document.querySelector('.tab-item.active')); });
+            document.getElementById('zxm-button').addEventListener('click', () => window.open('https://x.com/Zxmbuu', '_blank'));
+            window.addEventListener('load', () => { moveSlider(document.querySelector('.tab-item.active')); });
+        }
+
+        // This function runs when the page first loads
+        document.addEventListener('DOMContentLoaded', () => {
+            function checkPassword() {
+                const password = "slutforme";
+                let enteredPassword = prompt("Please enter the password:", "");
+
+                // Loop until the correct password is provided
+                while (enteredPassword !== password) {
+                    // If the user clicks "Cancel" on the prompt
+                    if (enteredPassword === null) {
+                        document.body.innerHTML = `<div class="h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900"><h1 class="text-2xl font-bold text-red-500">Access Denied</h1></div>`;
+                        return; // Stop the script
+                    }
+                    alert("Incorrect password. Please try again.");
+                    enteredPassword = prompt("Please enter the password:", "");
+                }
+
+                // If password is correct, show the content and run the main app logic
+                document.getElementById('protected-content').classList.remove('hidden');
+                initializePage();
             }
 
-            initializePage();
+            // Start the password check process
+            checkPassword();
         });
     </script>
 </body>
