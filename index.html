@@ -406,11 +406,11 @@
                                     <input type="number" id="pf-min-pf" placeholder="100">
                                 </div>
                             </div>
-                            <div id="notebook-table-container" class="card p-4 overflow-hidden">
+                            <div id="notebook-table-container" class="card p-4 overflow-hidden border border-gray-700">
                             </div>
                         </div>
                         <div id="all-notebook-content" class="hidden">
-                            <div id="all-notebook-table-container" class="card p-4 overflow-hidden"></div>
+                            <div id="all-notebook-table-container" class="card p-4 overflow-hidden border border-gray-700"></div>
                         </div>
                     </div>
 
@@ -61599,23 +61599,19 @@
             const kPreds = processStrikeoutPredictions(finalReportData.daily_matchups);
 
             const createPill = (item, rank, type) => {
-                let value, colorClass, displayValue, name;
-                if (type === 'prob') {
-                    value = item.recentProbValue;
-                    colorClass = getStatColorClass(value, 'prob');
-                    displayValue = item.recentProbStr;
+                let value, colorClass, displayValue, name, allEmojis = '';
+                if (type === 'prob' || type === 'sim') {
+                    value = (type === 'prob') ? item.recentProbValue : item.simScoreValue;
+                    colorClass = getStatColorClass(value, type);
+                    displayValue = (type === 'prob') ? item.recentProbStr : item.simScoreStr;
                     name = item.name || item.rawName;
-                } else if (type === 'sim') {
-                    value = item.simScoreValue;
-                    colorClass = getStatColorClass(value, 'sim');
-                    displayValue = item.simScoreStr;
-                    name = item.name || item.rawName;
+                    allEmojis = item.status + getHotStreakEmoji(item.batterId);
                 } else { // k_pred
                     value = item.k_pred;
                     displayValue = value.toFixed(2);
                     name = item.name;
                 }
-                return `<div class="dashboard-pill"><div class="player-info"><span class="rank">#${rank}</span><div><p class="player-name">${name}</p><p class="secondary-info">${item.gameTitle || 'N/A'}</p></div></div><div class="stat-value ${colorClass}">${displayValue}</div></div>`;
+                return `<div class="dashboard-pill"><div class="player-info"><span class="rank">#${rank}</span><div><p class="player-name">${name} <span class="ml-1">${allEmojis}</span></p><p class="secondary-info">${item.gameTitle || 'N/A'}</p></div></div><div class="stat-value ${colorClass}">${displayValue}</div></div>`;
             };
 
             document.getElementById('hr-prob-container').innerHTML = topHRProb.map((p, i) => createPill(p, i + 1, 'prob')).join('');
@@ -61721,11 +61717,13 @@
                 const isStarred = myPicks.some(pick => pick.name === p.name && pick.gameTitle === p.gameTitle);
                 const recentProbColor = getStatColorClass(p.recentProbValue, 'prob');
                 const simScoreColor = getStatColorClass(p.simScoreValue, 'sim');
+                const allEmojis = p.status + getHotStreakEmoji(p.batterId);
                 return `<tr class="player-row" data-player-name="${p.rawName}">
                             <td class="py-2 px-4 border-b dark:border-gray-700 text-sm">
                                 <div class="player-name-cell">
                                     <button class="star-btn ${isStarred ? 'starred' : ''}" data-player-name="${p.name}" data-game-title="${p.gameTitle}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg></button>
                                     <button class="player-name-btn" data-player-name="${p.rawName}" data-batter-id="${p.batterId}">${p.name}</button>
+                                    <span class="ml-2">${allEmojis}</span>
                                 </div>
                             </td>
                             <td class="py-2 px-4 border-b dark:border-gray-700 text-sm"><button class="pitcher-name-btn" data-pitcher-name="${p.pitcherName}">${p.pitcherName}</button></td>
@@ -61790,7 +61788,10 @@
             const rowsHtml = sortedPlayers.map(name => {
                 const data = dailyBatterScriptsData[name];
                 if (!data) return '';
-                const batterId = masterPlayerList.find(p => p.rawName === name)?.batterId;
+
+                const playerInfo = masterPlayerList.find(p => p.rawName === name);
+                const batterId = playerInfo?.batterId;
+                const allEmojis = playerInfo ? (playerInfo.status + getHotStreakEmoji(playerInfo.batterId)) : '';
 
                 const createCell = (key) => {
                     const value = parseFloat((data[key] || "0").replace('%',''));
@@ -61800,7 +61801,10 @@
 
                 return `<tr class="player-row" data-player-name="${name}">
                     <td class="py-2 px-4 border-b dark:border-gray-700 text-sm">
-                        <button class="player-name-btn" data-player-name="${name}" data-batter-id="${batterId || ''}">${name}</button>
+                        <div class="player-name-cell">
+                            <button class="player-name-btn" data-player-name="${name}" data-batter-id="${batterId || ''}">${name}</button>
+                             <span class="ml-2">${allEmojis}</span>
+                        </div>
                     </td>
                     ${createCell('home_run')}
                     ${createCell('double')}
@@ -61839,7 +61843,16 @@
                     if (['single', 'double', 'triple', 'home_run'].includes(ab.result)) resultClass = 'result-hit';
                     else if (['strikeout', 'field_out'].includes(ab.result)) resultClass = 'result-out';
                     else if (ab.result === 'walk') resultClass = 'result-walk';
-                    html += `<li class="flex justify-between items-center bg-gray-700 p-2 rounded-md text-sm"><span class="font-semibold">${ab.pitcher}</span> <span class="${resultClass} font-bold">${ab.result.replace(/_/g, ' ')}</span></li>`;
+
+                    html += `<li class="bg-gray-700 p-3 rounded-md text-sm">
+                                <div class="flex justify-between items-center font-semibold">
+                                    <span>${ab.date} vs. ${ab.pitcher}</span>
+                                    <span class="${resultClass}">${ab.result.replace(/_/g, ' ')}</span>
+                                </div>
+                                <div class="text-gray-400 mt-1">
+                                    <span class="font-mono">(${ab.pitch_name || 'N/A'})</span> "${ab.des}"
+                                </div>
+                             </li>`;
                 });
                 html += '</ul>';
             } else {
@@ -62303,7 +62316,6 @@
                     e.preventDefault();
                     if (passwordInput.value === correctPassword) {
                         localStorage.setItem('similaritySlutAuth', authVersion);
-                        passwordModal.style.display = 'none';
                         protectedContent.classList.remove('hidden');
                         initializePage();
                     } else {
