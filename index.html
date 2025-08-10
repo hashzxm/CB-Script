@@ -189,7 +189,7 @@
         .result-out { color: #f87171; }
         .result-walk { color: #facc15; }
 
-        .highlight-hand { border: 2px solid #6366f1; background-color: rgba(99, 102, 241, 0.1); }
+        .highlight-hand { border: 2px solid #6366f1; background-color: rgba(99, 102, 241, 0.1); border-radius: 0.5rem; }
 
         /* Notebook Filter Styles */
         #notebook-filters {
@@ -208,7 +208,7 @@
             color: #9ca3af;
             margin-bottom: 0.25rem;
         }
-        .filter-group input {
+        .filter-group input, .filter-group select {
             width: 100%;
             background-color: #374151;
             border: 1px solid #4b5563;
@@ -387,6 +387,14 @@
                             </div>
                         </div>
                         <div id="all-notebook-content" class="hidden">
+                            <!-- START: Added Game Filter Dropdown -->
+                            <div class="filter-group p-4 bg-gray-800/50 rounded-lg mb-4">
+                                <label for="an-game-filter" class="block text-sm font-medium text-gray-400 mb-2">Filter by Game</label>
+                                <select id="an-game-filter" class="w-full bg-gray-700 border border-gray-600 rounded-md p-2 text-white focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                                    <option value="all">All Games</option>
+                                </select>
+                            </div>
+                            <!-- END: Added Game Filter Dropdown -->
                             <div id="all-notebook-table-container" class="card p-4 overflow-hidden border border-gray-700"></div>
                         </div>
                     </div>
@@ -62325,7 +62333,7 @@
                                <h2 class="text-xl font-bold">${game.title} (${game.time})</h2>
                                <img src="${homeLogo}" alt="${game.homeTeam}" class="w-8 h-8 object-contain team-logo">
                             </div>
-                            <button class="stadium-info-btn" data-park-name="${game.parkName}" ${weatherData}>
+                            <button class="stadium-info-btn" data-park-name="${game.parkName}" data-park-factor="${game.parkFactor}" ${weatherData}>
                                 <div class="text-xs text-right">
                                     <span class="${game.parkFactor >= userSettings.highParkFactor ? 'text-green-400 font-bold' : ''}">🏟️</span>
                                 </div>
@@ -62486,11 +62494,39 @@
             addPlayerNameClickListeners(container);
         }
 
-        function renderAllNotebookTable() {
+        function populateAllNotebookGameFilter() {
+            const select = document.getElementById('an-game-filter');
+            if (!select || allGamesData.length === 0) return;
+
+            // Clear existing options except the first one
+            while (select.options.length > 1) {
+                select.remove(1);
+            }
+
+            // allGamesData is already sorted by time
+            allGamesData.forEach(game => {
+                const option = document.createElement('option');
+                option.value = game.title;
+                option.textContent = `${game.title} (${game.time}) - ${game.parkFactor} PF`;
+                select.appendChild(option);
+            });
+        }
+
+        function renderAllNotebookTable(filterGameTitle = 'all') {
             const container = document.getElementById('all-notebook-table-container');
-            const players = Object.keys(dailyBatterScriptsData);
+
+            let players;
+            if (filterGameTitle && filterGameTitle !== 'all') {
+                const playersInGame = masterPlayerList
+                    .filter(p => p.gameTitle === filterGameTitle)
+                    .map(p => p.rawName);
+                players = playersInGame.filter(name => dailyBatterScriptsData[name]);
+            } else {
+                players = Object.keys(dailyBatterScriptsData);
+            }
+
             if (players.length === 0) {
-                 container.innerHTML = `<p class="text-center text-gray-400 p-8">No scripted data available.</p>`;
+                 container.innerHTML = `<p class="text-center text-gray-400 p-8">No scripted data available for this selection.</p>`;
                  return;
             }
 
@@ -62603,12 +62639,12 @@
             }
 
             html += '<h3 class="font-bold text-lg mb-2 mt-6 text-gray-100">Pitch Mix Vulnerabilities</h3>';
-            if (abData && abData.pitch_mix_report) {
-                 const createPitchMixTable = (pitchMixData, title) => {
+            if (player && abData && abData.pitch_mix_report) {
+                 const createPitchMixTable = (pitchMixData, title, isFacing) => {
                     if (!pitchMixData || pitchMixData.length === 0) {
                         return `<div class="mb-4"><h4 class="font-semibold text-md mb-1 text-gray-300">${title}</h4><p class="text-sm text-gray-500">No pitch mix data.</p></div>`;
                     }
-                    let tableHtml = `<div class="mb-4"><h4 class="font-semibold text-md mb-1 text-gray-300">${title}</h4>
+                    let tableHtml = `<div class="mb-4 p-2 ${isFacing ? 'highlight-hand' : ''}"><h4 class="font-semibold text-md mb-1 text-gray-300">${title}</h4>
                         <table class="min-w-full text-sm">
                             <thead class="text-xs text-gray-400 uppercase"><tr>
                                 <th class="text-left py-1 px-2">Pitch</th>
@@ -62634,8 +62670,8 @@
                 };
 
                 html += '<div class="grid grid-cols-1 gap-y-4">';
-                html += createPitchMixTable(abData.pitch_mix_report.vs_lhp, 'vs. LHP');
-                html += createPitchMixTable(abData.pitch_mix_report.vs_rhp, 'vs. RHP');
+                html += createPitchMixTable(abData.pitch_mix_report.vs_lhp, 'vs. LHP', player.pitcherHand === 'L');
+                html += createPitchMixTable(abData.pitch_mix_report.vs_rhp, 'vs. RHP', player.pitcherHand === 'R');
                 html += '</div>';
 
             } else {
@@ -62785,6 +62821,7 @@
                     notebookViewSwapBtn.textContent = "View Stacked Model HR";
                     document.getElementById('all-notebook-content').classList.remove('hidden');
                     document.getElementById('focus-notebook-content').classList.add('hidden');
+                    document.getElementById('an-game-filter').value = 'all';
                     renderAllNotebookTable();
                 }
             });
@@ -62818,8 +62855,14 @@
                         allNotebookSort.key = key;
                         allNotebookSort.order = 'desc';
                     }
-                    renderAllNotebookTable();
+                    const selectedGame = document.getElementById('an-game-filter').value;
+                    renderAllNotebookTable(selectedGame);
                 }
+            });
+
+            document.getElementById('an-game-filter').addEventListener('change', e => {
+                allNotebookSort = { key: 'home_run', order: 'desc' }; // Reset sort on filter change
+                renderAllNotebookTable(e.target.value);
             });
 
             document.querySelectorAll('.modal-close-btn').forEach(btn => {
@@ -62834,8 +62877,11 @@
                 if (btn && btn.dataset.parkName) {
                     document.getElementById('stadium-modal-name').textContent = btn.dataset.parkName;
                     let weatherHtml = '<p class="text-gray-400">No weather data available for this game.</p>';
+                     if (btn.dataset.parkFactor) {
+                        weatherHtml = `<p class="mb-4"><strong>HR Park Factor:</strong> ${btn.dataset.parkFactor}</p>`
+                    }
                     if (btn.dataset.temp) {
-                         weatherHtml = `<div class="space-y-2 text-base">
+                         weatherHtml += `<div class="space-y-2 text-base">
                             <p><strong>Temperature:</strong> ${btn.dataset.temp}°F</p>
                             <p><strong>Humidity:</strong> ${btn.dataset.humidity}%</p>
                             <p><strong>Wind:</strong> ${btn.dataset.wind} mph</p>
@@ -63118,6 +63164,7 @@
             loadPicks();
             allGamesData = processFinalReport(finalReportData, scheduleData);
             masterPlayerList = createMasterPlayerList(allGamesData);
+            populateAllNotebookGameFilter();
             renderAll();
             setupEventListeners();
             switchView('dashboard');
