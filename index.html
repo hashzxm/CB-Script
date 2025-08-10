@@ -381,10 +381,7 @@
 
                     <div id="notebook-container" class="hidden">
                         <div class="flex justify-between items-center mb-4">
-                            <div class="notebook-toggle-container">
-                              <button id="notebook-focus-btn" class="notebook-toggle-btn active">FOCUS</button>
-                              <button id="notebook-all-btn" class="notebook-toggle-btn">ALL</button>
-                            </div>
+                            <button id="notebook-view-swap-btn" class="action-btn">View ALL</button>
                             <button id="notebook-swap-btn" class="action-btn">Swap to Pitchers</button>
                         </div>
                         <div id="focus-notebook-content">
@@ -61359,6 +61356,7 @@
         let notebookSort = { key: 'recentProbValue', order: 'desc' };
         let allNotebookSort = { key: 'home_run', order: 'desc' };
         let userSettings = { highParkFactor: 105 };
+        let isNotebookFocusView = true;
         const espnTeamAbbrMap = {
             'ARI': 'AZ', 'ATL': 'ATL', 'BAL': 'BAL', 'BOS': 'BOS', 'CHC': 'CHC',
             'CHW': 'CWS', 'CIN': 'CIN', 'CLE': 'CLE', 'COL': 'COL', 'DET': 'DET',
@@ -61841,16 +61839,16 @@
                 abData.last_5_abs.forEach(ab => {
                     let resultClass = 'text-gray-400';
                     if (['single', 'double', 'triple', 'home_run'].includes(ab.result)) resultClass = 'result-hit';
-                    else if (['strikeout', 'field_out'].includes(ab.result)) resultClass = 'result-out';
+                    else if (['strikeout', 'field_out', 'double_play', 'grounded_into_double_play', 'sac_fly', 'force_out', 'fielders_choice', 'fielders_choice_out'].includes(ab.result)) resultClass = 'result-out';
                     else if (ab.result === 'walk') resultClass = 'result-walk';
 
                     html += `<li class="bg-gray-700 p-3 rounded-md text-sm">
                                 <div class="flex justify-between items-center font-semibold">
-                                    <span>${ab.date} vs. ${ab.pitcher}</span>
+                                    <span>${ab.game_date} vs. ${ab.pitcher_name}</span>
                                     <span class="${resultClass}">${ab.result.replace(/_/g, ' ')}</span>
                                 </div>
                                 <div class="text-gray-400 mt-1">
-                                    <span class="font-mono">(${ab.pitch_name || 'N/A'})</span> "${ab.des}"
+                                    <span class="font-mono">(${ab.pitch_type || 'N/A'})</span> "${ab.description}"
                                 </div>
                              </li>`;
                 });
@@ -62024,18 +62022,20 @@
 
             document.getElementById('back-to-games-btn').addEventListener('click', () => switchView('grid'));
 
-            document.getElementById('notebook-focus-btn').addEventListener('click', () => {
-                document.getElementById('notebook-focus-btn').classList.add('active');
-                document.getElementById('notebook-all-btn').classList.remove('active');
-                document.getElementById('focus-notebook-content').classList.remove('hidden');
-                document.getElementById('all-notebook-content').classList.add('hidden');
-            });
-             document.getElementById('notebook-all-btn').addEventListener('click', () => {
-                document.getElementById('notebook-all-btn').classList.add('active');
-                document.getElementById('notebook-focus-btn').classList.remove('active');
-                document.getElementById('all-notebook-content').classList.remove('hidden');
-                document.getElementById('focus-notebook-content').classList.add('hidden');
-                renderAllNotebookTable();
+            // Notebook View Toggle
+            const notebookViewSwapBtn = document.getElementById('notebook-view-swap-btn');
+            notebookViewSwapBtn.addEventListener('click', () => {
+                isNotebookFocusView = !isNotebookFocusView;
+                if (isNotebookFocusView) {
+                    notebookViewSwapBtn.textContent = 'View ALL';
+                    document.getElementById('focus-notebook-content').classList.remove('hidden');
+                    document.getElementById('all-notebook-content').classList.add('hidden');
+                } else {
+                    notebookViewSwapBtn.textContent = 'View FOCUS';
+                    document.getElementById('all-notebook-content').classList.remove('hidden');
+                    document.getElementById('focus-notebook-content').classList.add('hidden');
+                    renderAllNotebookTable();
+                }
             });
 
             document.querySelectorAll('#notebook-filters input').forEach(input => {
@@ -62316,6 +62316,7 @@
                     e.preventDefault();
                     if (passwordInput.value === correctPassword) {
                         localStorage.setItem('similaritySlutAuth', authVersion);
+                        passwordModal.style.display = 'none';
                         protectedContent.classList.remove('hidden');
                         initializePage();
                     } else {
