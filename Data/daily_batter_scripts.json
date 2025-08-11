@@ -1,0 +1,2058 @@
+{
+  "Mike Yastrzemski": {
+    "double": "0.1916",
+    "field_out": "0.1460",
+    "home_run": "0.1730",
+    "single": "0.1955",
+    "strikeout": "0.1076",
+    "walk": "0.1863"
+  },
+  "Maikel Garcia": {
+    "double": "0.2322",
+    "field_out": "0.1904",
+    "home_run": "0.0760",
+    "single": "0.2630",
+    "strikeout": "0.0827",
+    "walk": "0.1557"
+  },
+  "Vinnie Pasquantino": {
+    "double": "0.1771",
+    "field_out": "0.3168",
+    "home_run": "0.0938",
+    "single": "0.2759",
+    "strikeout": "0.0934",
+    "walk": "0.0430"
+  },
+  "Salvador Perez": {
+    "double": "0.2381",
+    "field_out": "0.1978",
+    "home_run": "0.1254",
+    "single": "0.2374",
+    "strikeout": "0.1404",
+    "walk": "0.0610"
+  },
+  "Adam Frazier": {
+    "double": "0.0770",
+    "field_out": "0.3432",
+    "home_run": "0.0141",
+    "single": "0.2572",
+    "strikeout": "0.0893",
+    "walk": "0.2192"
+  },
+  "Jonathan India": {
+    "double": "0.2220",
+    "field_out": "0.1326",
+    "home_run": "0.0950",
+    "single": "0.2167",
+    "strikeout": "0.1650",
+    "walk": "0.1688"
+  },
+  "John Rave": {
+    "double": "0.1392",
+    "field_out": "0.1696",
+    "home_run": "0.1290",
+    "single": "0.1592",
+    "strikeout": "0.1955",
+    "walk": "0.2074"
+  },
+  "Luke Maile": {
+    "double": "0.0204",
+    "field_out": "0.1422",
+    "home_run": "0.0083",
+    "single": "0.0679",
+    "strikeout": "0.5614",
+    "walk": "0.1998"
+  },
+  "Kyle Isbel": {
+    "double": "0.0992",
+    "field_out": "0.2908",
+    "home_run": "0.0186",
+    "single": "0.4079",
+    "strikeout": "0.1657",
+    "walk": "0.0178"
+  },
+  "Austin Martin": {
+    "double": "0.0728",
+    "field_out": "0.4389",
+    "home_run": "0.0266",
+    "single": "0.1746",
+    "strikeout": "0.1315",
+    "walk": "0.1557"
+  },
+  "Kody Clemens": {
+    "double": "0.1777",
+    "field_out": "0.2961",
+    "home_run": "0.0464",
+    "single": "0.1813",
+    "strikeout": "0.1741",
+    "walk": "0.1245"
+  },
+  "Ryan Jeffers": {
+    "double": "0.1840",
+    "field_out": "0.1584",
+    "home_run": "0.0308",
+    "single": "0.2806",
+    "strikeout": "0.1139",
+    "walk": "0.2323"
+  },
+  "Luke Keaschall": {
+    "double": "0.0966",
+    "field_out": "0.3447",
+    "home_run": "0.0234",
+    "single": "0.2477",
+    "strikeout": "0.0239",
+    "walk": "0.2636"
+  },
+  "Alan Roden": {
+    "double": "0.0415",
+    "field_out": "0.3972",
+    "home_run": "0.0356",
+    "single": "0.2261",
+    "strikeout": "0.2572",
+    "walk": "0.0423"
+  },
+  "Trevor Larnach": {
+    "double": "0.1073",
+    "field_out": "0.3167",
+    "home_run": "0.0397",
+    "single": "0.1975",
+    "strikeout": "0.1161",
+    "walk": "0.2228"
+  },
+  "Brooks Lee": {
+    "double": "0.1676",
+    "field_out": "0.2856",
+    "home_run": "0.0341",
+    "single": "0.2769",
+    "strikeout": "0.0529",
+    "walk": "0.1828"
+  },
+  "Mickey Gasper": {
+    "double": "0.1003",
+    "field_out": "0.3451",
+    "home_run": "0.0188",
+    "single": "0.2125",
+    "strikeout": "0.1198",
+    "walk": "0.2035"
+  },
+  "Shea Langeliers": {
+    "double": "0.1452",
+    "field_out": "0.1322",
+    "home_run": "0.4138",
+    "single": "0.1024",
+    "strikeout": "0.1147",
+    "walk": "0.0917"
+  },
+  "Brent Rooker": {
+    "double": "0.2584",
+    "field_out": "0.1073",
+    "home_run": "0.2039",
+    "single": "0.1299",
+    "strikeout": "0.1272",
+    "walk": "0.1733"
+  },
+  "Nick Kurtz": {
+    "double": "0.0880",
+    "field_out": "0.1579",
+    "home_run": "0.2863",
+    "single": "0.0844",
+    "strikeout": "0.2336",
+    "walk": "0.1499"
+  },
+  "Colby Thomas": {
+    "double": "0.0330",
+    "field_out": "0.1102",
+    "home_run": "0.2563",
+    "single": "0.0826",
+    "strikeout": "0.4332",
+    "walk": "0.0847"
+  },
+  "Darell Hernaiz": {
+    "double": "0.0466",
+    "field_out": "0.2955",
+    "home_run": "0.3591",
+    "single": "0.1064",
+    "strikeout": "0.0261",
+    "walk": "0.1664"
+  },
+  "JJ Bleday": {
+    "double": "0.2504",
+    "field_out": "0.1308",
+    "home_run": "0.1860",
+    "single": "0.1222",
+    "strikeout": "0.1479",
+    "walk": "0.1627"
+  },
+  "Gio Urshela": {
+    "double": "0.1416",
+    "field_out": "0.3993",
+    "home_run": "0.0210",
+    "single": "0.1869",
+    "strikeout": "0.0948",
+    "walk": "0.1565"
+  },
+  "Willie MacIver": {
+    "double": "0.0611",
+    "field_out": "0.5250",
+    "home_run": "0.0127",
+    "single": "0.1927",
+    "strikeout": "0.1940",
+    "walk": "0.0144"
+  },
+  "Max Schuemann": {
+    "double": "0.2205",
+    "field_out": "0.3146",
+    "home_run": "0.0183",
+    "single": "0.2424",
+    "strikeout": "0.0805",
+    "walk": "0.1237"
+  },
+  "Jackson Holliday": {
+    "double": "0.1488",
+    "field_out": "0.1238",
+    "home_run": "0.1870",
+    "single": "0.1576",
+    "strikeout": "0.1757",
+    "walk": "0.2071"
+  },
+  "Jordan Westburg": {
+    "double": "0.1235",
+    "field_out": "0.3308",
+    "home_run": "0.1606",
+    "single": "0.1577",
+    "strikeout": "0.1842",
+    "walk": "0.0432"
+  },
+  "Gunnar Henderson": {
+    "double": "0.1499",
+    "field_out": "0.1821",
+    "home_run": "0.1071",
+    "single": "0.1303",
+    "strikeout": "0.1531",
+    "walk": "0.2776"
+  },
+  "Adley Rutschman": {
+    "double": "0.0890",
+    "field_out": "0.2221",
+    "home_run": "0.1686",
+    "single": "0.1417",
+    "strikeout": "0.1159",
+    "walk": "0.2627"
+  },
+  "Ryan Mountcastle": {
+    "double": "0.0913",
+    "field_out": "0.3019",
+    "home_run": "0.1128",
+    "single": "0.2110",
+    "strikeout": "0.2205",
+    "walk": "0.0624"
+  },
+  "Jeremiah Jackson": {
+    "double": "0.0372",
+    "field_out": "0.2798",
+    "home_run": "0.0134",
+    "single": "0.1324",
+    "strikeout": "0.5276",
+    "walk": "0.0097"
+  },
+  "Alex Jackson": {
+    "double": "0.0425",
+    "field_out": "0.1841",
+    "home_run": "0.4010",
+    "single": "0.0625",
+    "strikeout": "0.2984",
+    "walk": "0.0115"
+  },
+  "Greg Allen": {
+    "double": "0.0960",
+    "field_out": "0.4319",
+    "home_run": "0.0222",
+    "single": "0.2433",
+    "strikeout": "0.1961",
+    "walk": "0.0105"
+  },
+  "Jeremy Pe\u00f1a": {
+    "double": "0.1964",
+    "field_out": "0.2723",
+    "home_run": "0.0718",
+    "single": "0.2128",
+    "strikeout": "0.1406",
+    "walk": "0.1061"
+  },
+  "Carlos Correa": {
+    "double": "0.2552",
+    "field_out": "0.1611",
+    "home_run": "0.0937",
+    "single": "0.2130",
+    "strikeout": "0.0866",
+    "walk": "0.1904"
+  },
+  "Jose Altuve": {
+    "double": "0.1503",
+    "field_out": "0.1442",
+    "home_run": "0.0802",
+    "single": "0.2360",
+    "strikeout": "0.1485",
+    "walk": "0.2408"
+  },
+  "Christian Walker": {
+    "double": "0.2420",
+    "field_out": "0.2544",
+    "home_run": "0.0808",
+    "single": "0.1939",
+    "strikeout": "0.1857",
+    "walk": "0.0432"
+  },
+  "Victor Caratini": {
+    "double": "0.1851",
+    "field_out": "0.3269",
+    "home_run": "0.0605",
+    "single": "0.2442",
+    "strikeout": "0.1364",
+    "walk": "0.0469"
+  },
+  "Cam Smith": {
+    "double": "0.0789",
+    "field_out": "0.3708",
+    "home_run": "0.0139",
+    "single": "0.2013",
+    "strikeout": "0.2572",
+    "walk": "0.0779"
+  },
+  "Mauricio Dub\u00f3n": {
+    "double": "0.2021",
+    "field_out": "0.2331",
+    "home_run": "0.0862",
+    "single": "0.2829",
+    "strikeout": "0.0944",
+    "walk": "0.1013"
+  },
+  "Chas McCormick": {
+    "double": "0.0667",
+    "field_out": "0.4974",
+    "home_run": "0.0061",
+    "single": "0.2619",
+    "strikeout": "0.1495",
+    "walk": "0.0183"
+  },
+  "Trent Grisham": {
+    "double": "0.4172",
+    "field_out": "0.1119",
+    "home_run": "0.1484",
+    "single": "0.1698",
+    "strikeout": "0.0816",
+    "walk": "0.0711"
+  },
+  "Ben Rice": {
+    "double": "0.2405",
+    "field_out": "0.1064",
+    "home_run": "0.3024",
+    "single": "0.1773",
+    "strikeout": "0.0879",
+    "walk": "0.0855"
+  },
+  "Aaron Judge": {
+    "double": "0.1197",
+    "field_out": "0.2389",
+    "home_run": "0.2164",
+    "single": "0.1492",
+    "strikeout": "0.1516",
+    "walk": "0.1242"
+  },
+  "Cody Bellinger": {
+    "double": "0.2659",
+    "field_out": "0.1746",
+    "home_run": "0.1982",
+    "single": "0.2522",
+    "strikeout": "0.0509",
+    "walk": "0.0582"
+  },
+  "Jazz Chisholm Jr.": {
+    "double": "0.2426",
+    "field_out": "0.0831",
+    "home_run": "0.2138",
+    "single": "0.1894",
+    "strikeout": "0.1444",
+    "walk": "0.1267"
+  },
+  "Jasson Dom\u00ednguez": {
+    "double": "0.2307",
+    "field_out": "0.1100",
+    "home_run": "0.1659",
+    "single": "0.2194",
+    "strikeout": "0.1486",
+    "walk": "0.1254"
+  },
+  "Anthony Volpe": {
+    "double": "0.2831",
+    "field_out": "0.1475",
+    "home_run": "0.1624",
+    "single": "0.2225",
+    "strikeout": "0.1364",
+    "walk": "0.0480"
+  },
+  "Ryan McMahon": {
+    "double": "0.1743",
+    "field_out": "0.1874",
+    "home_run": "0.1184",
+    "single": "0.1600",
+    "strikeout": "0.1758",
+    "walk": "0.1840"
+  },
+  "Austin Wells": {
+    "double": "0.2193",
+    "field_out": "0.2516",
+    "home_run": "0.0825",
+    "single": "0.2065",
+    "strikeout": "0.2026",
+    "walk": "0.0374"
+  },
+  "Xavier Edwards": {
+    "double": "0.1085",
+    "field_out": "0.1953",
+    "home_run": "0.0136",
+    "single": "0.3762",
+    "strikeout": "0.1445",
+    "walk": "0.1620"
+  },
+  "Heriberto Hernandez": {
+    "double": "0.1420",
+    "field_out": "0.0979",
+    "home_run": "0.4109",
+    "single": "0.1169",
+    "strikeout": "0.1258",
+    "walk": "0.1066"
+  },
+  "Kyle Stowers": {
+    "double": "0.1239",
+    "field_out": "0.0833",
+    "home_run": "0.3844",
+    "single": "0.1191",
+    "strikeout": "0.1177",
+    "walk": "0.1716"
+  },
+  "Otto Lopez": {
+    "double": "0.1414",
+    "field_out": "0.2425",
+    "home_run": "0.0215",
+    "single": "0.3026",
+    "strikeout": "0.1148",
+    "walk": "0.1772"
+  },
+  "Dane Myers": {
+    "double": "0.1219",
+    "field_out": "0.1340",
+    "home_run": "0.1684",
+    "single": "0.1592",
+    "strikeout": "0.2970",
+    "walk": "0.1195"
+  },
+  "Eric Wagaman": {
+    "double": "0.2587",
+    "field_out": "0.1497",
+    "home_run": "0.2483",
+    "single": "0.1626",
+    "strikeout": "0.1172",
+    "walk": "0.0635"
+  },
+  "Derek Hill": {
+    "double": "0.0594",
+    "field_out": "0.1310",
+    "home_run": "0.2905",
+    "single": "0.1147",
+    "strikeout": "0.2460",
+    "walk": "0.1583"
+  },
+  "Liam Hicks": {
+    "double": "0.1308",
+    "field_out": "0.3251",
+    "home_run": "0.0234",
+    "single": "0.2483",
+    "strikeout": "0.1208",
+    "walk": "0.1516"
+  },
+  "Javier Sanoja": {
+    "double": "0.1765",
+    "field_out": "0.3581",
+    "home_run": "0.1919",
+    "single": "0.2268",
+    "strikeout": "0.0223",
+    "walk": "0.0244"
+  },
+  "Jurickson Profar": {
+    "double": "0.0774",
+    "field_out": "0.0773",
+    "home_run": "0.3372",
+    "single": "0.0932",
+    "strikeout": "0.0495",
+    "walk": "0.3653"
+  },
+  "Matt Olson": {
+    "double": "0.1004",
+    "field_out": "0.1037",
+    "home_run": "0.4170",
+    "single": "0.0985",
+    "strikeout": "0.0766",
+    "walk": "0.2039"
+  },
+  "Marcell Ozuna": {
+    "double": "0.1064",
+    "field_out": "0.1342",
+    "home_run": "0.2917",
+    "single": "0.1117",
+    "strikeout": "0.0819",
+    "walk": "0.2742"
+  },
+  "Sean Murphy": {
+    "double": "0.1230",
+    "field_out": "0.1371",
+    "home_run": "0.2359",
+    "single": "0.1258",
+    "strikeout": "0.2343",
+    "walk": "0.1440"
+  },
+  "Michael Harris II": {
+    "double": "0.1333",
+    "field_out": "0.4236",
+    "home_run": "0.1676",
+    "single": "0.1859",
+    "strikeout": "0.0614",
+    "walk": "0.0282"
+  },
+  "Ozzie Albies": {
+    "double": "0.1130",
+    "field_out": "0.3177",
+    "home_run": "0.0162",
+    "single": "0.3109",
+    "strikeout": "0.1115",
+    "walk": "0.1307"
+  },
+  "Eli White": {
+    "double": "0.1751",
+    "field_out": "0.2505",
+    "home_run": "0.2874",
+    "single": "0.1458",
+    "strikeout": "0.1138",
+    "walk": "0.0274"
+  },
+  "Nacho Alvarez Jr.": {
+    "double": "0.0904",
+    "field_out": "0.2313",
+    "home_run": "0.0094",
+    "single": "0.1598",
+    "strikeout": "0.4796",
+    "walk": "0.0295"
+  },
+  "TJ Friedl": {
+    "double": "0.1213",
+    "field_out": "0.1944",
+    "home_run": "0.1378",
+    "single": "0.2264",
+    "strikeout": "0.1414",
+    "walk": "0.1787"
+  },
+  "Gavin Lux": {
+    "double": "0.0764",
+    "field_out": "0.1696",
+    "home_run": "0.2293",
+    "single": "0.1248",
+    "strikeout": "0.1176",
+    "walk": "0.2823"
+  },
+  "Elly De La Cruz": {
+    "double": "0.0776",
+    "field_out": "0.1530",
+    "home_run": "0.3896",
+    "single": "0.0997",
+    "strikeout": "0.1352",
+    "walk": "0.1449"
+  },
+  "Miguel Andujar": {
+    "double": "0.1246",
+    "field_out": "0.1735",
+    "home_run": "0.1749",
+    "single": "0.2100",
+    "strikeout": "0.1272",
+    "walk": "0.1897"
+  },
+  "Austin Hays": {
+    "double": "0.1446",
+    "field_out": "0.0909",
+    "home_run": "0.3499",
+    "single": "0.1282",
+    "strikeout": "0.1018",
+    "walk": "0.1846"
+  },
+  "Noelvi Marte": {
+    "double": "0.0427",
+    "field_out": "0.0841",
+    "home_run": "0.7493",
+    "single": "0.0501",
+    "strikeout": "0.0461",
+    "walk": "0.0276"
+  },
+  "Spencer Steer": {
+    "double": "0.1497",
+    "field_out": "0.1837",
+    "home_run": "0.1290",
+    "single": "0.2602",
+    "strikeout": "0.1357",
+    "walk": "0.1418"
+  },
+  "Jose Trevino": {
+    "double": "0.1178",
+    "field_out": "0.3582",
+    "home_run": "0.0280",
+    "single": "0.2675",
+    "strikeout": "0.0554",
+    "walk": "0.1730"
+  },
+  "Ke'Bryan Hayes": {
+    "double": "0.0520",
+    "field_out": "0.5512",
+    "home_run": "0.0134",
+    "single": "0.2361",
+    "strikeout": "0.1013",
+    "walk": "0.0460"
+  },
+  "Spencer Horwitz": {
+    "double": "0.1142",
+    "field_out": "0.2080",
+    "home_run": "0.3276",
+    "single": "0.1456",
+    "strikeout": "0.1394",
+    "walk": "0.0653"
+  },
+  "Tommy Pham": {
+    "double": "0.2087",
+    "field_out": "0.1864",
+    "home_run": "0.1757",
+    "single": "0.2212",
+    "strikeout": "0.1509",
+    "walk": "0.0571"
+  },
+  "Bryan Reynolds": {
+    "double": "0.3174",
+    "field_out": "0.1511",
+    "home_run": "0.2078",
+    "single": "0.1640",
+    "strikeout": "0.1329",
+    "walk": "0.0268"
+  },
+  "Oneil Cruz": {
+    "double": "0.1807",
+    "field_out": "0.1232",
+    "home_run": "0.4588",
+    "single": "0.0836",
+    "strikeout": "0.1234",
+    "walk": "0.0303"
+  },
+  "Nick Gonzales": {
+    "double": "0.1480",
+    "field_out": "0.2293",
+    "home_run": "0.1369",
+    "single": "0.2309",
+    "strikeout": "0.2294",
+    "walk": "0.0256"
+  },
+  "Jack Suwinski": {
+    "double": "0.2764",
+    "field_out": "0.2203",
+    "home_run": "0.1793",
+    "single": "0.0918",
+    "strikeout": "0.1893",
+    "walk": "0.0430"
+  },
+  "Jared Triolo": {
+    "double": "0.1585",
+    "field_out": "0.3055",
+    "home_run": "0.0165",
+    "single": "0.3105",
+    "strikeout": "0.1694",
+    "walk": "0.0396"
+  },
+  "Henry Davis": {
+    "double": "0.2828",
+    "field_out": "0.1363",
+    "home_run": "0.1876",
+    "single": "0.1962",
+    "strikeout": "0.1537",
+    "walk": "0.0435"
+  },
+  "Isiah Kiner-Falefa": {
+    "double": "0.1501",
+    "field_out": "0.3270",
+    "home_run": "0.0148",
+    "single": "0.2421",
+    "strikeout": "0.2345",
+    "walk": "0.0314"
+  },
+  "Zach Neto": {
+    "double": "0.1408",
+    "field_out": "0.1038",
+    "home_run": "0.3229",
+    "single": "0.1711",
+    "strikeout": "0.2185",
+    "walk": "0.0429"
+  },
+  "Nolan Schanuel": {
+    "double": "0.1732",
+    "field_out": "0.2384",
+    "home_run": "0.0475",
+    "single": "0.2644",
+    "strikeout": "0.1854",
+    "walk": "0.0911"
+  },
+  "Mike Trout": {
+    "double": "0.0436",
+    "field_out": "0.2190",
+    "home_run": "0.1439",
+    "single": "0.0994",
+    "strikeout": "0.4134",
+    "walk": "0.0807"
+  },
+  "Taylor Ward": {
+    "double": "0.0965",
+    "field_out": "0.1362",
+    "home_run": "0.3857",
+    "single": "0.1030",
+    "strikeout": "0.1900",
+    "walk": "0.0887"
+  },
+  "Jo Adell": {
+    "double": "0.1381",
+    "field_out": "0.0895",
+    "home_run": "0.4179",
+    "single": "0.1331",
+    "strikeout": "0.1519",
+    "walk": "0.0696"
+  },
+  "Luis Rengifo": {
+    "double": "0.1437",
+    "field_out": "0.2258",
+    "home_run": "0.1310",
+    "single": "0.2687",
+    "strikeout": "0.1755",
+    "walk": "0.0554"
+  },
+  "Logan O'Hoppe": {
+    "double": "0.0819",
+    "field_out": "0.1862",
+    "home_run": "0.2917",
+    "single": "0.1222",
+    "strikeout": "0.2925",
+    "walk": "0.0255"
+  },
+  "Christian Moore": {
+    "double": "0.0303",
+    "field_out": "0.2088",
+    "home_run": "0.1847",
+    "single": "0.0916",
+    "strikeout": "0.4421",
+    "walk": "0.0425"
+  },
+  "Bryce Teodosio": {
+    "double": "0.0643",
+    "field_out": "0.1303",
+    "home_run": "0.0091",
+    "single": "0.1083",
+    "strikeout": "0.6803",
+    "walk": "0.0078"
+  },
+  "Colt Keith": {
+    "double": "0.1353",
+    "field_out": "0.4248",
+    "home_run": "0.0210",
+    "single": "0.2302",
+    "strikeout": "0.0961",
+    "walk": "0.0925"
+  },
+  "Gleyber Torres": {
+    "double": "0.2029",
+    "field_out": "0.1192",
+    "home_run": "0.1237",
+    "single": "0.2431",
+    "strikeout": "0.0595",
+    "walk": "0.2516"
+  },
+  "Kerry Carpenter": {
+    "double": "0.1651",
+    "field_out": "0.2678",
+    "home_run": "0.2757",
+    "single": "0.1196",
+    "strikeout": "0.1317",
+    "walk": "0.0401"
+  },
+  "Riley Greene": {
+    "double": "0.1099",
+    "field_out": "0.1886",
+    "home_run": "0.1351",
+    "single": "0.2067",
+    "strikeout": "0.2405",
+    "walk": "0.1192"
+  },
+  "Spencer Torkelson": {
+    "double": "0.2292",
+    "field_out": "0.1393",
+    "home_run": "0.2239",
+    "single": "0.2416",
+    "strikeout": "0.0921",
+    "walk": "0.0738"
+  },
+  "Zach McKinstry": {
+    "double": "0.2370",
+    "field_out": "0.1538",
+    "home_run": "0.1334",
+    "single": "0.2308",
+    "strikeout": "0.0827",
+    "walk": "0.1623"
+  },
+  "Dillon Dingler": {
+    "double": "0.2108",
+    "field_out": "0.2220",
+    "home_run": "0.1143",
+    "single": "0.2956",
+    "strikeout": "0.1141",
+    "walk": "0.0431"
+  },
+  "Trey Sweeney": {
+    "double": "0.0455",
+    "field_out": "0.4458",
+    "home_run": "0.0140",
+    "single": "0.1696",
+    "strikeout": "0.1629",
+    "walk": "0.1622"
+  },
+  "Javier B\u00e1ez": {
+    "double": "0.0418",
+    "field_out": "0.4780",
+    "home_run": "0.0132",
+    "single": "0.2174",
+    "strikeout": "0.2383",
+    "walk": "0.0113"
+  },
+  "Steven Kwan": {
+    "double": "0.1267",
+    "field_out": "0.2901",
+    "home_run": "0.1098",
+    "single": "0.1801",
+    "strikeout": "0.0630",
+    "walk": "0.2302"
+  },
+  "Daniel Schneemann": {
+    "double": "0.0793",
+    "field_out": "0.2030",
+    "home_run": "0.0249",
+    "single": "0.1552",
+    "strikeout": "0.1214",
+    "walk": "0.4163"
+  },
+  "Kyle Manzardo": {
+    "double": "0.1804",
+    "field_out": "0.0766",
+    "home_run": "0.1878",
+    "single": "0.1549",
+    "strikeout": "0.1428",
+    "walk": "0.2576"
+  },
+  "Gabriel Arias": {
+    "double": "0.1163",
+    "field_out": "0.2152",
+    "home_run": "0.0629",
+    "single": "0.2178",
+    "strikeout": "0.3084",
+    "walk": "0.0794"
+  },
+  "Angel Mart\u00ednez": {
+    "double": "0.1547",
+    "field_out": "0.1894",
+    "home_run": "0.1507",
+    "single": "0.2503",
+    "strikeout": "0.1008",
+    "walk": "0.1542"
+  },
+  "C.J. Kayfus": {
+    "double": "0.1135",
+    "field_out": "0.1729",
+    "home_run": "0.1640",
+    "single": "0.1364",
+    "strikeout": "0.3144",
+    "walk": "0.0988"
+  },
+  "Brayan Rocchio": {
+    "double": "0.1017",
+    "field_out": "0.3326",
+    "home_run": "0.0130",
+    "single": "0.2792",
+    "strikeout": "0.1905",
+    "walk": "0.0830"
+  },
+  "Austin Hedges": {
+    "double": "0.0664",
+    "field_out": "0.2351",
+    "home_run": "0.0125",
+    "single": "0.1734",
+    "strikeout": "0.2410",
+    "walk": "0.2716"
+  },
+  "Mike Tauchman": {
+    "double": "0.1092",
+    "field_out": "0.1430",
+    "home_run": "0.3314",
+    "single": "0.1534",
+    "strikeout": "0.1647",
+    "walk": "0.0984"
+  },
+  "Lenyn Sosa": {
+    "double": "0.1717",
+    "field_out": "0.0900",
+    "home_run": "0.4481",
+    "single": "0.1364",
+    "strikeout": "0.1159",
+    "walk": "0.0379"
+  },
+  "Andrew Benintendi": {
+    "double": "0.2844",
+    "field_out": "0.1874",
+    "home_run": "0.1465",
+    "single": "0.1916",
+    "strikeout": "0.1086",
+    "walk": "0.0815"
+  },
+  "Luis Robert Jr.": {
+    "double": "0.1764",
+    "field_out": "0.1536",
+    "home_run": "0.1985",
+    "single": "0.1528",
+    "strikeout": "0.2083",
+    "walk": "0.1105"
+  },
+  "Colson Montgomery": {
+    "double": "0.1588",
+    "field_out": "0.1313",
+    "home_run": "0.4387",
+    "single": "0.1045",
+    "strikeout": "0.1276",
+    "walk": "0.0391"
+  },
+  "Curtis Mead": {
+    "double": "0.1110",
+    "field_out": "0.2813",
+    "home_run": "0.1958",
+    "single": "0.2301",
+    "strikeout": "0.1157",
+    "walk": "0.0660"
+  },
+  "Kyle Teel": {
+    "double": "0.2556",
+    "field_out": "0.1593",
+    "home_run": "0.2257",
+    "single": "0.1611",
+    "strikeout": "0.1034",
+    "walk": "0.0949"
+  },
+  "Brooks Baldwin": {
+    "double": "0.1192",
+    "field_out": "0.0719",
+    "home_run": "0.5230",
+    "single": "0.0954",
+    "strikeout": "0.1467",
+    "walk": "0.0438"
+  },
+  "Josh Rojas": {
+    "double": "0.1524",
+    "field_out": "0.2723",
+    "home_run": "0.0295",
+    "single": "0.1957",
+    "strikeout": "0.1431",
+    "walk": "0.2070"
+  },
+  "Francisco Lindor": {
+    "double": "0.2442",
+    "field_out": "0.0960",
+    "home_run": "0.1440",
+    "single": "0.2544",
+    "strikeout": "0.1266",
+    "walk": "0.1348"
+  },
+  "Juan Soto": {
+    "double": "0.1195",
+    "field_out": "0.1849",
+    "home_run": "0.1528",
+    "single": "0.1581",
+    "strikeout": "0.0885",
+    "walk": "0.2961"
+  },
+  "Brandon Nimmo": {
+    "double": "0.1370",
+    "field_out": "0.2416",
+    "home_run": "0.0777",
+    "single": "0.2055",
+    "strikeout": "0.2107",
+    "walk": "0.1274"
+  },
+  "Pete Alonso": {
+    "double": "0.2236",
+    "field_out": "0.1431",
+    "home_run": "0.1049",
+    "single": "0.2466",
+    "strikeout": "0.1776",
+    "walk": "0.1043"
+  },
+  "Jeff McNeil": {
+    "double": "0.1793",
+    "field_out": "0.2637",
+    "home_run": "0.0268",
+    "single": "0.3030",
+    "strikeout": "0.0660",
+    "walk": "0.1612"
+  },
+  "Ronny Mauricio": {
+    "double": "0.1485",
+    "field_out": "0.3509",
+    "home_run": "0.0886",
+    "single": "0.1295",
+    "strikeout": "0.2376",
+    "walk": "0.0450"
+  },
+  "Cedric Mullins": {
+    "double": "0.1472",
+    "field_out": "0.1677",
+    "home_run": "0.0780",
+    "single": "0.1733",
+    "strikeout": "0.2063",
+    "walk": "0.2276"
+  },
+  "Brett Baty": {
+    "double": "0.1567",
+    "field_out": "0.1301",
+    "home_run": "0.1417",
+    "single": "0.2665",
+    "strikeout": "0.1145",
+    "walk": "0.1905"
+  },
+  "Luis Torrens": {
+    "double": "0.1413",
+    "field_out": "0.2381",
+    "home_run": "0.0289",
+    "single": "0.3287",
+    "strikeout": "0.1925",
+    "walk": "0.0705"
+  },
+  "Caleb Durbin": {
+    "double": "0.2041",
+    "field_out": "0.2796",
+    "home_run": "0.1518",
+    "single": "0.2336",
+    "strikeout": "0.0747",
+    "walk": "0.0562"
+  },
+  "Isaac Collins": {
+    "double": "0.1360",
+    "field_out": "0.1668",
+    "home_run": "0.1025",
+    "single": "0.1749",
+    "strikeout": "0.1305",
+    "walk": "0.2894"
+  },
+  "William Contreras": {
+    "double": "0.1456",
+    "field_out": "0.1740",
+    "home_run": "0.1566",
+    "single": "0.1429",
+    "strikeout": "0.1137",
+    "walk": "0.2672"
+  },
+  "Andrew Vaughn": {
+    "double": "0.1915",
+    "field_out": "0.1526",
+    "home_run": "0.2529",
+    "single": "0.2183",
+    "strikeout": "0.0702",
+    "walk": "0.1145"
+  },
+  "Blake Perkins": {
+    "double": "0.1293",
+    "field_out": "0.2318",
+    "home_run": "0.1787",
+    "single": "0.1390",
+    "strikeout": "0.2773",
+    "walk": "0.0440"
+  },
+  "Andruw Monasterio": {
+    "double": "0.0480",
+    "field_out": "0.2725",
+    "home_run": "0.0151",
+    "single": "0.1404",
+    "strikeout": "0.0226",
+    "walk": "0.5014"
+  },
+  "Danny Jansen": {
+    "double": "0.0830",
+    "field_out": "0.1478",
+    "home_run": "0.2983",
+    "single": "0.0996",
+    "strikeout": "0.2025",
+    "walk": "0.1688"
+  },
+  "Brandon Lockridge": {
+    "double": "0.0548",
+    "field_out": "0.4150",
+    "home_run": "0.0143",
+    "single": "0.1881",
+    "strikeout": "0.3056",
+    "walk": "0.0223"
+  },
+  "Joey Ortiz": {
+    "double": "0.2078",
+    "field_out": "0.2914",
+    "home_run": "0.0407",
+    "single": "0.2091",
+    "strikeout": "0.1538",
+    "walk": "0.0973"
+  },
+  "Trea Turner": {
+    "double": "0.2153",
+    "field_out": "0.0482",
+    "home_run": "0.3738",
+    "single": "0.1582",
+    "strikeout": "0.1035",
+    "walk": "0.1010"
+  },
+  "Kyle Schwarber": {
+    "double": "0.1217",
+    "field_out": "0.0888",
+    "home_run": "0.3672",
+    "single": "0.0954",
+    "strikeout": "0.2006",
+    "walk": "0.1263"
+  },
+  "Bryce Harper": {
+    "double": "0.1624",
+    "field_out": "0.1526",
+    "home_run": "0.2138",
+    "single": "0.1831",
+    "strikeout": "0.2107",
+    "walk": "0.0775"
+  },
+  "J.T. Realmuto": {
+    "double": "0.1980",
+    "field_out": "0.1274",
+    "home_run": "0.2897",
+    "single": "0.1833",
+    "strikeout": "0.1494",
+    "walk": "0.0522"
+  },
+  "Nick Castellanos": {
+    "double": "0.2748",
+    "field_out": "0.1408",
+    "home_run": "0.1392",
+    "single": "0.2047",
+    "strikeout": "0.1817",
+    "walk": "0.0588"
+  },
+  "Harrison Bader": {
+    "double": "0.1942",
+    "field_out": "0.1280",
+    "home_run": "0.2546",
+    "single": "0.1268",
+    "strikeout": "0.1623",
+    "walk": "0.1341"
+  },
+  "Edmundo Sosa": {
+    "double": "0.1572",
+    "field_out": "0.2235",
+    "home_run": "0.2577",
+    "single": "0.1451",
+    "strikeout": "0.1953",
+    "walk": "0.0211"
+  },
+  "Bryson Stott": {
+    "double": "0.2015",
+    "field_out": "0.1583",
+    "home_run": "0.1631",
+    "single": "0.2123",
+    "strikeout": "0.1440",
+    "walk": "0.1207"
+  },
+  "Weston Wilson": {
+    "double": "0.0552",
+    "field_out": "0.2094",
+    "home_run": "0.4718",
+    "single": "0.1342",
+    "strikeout": "0.0656",
+    "walk": "0.0638"
+  },
+  "Corey Seager": {
+    "double": "0.0892",
+    "field_out": "0.1589",
+    "home_run": "0.2083",
+    "single": "0.1126",
+    "strikeout": "0.2748",
+    "walk": "0.1562"
+  },
+  "Marcus Semien": {
+    "double": "0.1450",
+    "field_out": "0.1786",
+    "home_run": "0.0431",
+    "single": "0.1996",
+    "strikeout": "0.2367",
+    "walk": "0.1972"
+  },
+  "Joc Pederson": {
+    "double": "0.0890",
+    "field_out": "0.1894",
+    "home_run": "0.0593",
+    "single": "0.1135",
+    "strikeout": "0.1806",
+    "walk": "0.3682"
+  },
+  "Adolis Garc\u00eda": {
+    "double": "0.1093",
+    "field_out": "0.1571",
+    "home_run": "0.0839",
+    "single": "0.1168",
+    "strikeout": "0.4828",
+    "walk": "0.0501"
+  },
+  "Wyatt Langford": {
+    "double": "0.1084",
+    "field_out": "0.0995",
+    "home_run": "0.0834",
+    "single": "0.0830",
+    "strikeout": "0.4150",
+    "walk": "0.2107"
+  },
+  "Rowdy Tellez": {
+    "double": "0.1559",
+    "field_out": "0.1428",
+    "home_run": "0.0214",
+    "single": "0.1266",
+    "strikeout": "0.4201",
+    "walk": "0.1333"
+  },
+  "Josh Jung": {
+    "double": "0.1247",
+    "field_out": "0.0641",
+    "home_run": "0.1123",
+    "single": "0.1481",
+    "strikeout": "0.3051",
+    "walk": "0.2456"
+  },
+  "Kyle Higashioka": {
+    "double": "0.0749",
+    "field_out": "0.3033",
+    "home_run": "0.0189",
+    "single": "0.1574",
+    "strikeout": "0.4007",
+    "walk": "0.0448"
+  },
+  "James Wood": {
+    "double": "0.1304",
+    "field_out": "0.1568",
+    "home_run": "0.1524",
+    "single": "0.1721",
+    "strikeout": "0.2597",
+    "walk": "0.1286"
+  },
+  "CJ Abrams": {
+    "double": "0.2954",
+    "field_out": "0.1114",
+    "home_run": "0.1261",
+    "single": "0.2746",
+    "strikeout": "0.1166",
+    "walk": "0.0759"
+  },
+  "Paul DeJong": {
+    "double": "0.2317",
+    "field_out": "0.3306",
+    "home_run": "0.1194",
+    "single": "0.1751",
+    "strikeout": "0.1265",
+    "walk": "0.0167"
+  },
+  "Nathaniel Lowe": {
+    "double": "0.1163",
+    "field_out": "0.1509",
+    "home_run": "0.1008",
+    "single": "0.2091",
+    "strikeout": "0.2137",
+    "walk": "0.2092"
+  },
+  "Riley Adams": {
+    "double": "0.0755",
+    "field_out": "0.1918",
+    "home_run": "0.1426",
+    "single": "0.1800",
+    "strikeout": "0.3547",
+    "walk": "0.0554"
+  },
+  "Daylen Lile": {
+    "double": "0.0675",
+    "field_out": "0.2959",
+    "home_run": "0.0172",
+    "single": "0.2213",
+    "strikeout": "0.3576",
+    "walk": "0.0405"
+  },
+  "Brady House": {
+    "double": "0.0673",
+    "field_out": "0.2953",
+    "home_run": "0.0297",
+    "single": "0.2470",
+    "strikeout": "0.3378",
+    "walk": "0.0228"
+  },
+  "Jacob Young": {
+    "double": "0.1522",
+    "field_out": "0.2415",
+    "home_run": "0.0181",
+    "single": "0.3424",
+    "strikeout": "0.1248",
+    "walk": "0.1210"
+  },
+  "Heliot Ramos": {
+    "double": "0.0925",
+    "field_out": "0.1592",
+    "home_run": "0.1144",
+    "single": "0.1725",
+    "strikeout": "0.2288",
+    "walk": "0.2326"
+  },
+  "Rafael Devers": {
+    "double": "0.0711",
+    "field_out": "0.1309",
+    "home_run": "0.2546",
+    "single": "0.0972",
+    "strikeout": "0.1263",
+    "walk": "0.3199"
+  },
+  "Willy Adames": {
+    "double": "0.1884",
+    "field_out": "0.0572",
+    "home_run": "0.1995",
+    "single": "0.1406",
+    "strikeout": "0.1326",
+    "walk": "0.2817"
+  },
+  "Wilmer Flores": {
+    "double": "0.1163",
+    "field_out": "0.1536",
+    "home_run": "0.1514",
+    "single": "0.2221",
+    "strikeout": "0.1427",
+    "walk": "0.2139"
+  },
+  "Matt Chapman": {
+    "double": "0.1185",
+    "field_out": "0.1837",
+    "home_run": "0.1819",
+    "single": "0.0851",
+    "strikeout": "0.1111",
+    "walk": "0.3197"
+  },
+  "Casey Schmitt": {
+    "double": "0.1854",
+    "field_out": "0.1185",
+    "home_run": "0.2364",
+    "single": "0.1843",
+    "strikeout": "0.1213",
+    "walk": "0.1541"
+  },
+  "Jung Hoo Lee": {
+    "double": "0.1325",
+    "field_out": "0.2365",
+    "home_run": "0.0312",
+    "single": "0.2359",
+    "strikeout": "0.1140",
+    "walk": "0.2499"
+  },
+  "Patrick Bailey": {
+    "double": "0.1935",
+    "field_out": "0.1041",
+    "home_run": "0.1130",
+    "single": "0.1438",
+    "strikeout": "0.2473",
+    "walk": "0.1984"
+  },
+  "Chandler Simpson": {
+    "double": "0.0603",
+    "field_out": "0.5094",
+    "home_run": "0.0086",
+    "single": "0.2846",
+    "strikeout": "0.0973",
+    "walk": "0.0398"
+  },
+  "Yandy D\u00edaz": {
+    "double": "0.1923",
+    "field_out": "0.1044",
+    "home_run": "0.2755",
+    "single": "0.1943",
+    "strikeout": "0.1835",
+    "walk": "0.0500"
+  },
+  "Brandon Lowe": {
+    "double": "0.0867",
+    "field_out": "0.1734",
+    "home_run": "0.4244",
+    "single": "0.0735",
+    "strikeout": "0.2128",
+    "walk": "0.0293"
+  },
+  "Junior Caminero": {
+    "double": "0.0558",
+    "field_out": "0.2456",
+    "home_run": "0.3043",
+    "single": "0.1298",
+    "strikeout": "0.2314",
+    "walk": "0.0331"
+  },
+  "Josh Lowe": {
+    "double": "0.0671",
+    "field_out": "0.3239",
+    "home_run": "0.0968",
+    "single": "0.2041",
+    "strikeout": "0.2318",
+    "walk": "0.0764"
+  },
+  "Hunter Feduccia": {
+    "double": "0.1311",
+    "field_out": "0.3890",
+    "home_run": "0.0383",
+    "single": "0.1211",
+    "strikeout": "0.2466",
+    "walk": "0.0738"
+  },
+  "Ha-Seong Kim": {
+    "double": "0.0333",
+    "field_out": "0.2924",
+    "home_run": "0.0144",
+    "single": "0.1194",
+    "strikeout": "0.4544",
+    "walk": "0.0860"
+  },
+  "Jake Mangum": {
+    "double": "0.1029",
+    "field_out": "0.3758",
+    "home_run": "0.0096",
+    "single": "0.3201",
+    "strikeout": "0.1556",
+    "walk": "0.0360"
+  },
+  "Randy Arozarena": {
+    "double": "0.2384",
+    "field_out": "0.1243",
+    "home_run": "0.0906",
+    "single": "0.2256",
+    "strikeout": "0.1751",
+    "walk": "0.1461"
+  },
+  "Cal Raleigh": {
+    "double": "0.1094",
+    "field_out": "0.1425",
+    "home_run": "0.1357",
+    "single": "0.1066",
+    "strikeout": "0.2393",
+    "walk": "0.2664"
+  },
+  "Julio Rodr\u00edguez": {
+    "double": "0.1920",
+    "field_out": "0.1915",
+    "home_run": "0.1385",
+    "single": "0.2335",
+    "strikeout": "0.1632",
+    "walk": "0.0813"
+  },
+  "Josh Naylor": {
+    "double": "0.2691",
+    "field_out": "0.1514",
+    "home_run": "0.1086",
+    "single": "0.2419",
+    "strikeout": "0.1003",
+    "walk": "0.1288"
+  },
+  "Eugenio Su\u00e1rez": {
+    "double": "0.2026",
+    "field_out": "0.1047",
+    "home_run": "0.1349",
+    "single": "0.2536",
+    "strikeout": "0.1630",
+    "walk": "0.1411"
+  },
+  "Jorge Polanco": {
+    "double": "0.1909",
+    "field_out": "0.1424",
+    "home_run": "0.1531",
+    "single": "0.1760",
+    "strikeout": "0.1329",
+    "walk": "0.2047"
+  },
+  "Mitch Garver": {
+    "double": "0.2215",
+    "field_out": "0.0789",
+    "home_run": "0.0871",
+    "single": "0.2843",
+    "strikeout": "0.1539",
+    "walk": "0.1742"
+  },
+  "Dominic Canzone": {
+    "double": "0.1590",
+    "field_out": "0.2467",
+    "home_run": "0.1080",
+    "single": "0.2141",
+    "strikeout": "0.1371",
+    "walk": "0.1351"
+  },
+  "Nathan Lukes": {
+    "double": "0.0659",
+    "field_out": "0.2411",
+    "home_run": "0.1528",
+    "single": "0.2293",
+    "strikeout": "0.1484",
+    "walk": "0.1624"
+  },
+  "Bo Bichette": {
+    "double": "0.0875",
+    "field_out": "0.3167",
+    "home_run": "0.2281",
+    "single": "0.1935",
+    "strikeout": "0.1508",
+    "walk": "0.0234"
+  },
+  "Vladimir Guerrero Jr.": {
+    "double": "0.1394",
+    "field_out": "0.2095",
+    "home_run": "0.1719",
+    "single": "0.1754",
+    "strikeout": "0.1800",
+    "walk": "0.1239"
+  },
+  "Addison Barger": {
+    "double": "0.1618",
+    "field_out": "0.1425",
+    "home_run": "0.0889",
+    "single": "0.1467",
+    "strikeout": "0.3566",
+    "walk": "0.1035"
+  },
+  "Ty France": {
+    "double": "0.1355",
+    "field_out": "0.1922",
+    "home_run": "0.0658",
+    "single": "0.2220",
+    "strikeout": "0.2216",
+    "walk": "0.1629"
+  },
+  "Daulton Varsho": {
+    "double": "0.0656",
+    "field_out": "0.1584",
+    "home_run": "0.4431",
+    "single": "0.1008",
+    "strikeout": "0.1681",
+    "walk": "0.0640"
+  },
+  "Ernie Clement": {
+    "double": "0.1171",
+    "field_out": "0.3069",
+    "home_run": "0.0989",
+    "single": "0.2378",
+    "strikeout": "0.1313",
+    "walk": "0.1080"
+  },
+  "Joey Loperfido": {
+    "double": "0.0622",
+    "field_out": "0.3174",
+    "home_run": "0.0710",
+    "single": "0.1221",
+    "strikeout": "0.3993",
+    "walk": "0.0280"
+  },
+  "Tyler Heineman": {
+    "double": "0.1107",
+    "field_out": "0.2368",
+    "home_run": "0.0167",
+    "single": "0.1630",
+    "strikeout": "0.2740",
+    "walk": "0.1988"
+  },
+  "Shohei Ohtani": {
+    "double": "0.0594",
+    "field_out": "0.1359",
+    "home_run": "0.3966",
+    "single": "0.0768",
+    "strikeout": "0.2062",
+    "walk": "0.1250"
+  },
+  "Mookie Betts": {
+    "double": "0.1692",
+    "field_out": "0.1995",
+    "home_run": "0.1104",
+    "single": "0.2492",
+    "strikeout": "0.0629",
+    "walk": "0.2087"
+  },
+  "Freddie Freeman": {
+    "double": "0.1566",
+    "field_out": "0.1398",
+    "home_run": "0.1030",
+    "single": "0.1966",
+    "strikeout": "0.1435",
+    "walk": "0.2604"
+  },
+  "Teoscar Hern\u00e1ndez": {
+    "double": "0.0865",
+    "field_out": "0.2121",
+    "home_run": "0.3814",
+    "single": "0.1441",
+    "strikeout": "0.1389",
+    "walk": "0.0370"
+  },
+  "Andy Pages": {
+    "double": "0.1181",
+    "field_out": "0.2352",
+    "home_run": "0.2720",
+    "single": "0.1962",
+    "strikeout": "0.1048",
+    "walk": "0.0737"
+  },
+  "Max Muncy": {
+    "double": "0.0452",
+    "field_out": "0.1660",
+    "home_run": "0.2493",
+    "single": "0.0693",
+    "strikeout": "0.0983",
+    "walk": "0.3718"
+  },
+  "Miguel Rojas": {
+    "double": "0.1175",
+    "field_out": "0.1600",
+    "home_run": "0.2045",
+    "single": "0.1550",
+    "strikeout": "0.1053",
+    "walk": "0.2578"
+  },
+  "Alex Call": {
+    "double": "0.1268",
+    "field_out": "0.2273",
+    "home_run": "0.2312",
+    "single": "0.1981",
+    "strikeout": "0.0471",
+    "walk": "0.1695"
+  },
+  "Roman Anthony": {
+    "double": "0.1363",
+    "field_out": "0.2078",
+    "home_run": "0.0237",
+    "single": "0.0850",
+    "strikeout": "0.3088",
+    "walk": "0.2384"
+  },
+  "Alex Bregman": {
+    "double": "0.2903",
+    "field_out": "0.1613",
+    "home_run": "0.0679",
+    "single": "0.1595",
+    "strikeout": "0.1043",
+    "walk": "0.2167"
+  },
+  "Jarren Duran": {
+    "double": "0.2755",
+    "field_out": "0.1051",
+    "home_run": "0.2041",
+    "single": "0.1180",
+    "strikeout": "0.1395",
+    "walk": "0.1578"
+  },
+  "Trevor Story": {
+    "double": "0.0725",
+    "field_out": "0.2443",
+    "home_run": "0.0243",
+    "single": "0.1482",
+    "strikeout": "0.4191",
+    "walk": "0.0917"
+  },
+  "Masataka Yoshida": {
+    "double": "0.1277",
+    "field_out": "0.2995",
+    "home_run": "0.2190",
+    "single": "0.1046",
+    "strikeout": "0.2000",
+    "walk": "0.0493"
+  },
+  "Romy Gonzalez": {
+    "double": "0.1531",
+    "field_out": "0.2394",
+    "home_run": "0.2050",
+    "single": "0.1307",
+    "strikeout": "0.2273",
+    "walk": "0.0444"
+  },
+  "Wilyer Abreu": {
+    "double": "0.1698",
+    "field_out": "0.1136",
+    "home_run": "0.1369",
+    "single": "0.1074",
+    "strikeout": "0.2558",
+    "walk": "0.2166"
+  },
+  "Ceddanne Rafaela": {
+    "double": "0.2089",
+    "field_out": "0.1926",
+    "home_run": "0.0765",
+    "single": "0.2002",
+    "strikeout": "0.2152",
+    "walk": "0.1066"
+  },
+  "Connor Wong": {
+    "double": "0.1123",
+    "field_out": "0.2713",
+    "home_run": "0.0185",
+    "single": "0.2173",
+    "strikeout": "0.2019",
+    "walk": "0.1788"
+  },
+  "Fernando Tatis Jr.": {
+    "double": "0.2320",
+    "field_out": "0.0733",
+    "home_run": "0.2439",
+    "single": "0.1585",
+    "strikeout": "0.1307",
+    "walk": "0.1615"
+  },
+  "Luis Arraez": {
+    "double": "0.1166",
+    "field_out": "0.4692",
+    "home_run": "0.0105",
+    "single": "0.3213",
+    "strikeout": "0.0186",
+    "walk": "0.0638"
+  },
+  "Manny Machado": {
+    "double": "0.2620",
+    "field_out": "0.0883",
+    "home_run": "0.1842",
+    "single": "0.1817",
+    "strikeout": "0.0905",
+    "walk": "0.1933"
+  },
+  "Ryan O'Hearn": {
+    "double": "0.0947",
+    "field_out": "0.1743",
+    "home_run": "0.3295",
+    "single": "0.1338",
+    "strikeout": "0.0474",
+    "walk": "0.2203"
+  },
+  "Xander Bogaerts": {
+    "double": "0.1600",
+    "field_out": "0.0793",
+    "home_run": "0.1677",
+    "single": "0.2141",
+    "strikeout": "0.1018",
+    "walk": "0.2770"
+  },
+  "Jackson Merrill": {
+    "double": "0.0943",
+    "field_out": "0.3809",
+    "home_run": "0.0229",
+    "single": "0.2339",
+    "strikeout": "0.1283",
+    "walk": "0.1396"
+  },
+  "Ram\u00f3n Laureano": {
+    "double": "0.1996",
+    "field_out": "0.1688",
+    "home_run": "0.2296",
+    "single": "0.1992",
+    "strikeout": "0.1303",
+    "walk": "0.0725"
+  },
+  "Jake Cronenworth": {
+    "double": "0.1434",
+    "field_out": "0.1297",
+    "home_run": "0.3032",
+    "single": "0.1406",
+    "strikeout": "0.1099",
+    "walk": "0.1732"
+  },
+  "Freddy Fermin": {
+    "double": "0.1493",
+    "field_out": "0.1914",
+    "home_run": "0.0821",
+    "single": "0.2930",
+    "strikeout": "0.1197",
+    "walk": "0.1645"
+  },
+  "Mickey Moniak": {
+    "double": "0.1759",
+    "field_out": "0.1172",
+    "home_run": "0.3079",
+    "single": "0.1210",
+    "strikeout": "0.1960",
+    "walk": "0.0820"
+  },
+  "Ezequiel Tovar": {
+    "double": "0.1513",
+    "field_out": "0.1366",
+    "home_run": "0.1748",
+    "single": "0.1526",
+    "strikeout": "0.2196",
+    "walk": "0.1650"
+  },
+  "Hunter Goodman": {
+    "double": "0.1739",
+    "field_out": "0.1267",
+    "home_run": "0.1450",
+    "single": "0.1798",
+    "strikeout": "0.1859",
+    "walk": "0.1888"
+  },
+  "Warming Bernabel": {
+    "double": "0.0744",
+    "field_out": "0.3628",
+    "home_run": "0.0121",
+    "single": "0.2695",
+    "strikeout": "0.2538",
+    "walk": "0.0273"
+  },
+  "Brenton Doyle": {
+    "double": "0.2124",
+    "field_out": "0.1013",
+    "home_run": "0.1655",
+    "single": "0.1375",
+    "strikeout": "0.1975",
+    "walk": "0.1857"
+  },
+  "Yanquiel Fern\u00e1ndez": {
+    "double": "0.0666",
+    "field_out": "0.3915",
+    "home_run": "0.0208",
+    "single": "0.2546",
+    "strikeout": "0.2452",
+    "walk": "0.0214"
+  },
+  "Braxton Fulford": {
+    "double": "0.1193",
+    "field_out": "0.2156",
+    "home_run": "0.1111",
+    "single": "0.1225",
+    "strikeout": "0.3849",
+    "walk": "0.0466"
+  },
+  "Adael Amador": {
+    "double": "0.0950",
+    "field_out": "0.1954",
+    "home_run": "0.1693",
+    "single": "0.2105",
+    "strikeout": "0.1659",
+    "walk": "0.1639"
+  },
+  "Corbin Carroll": {
+    "double": "0.1596",
+    "field_out": "0.1615",
+    "home_run": "0.3160",
+    "single": "0.1831",
+    "strikeout": "0.0916",
+    "walk": "0.0882"
+  },
+  "Ketel Marte": {
+    "double": "0.1664",
+    "field_out": "0.1508",
+    "home_run": "0.3682",
+    "single": "0.1075",
+    "strikeout": "0.0539",
+    "walk": "0.1531"
+  },
+  "Geraldo Perdomo": {
+    "double": "0.1100",
+    "field_out": "0.2658",
+    "home_run": "0.0692",
+    "single": "0.1923",
+    "strikeout": "0.0488",
+    "walk": "0.3138"
+  },
+  "Lourdes Gurriel Jr.": {
+    "double": "0.1229",
+    "field_out": "0.3834",
+    "home_run": "0.1159",
+    "single": "0.2682",
+    "strikeout": "0.0559",
+    "walk": "0.0538"
+  },
+  "Adrian Del Castillo": {
+    "double": "0.1163",
+    "field_out": "0.4519",
+    "home_run": "0.0360",
+    "single": "0.1844",
+    "strikeout": "0.1933",
+    "walk": "0.0180"
+  },
+  "Tyler Locklear": {
+    "double": "0.0396",
+    "field_out": "0.2899",
+    "home_run": "0.1237",
+    "single": "0.1437",
+    "strikeout": "0.2181",
+    "walk": "0.1851"
+  },
+  "Alek Thomas": {
+    "double": "0.1637",
+    "field_out": "0.1885",
+    "home_run": "0.2661",
+    "single": "0.2052",
+    "strikeout": "0.0983",
+    "walk": "0.0781"
+  },
+  "James McCann": {
+    "double": "0.0581",
+    "field_out": "0.4330",
+    "home_run": "0.0198",
+    "single": "0.2592",
+    "strikeout": "0.1168",
+    "walk": "0.1130"
+  },
+  "Blaze Alexander": {
+    "double": "0.0882",
+    "field_out": "0.1628",
+    "home_run": "0.2238",
+    "single": "0.1578",
+    "strikeout": "0.1134",
+    "walk": "0.2539"
+  },
+  "Michael Busch": {
+    "double": "0.2211",
+    "field_out": "0.1493",
+    "home_run": "0.1740",
+    "single": "0.1572",
+    "strikeout": "0.2016",
+    "walk": "0.0967"
+  },
+  "Kyle Tucker": {
+    "double": "0.1621",
+    "field_out": "0.1420",
+    "home_run": "0.3257",
+    "single": "0.1198",
+    "strikeout": "0.1223",
+    "walk": "0.1281"
+  },
+  "Seiya Suzuki": {
+    "double": "0.5531",
+    "field_out": "0.0797",
+    "home_run": "0.1540",
+    "single": "0.0695",
+    "strikeout": "0.0928",
+    "walk": "0.0509"
+  },
+  "Pete Crow-Armstrong": {
+    "double": "0.2231",
+    "field_out": "0.1488",
+    "home_run": "0.3719",
+    "single": "0.0967",
+    "strikeout": "0.1474",
+    "walk": "0.0122"
+  },
+  "Carson Kelly": {
+    "double": "0.1093",
+    "field_out": "0.2519",
+    "home_run": "0.2419",
+    "single": "0.2121",
+    "strikeout": "0.1263",
+    "walk": "0.0585"
+  },
+  "Ian Happ": {
+    "double": "0.1618",
+    "field_out": "0.1273",
+    "home_run": "0.2893",
+    "single": "0.1239",
+    "strikeout": "0.1753",
+    "walk": "0.1224"
+  },
+  "Dansby Swanson": {
+    "double": "0.1321",
+    "field_out": "0.1424",
+    "home_run": "0.2610",
+    "single": "0.1175",
+    "strikeout": "0.3043",
+    "walk": "0.0427"
+  },
+  "Nico Hoerner": {
+    "double": "0.2210",
+    "field_out": "0.2276",
+    "home_run": "0.0758",
+    "single": "0.3217",
+    "strikeout": "0.0910",
+    "walk": "0.0629"
+  },
+  "Matt Shaw": {
+    "double": "0.0913",
+    "field_out": "0.1556",
+    "home_run": "0.5084",
+    "single": "0.0980",
+    "strikeout": "0.0983",
+    "walk": "0.0484"
+  },
+  "Brendan Donovan": {
+    "double": "0.2394",
+    "field_out": "0.3129",
+    "home_run": "0.0813",
+    "single": "0.2380",
+    "strikeout": "0.0889",
+    "walk": "0.0395"
+  },
+  "Iv\u00e1n Herrera": {
+    "double": "0.1215",
+    "field_out": "0.2022",
+    "home_run": "0.2062",
+    "single": "0.1990",
+    "strikeout": "0.1592",
+    "walk": "0.1119"
+  },
+  "Willson Contreras": {
+    "double": "0.1324",
+    "field_out": "0.1332",
+    "home_run": "0.4017",
+    "single": "0.1282",
+    "strikeout": "0.1395",
+    "walk": "0.0650"
+  },
+  "Alec Burleson": {
+    "double": "0.2454",
+    "field_out": "0.2039",
+    "home_run": "0.1249",
+    "single": "0.2233",
+    "strikeout": "0.1632",
+    "walk": "0.0393"
+  },
+  "Thomas Saggese": {
+    "double": "0.0630",
+    "field_out": "0.2989",
+    "home_run": "0.0206",
+    "single": "0.2129",
+    "strikeout": "0.3768",
+    "walk": "0.0277"
+  },
+  "Masyn Winn": {
+    "double": "0.1806",
+    "field_out": "0.1720",
+    "home_run": "0.2643",
+    "single": "0.2066",
+    "strikeout": "0.1242",
+    "walk": "0.0522"
+  },
+  "Lars Nootbaar": {
+    "double": "0.1317",
+    "field_out": "0.1745",
+    "home_run": "0.2307",
+    "single": "0.1428",
+    "strikeout": "0.2561",
+    "walk": "0.0643"
+  },
+  "Victor Scott II": {
+    "double": "0.1244",
+    "field_out": "0.2839",
+    "home_run": "0.0244",
+    "single": "0.2835",
+    "strikeout": "0.2208",
+    "walk": "0.0629"
+  }
+}
