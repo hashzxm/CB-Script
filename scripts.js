@@ -45,6 +45,10 @@ const espnTeamAbbrMap = {
  * Fetches all necessary JSON data from the server.
  */
 async function fetchData() {
+    // IMPORTANT GITHUB PAGES FIX:
+    // The basePath must match your repository name exactly.
+    const basePath = '/CB-Script'; // <--- FIXED THIS LINE
+
     try {
         // Use Promise.all to fetch all data files concurrently for speed.
         const [
@@ -53,15 +57,21 @@ async function fetchData() {
             batterAbsResponse,
             dailyScriptsResponse
         ] = await Promise.all([
-            fetch('./data/final_report.json'),
-            fetch('./data/schedule.json'),
-            fetch('./data/batter_abs.json'),
-            fetch('./data/daily_scripts.json')
+            fetch(`${basePath}/data/final_report.json`),
+            fetch(`${basePath}/data/schedule.json`),
+            fetch(`${basePath}/data/batter_abs.json`),
+            fetch(`${basePath}/data/daily_scripts.json`)
         ]);
 
         // Check if any of the network requests failed.
         if (!finalReportResponse.ok || !scheduleResponse.ok || !batterAbsResponse.ok || !dailyScriptsResponse.ok) {
-            throw new Error(`HTTP error! One or more files failed to load.`);
+            // Create a detailed error message if any file fails to load.
+            const errors = [];
+            if (!finalReportResponse.ok) errors.push('final_report.json');
+            if (!scheduleResponse.ok) errors.push('schedule.json');
+            if (!batterAbsResponse.ok) errors.push('batter_abs.json');
+            if (!dailyScriptsResponse.ok) errors.push('daily_scripts.json');
+            throw new Error(`HTTP error! Could not load: ${errors.join(', ')}`);
         }
 
         // Parse the JSON from each response and store it in our appData object.
@@ -69,15 +79,35 @@ async function fetchData() {
         appData.schedule = await scheduleResponse.json();
         appData.batterAbs = await batterAbsResponse.json();
         appData.dailyBatterScripts = await dailyScriptsResponse.json();
-
+        
         return true; // Indicate success
 
     } catch (error) {
         console.error("Fatal Error: Could not fetch or process initial data.", error);
-        // Display a user-friendly error message on the page.
-        document.body.innerHTML = `<div class="text-center p-8 text-red-400">
-                                        <h1 class="text-2xl font-bold">Failed to Load Report Data</h1>
-                                        <p class="mt-2">The data files could not be loaded. Please check the console for details and ensure the 'data' folder and its JSON files are in the correct location.</p>
+        // Hide the main content and password modal to ensure the error is visible.
+        const protectedContent = document.getElementById('protected-content');
+        if (protectedContent) protectedContent.style.display = 'none';
+        const passwordModal = document.getElementById('password-modal');
+        if (passwordModal) passwordModal.style.display = 'none';
+
+        // Create and inject a dedicated error message container into the page.
+        let errorContainer = document.getElementById('error-container');
+        if (!errorContainer) {
+            errorContainer = document.createElement('div');
+            errorContainer.id = 'error-container';
+            errorContainer.className = 'fixed inset-0 flex items-center justify-center z-50 p-4';
+            document.body.appendChild(errorContainer);
+        }
+        errorContainer.innerHTML = `<div class="bg-gray-800 p-8 rounded-lg shadow-2xl w-full max-w-lg text-center">
+                                        <h2 class="text-2xl font-bold mb-4 text-red-500">Error: Failed to Load Report Data</h2>
+                                        <p class="text-gray-300">The application could not start because one or more data files are missing or could not be accessed.</p>
+                                        <p class="text-gray-400 mt-4">Please check the following in your GitHub repository:</p>
+                                        <ul class="text-left text-gray-400 list-disc list-inside mt-2 bg-gray-900 p-3 rounded-md">
+                                            <li>A folder named <code class="bg-gray-700 px-1 rounded">data</code> exists in your repository's root directory.</li>
+                                            <li>The <code class="bg-gray-700 px-1 rounded">data</code> folder contains all four required JSON files.</li>
+                                            <li>File and folder names are all lowercase and match the code exactly.</li>
+                                        </ul>
+                                        <p class="text-gray-500 text-xs mt-4">Check the browser's developer console (F12) for specific "404 Not Found" errors.</p>
                                    </div>`;
         return false; // Indicate failure
     }
@@ -89,20 +119,20 @@ async function fetchData() {
 function initializePage() {
     loadSettings();
     loadPicks();
-
+    
     // Process the fetched data to build the main data structures for the app
     allGamesData = processFinalReport(appData.finalReport, appData.schedule);
     masterPlayerList = createMasterPlayerList(allGamesData);
-
+    
     // Populate UI elements that depend on the initial data
     populateAllNotebookGameFilter();
-
+    
     // Render all the main views of the application
     renderAll();
-
+    
     // Set up all the interactive event listeners
     setupEventListeners();
-
+    
     // Set the initial view to the dashboard
     switchView('dashboard');
 }
@@ -1226,3 +1256,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+" in the immersive artifact "scripts_js". what should i change the basepath 
